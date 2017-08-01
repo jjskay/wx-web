@@ -8,6 +8,18 @@ Page({
   
   },
 
+  bindTip: function(){
+    wx.showModal({
+      title: '警告',
+      content: '您点击了拒绝授权，部分功能将无法正常使用。请10分钟后再次点击授权，或者删除小程序重新进入。',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -47,6 +59,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.showNavigationBarLoading()
   
   },
 

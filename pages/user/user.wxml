@@ -1,2 +1,2 @@
 <!--user.wxml-->
-<text>user.wxml</text>
+<text bindtap="bindTip">user.wxml</text>
