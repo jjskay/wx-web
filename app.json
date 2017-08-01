@@ -1,12 +1,38 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/user/user"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#333",
+    "borderStyle": "#666",
+    "list": [
+      {
+        "selectedIconPath": "images/nav11.png",
+        "iconPath": "images/nav1.png",
+        "pagePath": "pages/index/index",
+        "text": "日记"
+      },
+      {
+        "selectedIconPath": "images/nav22.png",
+        "iconPath": "images/nav2.png",
+        "pagePath": "pages/logs/logs",
+        "text": "写新日记"
+      },
+      {
+        "selectedIconPath": "images/nav33.png",
+        "iconPath": "images/nav3.png",
+        "pagePath": "pages/user/user",
+        "text": "我"
+      }
+    ]
   }
 }

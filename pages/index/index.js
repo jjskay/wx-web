@@ -28,6 +28,19 @@ Page({
       success: res => {
         console.log(res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'http://test.grand56.com/user/authorization', //仅为示例，并非真实的接口地址
+          method: 'POST',
+          data: {
+            code: res.code
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            console.log(res.data)
+          }
+        })
       }
     })
 

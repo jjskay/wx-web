@@ -18,6 +18,17 @@ App({
         success: function(res) {
           that.globalData.userInfo = res.userInfo
           typeof cb == "function" && cb(that.globalData.userInfo)
+        },
+        fail: function(){
+          wx.showModal({
+            title: '警告',
+            content: '您点击了拒绝授权，部分功能将无法正常使用。请10分钟后再次点击授权，或者删除小程序重新进入。',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              }
+            }
+          })
         }
       })
     }
