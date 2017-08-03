@@ -1,1 +1,41 @@
 /* user.wxss */
+.container-login{
+  padding: 0 30rpx;
+}
+
+.container-login.login{
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  display: flex; 
+  justify-content: center;
+  height: 100%;
+}
+
+.login-box{
+  text-align: left;
+  width: 100%;
+}
+
+.login-btn{
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  line-height: 3;
+}
+
+.login-btn:after{
+  border: 0rpx;
+}
+
+.login-title{
+  font-size: 46rpx;
+  padding-bottom: 15rpx;
+  display: block;
+}
+
+.login-text{
+  font-size: 26rpx;
+  color: #999;
+  padding-bottom: 10rpx;
+  display: block;
+}

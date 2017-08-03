@@ -1,2 +1,14 @@
 <!--user.wxml-->
-<text bindtap="bindTip">user.wxml</text>
+<view class="container-login {{!login ? 'login' : ''}}">
+  <view wx:if="{{!login}}" class="login-box">
+    <text class="login-title">经纪人，你好。\n</text>
+    <text class="login-text">注册新账号或者登陆后即可体验完整功能</text>
+    <button class="login-btn" type="warn">注册</button>
+
+    <button class="login-btn">登录</button>
+  </view>
+
+  <view wx:if="{{login}}" class="usermotto">
+    
+  </view>
+</view>
