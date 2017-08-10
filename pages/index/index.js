@@ -12,7 +12,57 @@ Page({
       tag: "知名情感博主",
       answer: 134,
       listen: 2234
-    }]
+    },
+      { //假数据
+        img: "avatar.png",
+        name: "欢顔",
+        tag: "知名情感博主",
+        answer: 134,
+        listen: 2234
+      },
+      { //假数据
+        img: "avatar.png",
+        name: "欢顔",
+        tag: "知名情感博主",
+        answer: 134,
+        listen: 2234
+      },
+      { //假数据
+        img: "avatar.png",
+        name: "欢顔",
+        tag: "知名情感博主",
+        answer: 134,
+        listen: 2234
+      },
+      { //假数据
+        img: "avatar.png",
+        name: "欢顔",
+        tag: "知名情感博主",
+        answer: 134,
+        listen: 2234
+      },
+      { //假数据
+        img: "avatar.png",
+        name: "欢顔",
+        tag: "知名情感博主",
+        answer: 134,
+        listen: 2234
+      },
+      { //假数据
+        img: "avatar.png",
+        name: "欢顔",
+        tag: "知名情感博主",
+        answer: 134,
+        listen: 2234
+      },
+      { //假数据
+        img: "avatar.png",
+        name: "欢顔",
+        tag: "知名情感博主",
+        answer: 134,
+        listen: 2234
+      }],
+    scrollTopStyle: {}
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -47,5 +97,11 @@ Page({
     var that = this;
     
   },
-  footerTap: app.footerTap
+  footerTap: app.footerTap,
+  moveEvent: function(){
+    console.log(123)
+    this.setData({
+      // scrollTopStyle: 'transform: translateY(10%)'
+    })
+  }
 })

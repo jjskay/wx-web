@@ -1,5 +1,9 @@
 <!--index.wxml-->
 <view class="container">
+    <view class="search-input">
+        <icon type="search" size="15"/>
+        <input placeholder="搜索" placeholder-style="color:#e2e2e2" confirm-type="search" type="text" />
+    </view>
     <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
         <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">在租</view>
         <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">在售</view>
@@ -7,10 +11,10 @@
     </scroll-view>
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
      style="height:{{winHeight}}rpx">
-        <swiper-item wx:for="{{[0,1,2]}}">
-            <scroll-view scroll-y="true" class="scoll-h" >
-                <block wx:for="{{[1,2,3,5,6,7,8]}}" wx:key="*this">
-                    <view class="item-ans">
+        <swiper-item class="refresh{{item}}" wx:for="{{[0,1,2]}}" wx:key="{{new Date().getTime()}}">
+            <scroll-view style="{{scrollTopStyle}}" scroll-y="true" class="scoll-h" >
+                <block wx:for="{{expertList}}" wx:key="*this">
+                    <view bindtouchmove="moveEvent" class="item-ans">
                         <view class="avatar">
                             <image class="img" src="http://ookzqad11.bkt.clouddn.com/avatar.png"></image>
                         </view>
@@ -22,6 +26,11 @@
                         <navigator url="/pages/askExpert/expertDetail" class="askBtn">问TA</navigator> 
                     </view>
                 </block>
+
+                <block wx:if="{{expertList.length}}" wx:key="{{new Date().getTime()}}">
+
+                </block>
+                
             </scroll-view>
         </swiper-item>
     </swiper>

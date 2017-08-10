@@ -1,0 +1,17 @@
+<!--login.wxml-->
+<view class="page-login">
+  <text class="page-login-title">用手机号登录</text>
+
+  <view class="logi-phone-model">
+    <text class="logi-model-label">手机号</text>
+    <input bindinput="bindPhoneInput" type="number" placeholder="请输入您的登录手机号" placeholder-style="color: #999;" />
+    <button bindtap="getQrCode" disabled="{{getCodeDisabled}}" type="primary">{{loginCodeText}}</button>
+  </view>
+
+  <view class="logi-code-model">
+    <text class="logi-model-label">验证码</text>
+    <input bindinput="bindCodeInput" type="number" placeholder="请输入您的验证码" placeholder-style="color: #999;" />
+  </view>
+
+  <button class="login-sub-btn" type="primary" disabled="{{isDisabled}}">登录</button>
+</view>

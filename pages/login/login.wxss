@@ -1,0 +1,42 @@
+/* login.wxss */
+.page-login{
+  padding: 40rpx 30rpx;
+}
+
+.page-login-title{
+  font-size: 48rpx;
+  padding: 0rpx 0 20rpx;
+  display: block;
+}
+
+.logi-code-model,
+.logi-phone-model{
+  display: block;
+  margin-top: 40rpx;
+  position: relative;
+}
+.logi-model-label{
+  font-size: 26rpx;
+  margin-bottom: 15rpx;
+  display: block;
+}
+
+.page-login input{
+  border-bottom: 1px solid #e2e2e2;
+  width: 100%;
+  padding:20rpx 0rpx;
+}
+
+.logi-phone-model button{
+  display: inline-block;
+  width: auto;
+  font-size: 28rpx;
+  position:absolute;
+  bottom:15rpx;
+  right:0rpx;
+  z-index: 100;
+}
+
+.login-sub-btn{
+  margin-top: 100rpx;
+}
