@@ -2,7 +2,7 @@
 <view class="container-login {{!login ? 'login' : ''}}">
   <view wx:if="{{!login}}" class="login-box">
     <text class="login-title">经纪人，你好。\n</text>
-    <text class="login-text">注册新账号或者登陆后即可体验完整功能</text>
+    <text class="login-text">登陆后即可体验完整功能</text>
 
     <navigator class="navigator" url="../../pages/login/login">
       <button class="login-btn" type="warn">手机号登录</button>
@@ -11,7 +11,7 @@
       <text class="login-weixin-line-ele"></text>
       <text class="login-weixin-text">微信登录</text>
     </view>
-    <view class="login-weixin">
+    <view class="login-weixin" bindtap="wechartLogin">
       <image style="width: 70rpx;height: 70rpx;" src="../../images/weixin.png"></image>
     </view>
     

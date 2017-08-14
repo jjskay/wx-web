@@ -75,5 +75,62 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  wechartLogin: function() {
+    var vm = this
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              vm.login_()
+            }
+          })
+        }else{
+          vm.login_()
+        }
+      }
+    })
+  },
+
+  login_: function() {
+    wx.login({
+      success: res => {
+        wx.request({
+          method: 'POST',
+          url: 'https://win.grand56.com/api/v1/user/wapplogin/', //仅为示例，并非真实的接口地址
+          data: {
+            code: res.code
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            if(res.data.status){
+              wx.showModal({
+                title: '提示',
+                content: '绑定手机号使用全部功能！',
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: '../login/login'
+                    })
+                  } else if (res.cancel) {
+                    wx.showToast({
+                      title: '绑定手机号才能使用全部功能！',
+                      icon: 'loading',
+                      mask: true
+                    })
+                  }
+                }
+              })
+
+            }
+          }
+        })
+      }
+    })
   }
 })
