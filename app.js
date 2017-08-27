@@ -5,6 +5,41 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    
+    // 授权
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+              wx.hideLoading()
+            },
+            fail() {
+              wx.hideLoading()
+              wx.showModal({
+                title: '提示',
+                content: '您已经取消授权，请重新授权后才能使用~！',
+                showCancel: false,
+                success: function () {
+                  wx.showLoading({
+                    title: '请重新打开小程序授权~!',
+                    mask: true
+                  })
+                }
+              })
+            }
+          })
+        }else{
+          wx.hideLoading()
+        }
+      }
+    })
   },
 
   getUserInfo: function(cb) {
