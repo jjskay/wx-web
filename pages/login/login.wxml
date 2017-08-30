@@ -1,6 +1,6 @@
 <!--login.wxml-->
 <view class="page-login">
-  <text class="page-login-title">用手机号登录</text>
+  <text class="page-login-title">绑定手机号</text>
 
   <view class="logi-phone-model">
     <text class="logi-model-label">手机号</text>
@@ -13,5 +13,5 @@
     <input bindinput="bindCodeInput" type="number" placeholder="请输入您的验证码" placeholder-style="color: #999;" />
   </view>
 
-  <button class="login-sub-btn" type="primary" disabled="{{isDisabled}}">登录</button>
+  <button class="login-sub-btn" bindtap="submitCode" type="primary" disabled="{{isDisabled}}">确认</button>
 </view>

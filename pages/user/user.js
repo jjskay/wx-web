@@ -108,10 +108,31 @@ Page({
             'content-type': 'application/x-www-form-urlencoded'
           },
           success: function (res) {
+            if (res.data.status == -1){
+              wx.showModal({
+                title: '提示',
+                content: res.data.data.message,
+                showCancel: false
+              })
+              return
+            }
+
+            var data = res.data.data
+            // 存入token
+            if (data && data.Authorization){
+              wx.setStorage({
+                key: 'token',
+                data: {
+                  time: new Date().getTime(),
+                  token: data.Authorization
+                }
+              })
+            }
+
             if(res.data.status){
               wx.showModal({
                 title: '提示',
-                content: '绑定手机号使用全部功能！',
+                content: '微信登录成功，绑定手机号使用全部功能！',
                 success: function (res) {
                   if (res.confirm) {
                     wx.navigateTo({
@@ -126,8 +147,16 @@ Page({
                   }
                 }
               })
+            }else{
 
             }
+          },
+          fail: function() {
+            wx.showModal({
+              title: '提示',
+              content: '微信登录失败，请重试！',
+              showCancel: false
+            })
           }
         })
       }

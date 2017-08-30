@@ -4,16 +4,16 @@
     <text class="login-title">经纪人，你好。\n</text>
     <text class="login-text">登陆后即可体验完整功能</text>
 
-    <navigator class="navigator" url="../../pages/login/login">
-      <button class="login-btn" type="warn">手机号登录</button>
+    <navigator class="navigator" bindtap="wechartLogin">
+      <button class="login-btn" type="primary">微信登录</button>
     </navigator>
-    <view class="login-weixin-line">
+    <!-- <view class="login-weixin-line">
       <text class="login-weixin-line-ele"></text>
       <text class="login-weixin-text">微信登录</text>
-    </view>
-    <view class="login-weixin" bindtap="wechartLogin">
+    </view> -->
+    <!-- <view class="login-weixin" >
       <image style="width: 70rpx;height: 70rpx;" src="../../images/weixin.png"></image>
-    </view>
+    </view> -->
     
   </view>
 

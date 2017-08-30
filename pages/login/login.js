@@ -113,11 +113,34 @@ Page({
   getQrCode: function() {
     var vm = this;
     if (!this.getCodeNumber){
-      this.getCodeNumber = 120
-      this.setData({
-        loginCodeText: '120秒后获取'
+      var token = wx.getStorageSync('token')
+      wx.request({
+        method: 'POST',
+        url: 'https://win.grand56.com/api/v1/user/getvalid', //仅为示例，并非真实的接口地址
+        data: {
+          phonenumber: vm.data.phone,
+          timestamp: parseInt(new Date().getTime() / 1000)
+        },
+        header: {
+          'content-type': 'application/json',
+          'AUTHORIZATION': token.token
+        },
+        success: function (res) {
+          if (res.data.status == -1){
+            wx.showModal({
+              title: '提示',
+              content: res.data.data.message,
+              showCancel: false
+            })
+            return
+          }
+          vm.getCodeNumber = 120
+          vm.setData({
+            loginCodeText: '120秒后获取'
+          })
+          vm.setId = setInterval(vm.setCodeText, 1000)
+        }
       })
-      this.setId = setInterval(vm.setCodeText, 1000)
     }
   },
 
@@ -134,5 +157,33 @@ Page({
         loginCodeText: this.getCodeNumber + '秒后获取'
       })
     }
+  },
+
+  submitCode: function() {
+    var vm = this
+    var token = wx.getStorageSync('token')
+    wx.request({
+      method: 'POST',
+      url: 'https://win.grand56.com/api/v1/user/validcode', //仅为示例，并非真实的接口地址
+      data: {
+        code: vm.data.code,
+        timestamp: parseInt(new Date().getTime() / 1000)
+      },
+      header: {
+        'content-type': 'application/json',
+        'AUTHORIZATION': token.token
+      },
+      success: function (res) {
+        if (res.data.status == -1) {
+          wx.showModal({
+            title: '提示',
+            content: res.data.data.message,
+            showCancel: false
+          })
+          return
+        }
+        console.log(res)
+      }
+    })
   }
 })
