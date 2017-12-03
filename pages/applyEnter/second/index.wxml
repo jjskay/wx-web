@@ -1,0 +1,60 @@
+<view class="content">
+  <view class='content-title'>入驻申请</view>
+  <view class='content-tag'>
+    <image src='../../../images/second_setup.png' mode="aspectFit"></image>
+  </view>
+  <view class="logi-code-model">
+    <view class='model-box'>
+      <text class="logi-model-label">真实姓名</text>
+      <input bindinput="bindCodeInput" type="text" placeholder="请输入姓名" placeholder-style="color: #999;" />
+    </view>
+  </view>
+
+  <view class="logi-code-model">
+    <view class='model-box'>
+      <text class="logi-model-label">身份证号</text>
+      <input bindinput="bindCodeInput" type="text" placeholder="请输入身份证" placeholder-style="color: #999;" />
+    </view>
+  </view>
+
+  <view class="logi-code-model">
+    <view class='model-box border-none'>
+      <text class="logi-model-label">上传身份证</text>
+      <input bindinput="bindCodeInput" type="text" disabled='true' placeholder="正面、反面，保证清晰" placeholder-style="color: #999;" />
+    </view>
+  </view>
+  <view class='pic-box'>
+    <view class='pic'>
+      <image src='../../../images/close_btn.png' mode="widthFix"></image>
+    </view>
+    <view class='add-btn'>
+      <image src='../../../images/add_btn.png' mode="widthFix"></image>
+    </view>
+  </view>
+
+  <view class="logi-code-model">
+    <view class='model-box'>
+      <text class="logi-model-label">店铺名称</text>
+      <input bindinput="bindCodeInput" type="text" placeholder="请输入店铺名称" placeholder-style="color: #999;" />
+    </view>
+  </view>
+
+  <view class="logi-code-model">
+    <view class='model-box'>
+      <text class="logi-model-label">店面地址</text>
+      <input bindinput="bindCodeInput" type="text" placeholder="请输入店面地址" placeholder-style="color: #999;" />
+    </view>
+  </view>
+  <view class='pic-box'>
+    <view class='pic'>
+      <image src='../../../images/close_btn.png' mode="widthFix"></image>
+    </view>
+    <view class='add-btn'>
+      <image src='../../../images/add_btn.png' mode="widthFix"></image>
+    </view>
+  </view>
+
+  <view class='submit-btn'>
+    <image src='../../../images/sub_btn.png' mode="widthFix"></image>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<view class="content">
+  <view class='content-title'>入驻申请</view>
+  <view class='content-tag'>
+    <image src='../../../images/first_setup.png' mode="aspectFit"></image>
+  </view>
+
+  <view class="logi-phone-model">
+    <view class='model-box'>
+      <text class="logi-model-label">手机号</text>
+      <input bindinput="bindPhoneInput" type="number" placeholder="请输入手机号" placeholder-style="color: #999;" />
+      <view class='get-code-btn' bindtap="getQrCode" disabled="{{getCodeDisabled}}" type="primary">{{loginCodeText}}</view>
+    </view>    
+  </view>
+
+    <view class="logi-code-model">
+      <view class='model-box'>
+        <text class="logi-model-label">验证码</text>
+        <input bindinput="bindCodeInput" type="number" placeholder="请输入验证码" placeholder-style="color: #999;" />
+      </view>
+    </view>
+
+    <view class='submit-btn' bindtap='redirect'>
+      <image src='../../../images/next_btn.png' mode="widthFix"></image>
+    </view>
+</view>

@@ -103,5 +103,10 @@ Page({
     this.setData({
       // scrollTopStyle: 'transform: translateY(10%)'
     })
+  },
+  goSetup: function(set) {
+    wx.navigateTo({
+      url: '../applyEnter/first/index'
+    })
   }
 })
