@@ -1,4 +1,4 @@
-// pages/applyEnter/second/index.js
+// pages/applyEnter/result/index.js
 Page({
 
   /**
@@ -62,10 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  redirect() {
-    wx.navigateTo({
-      url: '../result/index'
-    })
-  },
+  }
 })

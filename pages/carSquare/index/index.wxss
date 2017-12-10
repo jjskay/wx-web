@@ -1,0 +1,94 @@
+/* pages/carSquare/index/index.wxss */
+.page-content{
+  background: #fff;
+  padding-top: 180rpx;
+}
+
+.search-head{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 199;
+}
+.search-box{
+  height: 90rpx;
+  box-sizing: border-box;
+  padding: 15rpx 30rpx 15rpx 160rpx;
+  position: relative;
+  line-height: 90rpx;
+  color:#fff;
+}
+.search-box input{
+  background: #fff;
+  padding: 14rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #101010;
+}
+
+.bg-icon{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.map-info{
+  position: absolute;
+  width: 160rpx;
+  left: 0;
+  top: 0;
+  padding-left: 65rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.map-info image{
+  width: 35rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 25rpx;
+}
+.ic-close{
+  position: absolute;
+  right: 45rpx;
+  width: 25rpx;
+  top: 32rpx;
+  z-index: 99;
+}
+.search-result{
+  padding: 20rpx 30rpx;
+  background: #e8eefc;
+  position: relative;
+  box-sizing: border-box;
+  color:#30356d;
+}
+.search-result view{
+  display: inline-block;
+}
+.search-item{
+  position: relative;
+  padding: 2rpx 45rpx 2rpx 10rpx;
+  background: #fff;
+  margin-right: 20rpx;
+}
+.search-item image{
+  right: 15rpx;
+  top: 15rpx;
+  width: 20rpx;
+}
+.rerefresh-btn{
+  position: absolute;
+  right: 30rpx;
+  top:0;
+  line-height: 90rpx;
+  padding-left: 50rpx;
+}
+.rerefresh-btn image{
+  left: 0;
+  width: 35rpx;
+  top: 26rpx;
+}
+

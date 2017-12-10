@@ -1,0 +1,131 @@
+/* pages/applyEnter/result/index.wxss */
+.page-content{
+  background: #e2e8f6;
+  padding: 20rpx 30rpx;
+  min-height: 100%;
+}
+
+.user-info{
+  background: #fff;
+  border-radius: 8rpx;
+  padding-bottom: 20rpx;
+  box-shadow: 0 0 10rpx #999;
+}
+
+.user-title{
+  position: relative;
+  padding: 50rpx 20rpx 50rpx 200rpx;
+  color: #428ee8;
+}
+.user-title image{
+  width: 120rpx;
+  position: absolute;
+  left: 40rpx;
+  top: 50%;
+  margin-top: -60rpx;
+}
+
+.user-name, .user-cert, .user-phone{
+  position: relative;
+  line-height: 60rpx;
+  height: 60rpx;
+  overflow: hidden;
+  padding-left: 200rpx;
+  background: #f5f5f5;
+  color: #191f5d;
+}
+
+.user-name text,
+.user-cert text,
+.user-phone text{
+  color:#333;
+  display: block;
+  width: 200rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+}
+.user-phone{
+  background: #fff;
+  line-height: 75rpx;
+  height: 75rpx;
+}
+.pic-box{
+  padding-left: 200rpx;
+  overflow: hidden;
+  padding-top: 30rpx;
+}
+
+.pic-box > view{
+  display: inline-block;
+  min-height: 250rpx;
+  width: 40%;
+  margin-right: 8%;
+  border: 2px solid #eee;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.enter-status{
+  padding-top: 70rpx;
+  box-sizing: border-box;
+  padding-left: 90rpx;
+  position: relative;
+}
+
+.enter-status:after{
+  display: block;
+  height: 95%;
+  border-left: 1px solid #7d92c3;
+  content: ' ';
+  position: absolute;
+  top: 100rpx;
+  left: 115rpx;
+}
+
+.status-number{
+  position: relative;
+  padding-left: 110rpx;
+  margin-bottom: 50rpx;
+}
+.status-number .number{
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 32rpx;
+  background: #c1d2f9;
+  border-radius: 25rpx;
+  color: #3488e7;
+  position: absolute;
+  left: 0;
+  top: 20rpx;
+  z-index: 10;
+}
+
+.status-number.pass .number{
+  background: #3288e6;
+  color:#fff;
+}
+
+.status-number .title-text{
+  font-size: 30rpx;
+  color:#191f5d;
+  font-weight: bold;
+}
+
+.content-text{
+  color:#7a7d99;
+  font-size: 26rpx;
+  padding-top: 10rpx;
+}
+
+.submit-btn{
+  padding: 80rpx 30rpx 0;
+}
+.submit-btn image{
+  display: block;
+  width: 100%;
+}

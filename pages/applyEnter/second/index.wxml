@@ -54,7 +54,7 @@
     </view>
   </view>
 
-  <view class='submit-btn'>
+  <view class='submit-btn' bindtap='redirect'>
     <image src='../../../images/sub_btn.png' mode="widthFix"></image>
   </view>
 </view>

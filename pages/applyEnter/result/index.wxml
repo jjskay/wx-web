@@ -1,0 +1,51 @@
+<!--pages/applyEnter/result/index.wxml-->
+<view class="page-content">
+  <view class="user-info">
+    <view class="user-title">
+      <image src='../../../images/succ-logo.jpg' mode="widthFix"></image>欢迎“环游世界”申请入驻易卖车
+    </view>
+    <view class='user-name'>
+      <text>真实姓名</text>王志刚
+    </view>
+    <view class='user-phone'>
+      <text>手机号码</text>13500000000
+    </view>
+    <view class='user-cert'>
+      <text>身份证号</text>432234111234455553
+    </view>
+
+    <view class='pic-box'>
+      <view class='pic'>
+      </view>
+      <view class='pic'>
+      </view>
+    </view>
+  </view>
+
+  <view class="enter-status">
+    <view class="status-number pass">
+      <text class="number">1</text>
+
+      <view class="title-text">申请已提交</view>
+      <view class="content-text">2017-10-10 21：00</view>
+    </view>
+
+    <view class="status-number">
+      <text class="number">2</text>
+
+      <view class="title-text">入驻信息审核</view>
+      <view class="content-text">预计2个工作日内完成审核</view>
+    </view>
+
+    <view class="status-number">
+      <text class="number">3</text>
+
+      <view class="title-text">申请结果</view>
+      <view class="content-text"></view>
+    </view>
+  </view>
+
+  <view class='submit-btn' bindtap='redirect'>
+    <image src='../../../images/release-info-btn.png' mode="widthFix"></image>
+  </view>
+</view>

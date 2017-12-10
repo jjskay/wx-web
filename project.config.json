@@ -1,0 +1,52 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.5.3",
+	"appid": "wxa2bca95a38de513b",
+	"projectname": "wx",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 3,
+			"list": [
+				{
+					"id": -1,
+					"name": "申请入驻第一步",
+					"pathName": "pages/applyEnter/first/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "申请入驻第2步",
+					"pathName": "pages/applyEnter/second/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "入驻申请结果",
+					"pathName": "pages/applyEnter/result/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "广场",
+					"pathName": "pages/carSquare/index/index"
+				}
+			]
+		}
+	}
+}

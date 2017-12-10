@@ -36,6 +36,7 @@ App({
       },
       fail: function() {
         vm.authorizeUserInfo()
+        wx.hideLoading()
       }
     })
 
