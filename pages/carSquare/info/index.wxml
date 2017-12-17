@@ -1,0 +1,74 @@
+<!--pages/carSquare/info/index.wxml-->
+<view class='page-content'>
+    <view class='page-swiper'></view>
+
+    <view class='page-info-head'>
+        <view class='head-title'>
+            <text class='title-tag'>待售</text>
+            Jeep自由光 2016年款精英版
+        </view>
+
+        <view class='head-price'>
+            <text class='color'>￥ <text class='max'>20.00</text>万</text>
+            新车价 28.5万
+
+            <view class='btn'>
+                <text>佣金 ￥5000</text>
+            </view>
+        </view>
+    </view>
+    <view class='margin-bg-dom'></view>
+
+    <view class='page-info-content'>
+        <view class='title-bg'>
+            <image class='ic-close' src='../../../images/info-bg.png' mode="widthFix"></image>
+        </view>
+
+        <view class='info-text-content'>
+            <view class='info-text-item'>
+                <view class='item-label'>上牌日期</view>2016年5月5日
+            </view>
+            <view class='info-text-item blank-bg'>
+                <view class='item-label'>年检保修到期</view>2016年5月5日
+            </view>
+            <view class='info-text-item'>
+                <view class='item-label'>填写里程数</view>2016年5月5日
+            </view>
+            <view class='info-text-item blank-bg'>
+                <view class='item-label'>本车佣金</view>￥5000   以线下协商为准
+            </view>
+            <view class='info-text-item'>
+                <view class='item-label'>其他信息</view>￥5000   以线下协商为准
+            </view>
+        </view>
+    </view>
+
+    <view class='car-business-info'>
+        <view class='title-bg'>
+            <image class='ic-close' src='../../../images/car-info-bg.png' mode="widthFix"></image>
+        </view>
+        <view class='info-list'>
+          <view class='info-item follow-item'>
+              <text class='item-tag'>推荐</text>
+              <view class='info-pic'>
+                  <image src='../../../images/info.png' mode="widthFix"></image>
+              </view>
+
+              <view class='info-content'>
+                  <view class='info-title'>王志刚</view>
+
+                  <view class='info-price'>2017年入驻</view>
+              </view>
+
+              <view class='follow-btn'>
+                  <image src='../../../images/ic-close.png' mode="widthFix"></image>
+                  关注
+              </view>
+          </view>
+        </view>
+    </view>
+
+    <view class='fix-footer-btn'>
+        <image class='ic-close' src='../../../images/look-car-bg.png' mode="widthFix"></image>
+    </view>
+</view>

@@ -1,0 +1,125 @@
+/* pages/releasse/index.wxss */
+.page-content{
+  padding: 70rpx 0 40rpx;
+}
+.page-header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  line-height: 50rpx;
+  height: 50rpx;
+  overflow: hidden;
+  z-index: 15;
+}
+.page-header image,
+.header-text{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.header-text{
+  line-height: 50rpx;
+  color:#fff;
+  padding-left: 60rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  vertical-align: middle;
+}
+.page-header image.ic-info{
+  position: absolute;
+  top: 14rpx;
+  left: 20rpx;
+  width: 28rpx;
+  z-index: 30;
+}
+
+.logi-phone-model .get-code-btn{
+  position: absolute;
+  right: 0;
+  top: 15rpx;
+  padding: 10rpx;
+  border: 1px solid #999;
+  border-radius: 8rpx;
+  color:#333;
+}
+
+.pic-box{
+  overflow: hidden;
+  padding-top: 30rpx;
+}
+
+.pic-box > view{
+  display: inline-block;
+  min-height: 250rpx;
+  width: 25%;
+  margin-right: 4%;
+  border: 1px solid #999;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.add-btn{
+  text-align: center;
+  position: relative;
+}
+
+.add-btn image{
+  width: 70rpx;
+  top: 50%;
+  left: 50%;
+  margin-left: -35rpx;
+  margin-top: -35rpx;
+  position: absolute;
+}
+.pic image{
+  width: 50rpx;
+  top: -25rpx;
+  right: -25rpx;
+  position: absolute;
+}
+
+.text-color{
+  font-size: 26rpx;
+  color:#999;
+  margin-left: 20rpx;
+}
+.page-info-content{
+  padding-left: 25rpx;
+  box-sizing: border-box;
+}
+.other-info-box .head{
+  padding: 30rpx 0 20rpx 230rpx;
+  position: relative;
+  line-height: 45rpx;
+  color:#999;
+  font-size: 26rpx;
+}
+.other-info-box .head image{
+  position: absolute;
+  width: 230rpx;
+  left: -8rpx;
+  top: 20rpx;
+}
+.other-info-box{
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 20rpx;
+}
+.other-info-text{
+  width: 100%;
+  min-height: 60rpx;
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+  padding: 20rpx;
+}
+.release-btn{
+  padding: 30rpx 20rpx 0 0;
+}
+.release-btn image{
+  width: 100%;
+}
+
+

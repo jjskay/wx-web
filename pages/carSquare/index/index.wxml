@@ -17,7 +17,7 @@
             <image class='ic-close' src='../../../images/ic-close.png' mode="widthFix"></image>
           </view>
 
-          已搜到4辆车况信息
+          已搜到   4   辆车况信息
 
           <view class='rerefresh-btn'>
             <image class='ic-close' src='../../../images/ic-refresh.png' mode="widthFix"></image>
@@ -52,5 +52,13 @@
     </view>
   </view>
 
-  <view></view>
+  <view class='list-end'>
+    <image src='../../../images/empty.png' mode="widthFix"></image>
+    已经没有了
+  </view>
+
+  <view class='add-car-category'>
+    <image src='../../../images/ic-close.png' mode="widthFix"></image>
+    添加意向车型
+  </view>
 </view>

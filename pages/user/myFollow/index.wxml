@@ -1,0 +1,27 @@
+<!--pages/user/myFollow/index.wxml-->
+<view class='page-content'>
+    <view class='page-header'>
+      <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
+      <view class='header-text'>
+        关注  3  人，可收到关注人的最新发布信息推送
+      </view>
+    </view>
+
+    <view class='info-list'>
+      <view class='info-item follow-item' wx:for="i in 9">
+          <view class='info-pic'>
+              <image src='../../../images/info.png' mode="widthFix"></image>
+          </view>
+
+          <view class='info-content'>
+              <view class='info-title'>王志刚</view>
+
+              <view class='info-price'>2017年入驻</view>
+          </view>
+      </view>
+    </view>
+    <view class='list-end'>
+      <image src='../../../images/empty.png' mode="widthFix"></image>
+      已经没有了
+    </view>
+</view>

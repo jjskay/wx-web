@@ -1,0 +1,35 @@
+/* pages/user/myIntention/index.wxss */
+.page-content{
+  padding: 50rpx 0 100rpx;
+}
+.page-header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  line-height: 50rpx;
+  height: 50rpx;
+  overflow: hidden;
+  z-index: 15;
+}
+.page-header image,
+.header-text{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.header-text{
+  line-height: 50rpx;
+  color:#fff;
+  padding-left: 20rpx;
+
+  box-sizing: border-box;
+  font-size: 24rpx;
+  vertical-align: middle;
+}
+.intention-list{
+  padding-left: 40rpx;
+}
+
+

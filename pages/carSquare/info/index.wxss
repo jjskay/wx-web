@@ -1,0 +1,121 @@
+/* pages/carSquare/info/index.wxss */
+.page-content{
+  padding-bottom: 100rpx;
+}
+.page-swiper{
+  overflow: hidden;
+  height: 355rpx;
+  width: 100%;
+  background: #eee;
+}
+.page-info-head{
+  padding:10rpx 20rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+.margin-bg-dom{
+  display: block;
+  width: 100%;
+  height: 20rpx;
+  background: #f5f5f5;
+}
+.page-info-head .head-title{
+  color: #333;
+  font-size: 34rpx;
+  position: relative;
+  word-break: break-all;
+}
+.page-info-head .head-title text{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4rpx 20rpx;
+  background: #e65961;
+  color:#fff;
+  font-size: 24rpx;
+  margin-right: 10rpx;
+}
+.head-price{
+  font-size: 26rpx;
+  color:#999;
+  padding: 10rpx 0;
+}
+.head-price .color{
+  color:#fd511c;
+  margin-right: 20rpx;
+}
+.head-price .max{
+  font-size: 44rpx;
+  font-weight: bold;
+}
+.head-price .btn{
+  padding-top: 10rpx;
+}
+.head-price .btn text{
+  display: inline-block;
+  padding: 0 20rpx;
+  line-height: 40rpx;
+  border: 1px solid #fd511c;
+  border-radius: 6rpx;
+  color: #fd511c;
+}
+.page-info-content{
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.title-bg image{
+  width: 240rpx;
+}
+
+.info-text-content{
+  position: relative;
+  margin-bottom: 10rpx;
+  background: #f2f2f2;
+  color: #333;
+  font-size: 28rpx;
+}
+.info-text-item{
+  line-height: 60rpx;
+  position: relative;
+  padding-left: 250rpx;
+  box-sizing: border-box;
+}
+.blank-bg{
+  background: #fff;
+}
+.info-text-item view{
+  position: absolute;
+  left: 0;
+  width: 220rpx;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.info-text-content:after{
+  position: absolute;
+  display: block;
+  left: 220rpx;
+  height: 100%;
+  border-left: 1px solid #ccc;
+  content: ' ';
+  top: 0;
+}
+.car-business-info{
+  padding: 0 20rpx 50rpx;
+}
+.fix-footer-btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.fix-footer-btn image{
+  width: 100%;
+  display: block;
+}
+.info-list{
+  padding-left: 0;
+}
+.follow-item{
+  border-bottom: 0;
+}

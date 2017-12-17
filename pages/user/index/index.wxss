@@ -1,0 +1,82 @@
+/* pages/user/index/index.wxss */
+
+.user-title{
+  position: relative;
+  height: 312rpx;
+  background: #6f78d1;
+  padding-top: 180rpx;
+  box-sizing: border-box;
+}
+.user-title .ic-bg{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.ic-head-pic{
+  position: absolute;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 75rpx;
+  border: 8rpx solid #9e9dd7;
+  left: 50%;
+  display: block;
+  margin-left: -75rpx;
+  background: #fff; 
+  box-sizing: border-box;
+  top: 30rpx;
+}
+
+.user-nickname{
+  padding: 10rpx 0 20rpx;
+  color:#fff;
+  position: relative;
+  text-align: center;
+}
+
+.user-release-info{
+  position: relative;
+  width: 92%;
+  left:4%;
+  background: #fff;
+  height: 120rpx;
+  box-shadow: 0 0 20rpx #999;
+  box-sizing: border-box;
+  text-align: center;
+  top: 6rpx;
+  border-radius: 8rpx;
+  padding: 20rpx 0;
+  overflow: hidden;
+}
+.user-release-info view{
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  line-height: 70rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.user-release-info text{
+  display: inline-block;
+  font-size: 42rpx;
+  color: #cc5056;
+  margin-left: 15rpx;
+  position: relative;
+  top: 6rpx;
+  font-weight: bold;
+}
+.user-release-info view.info-left{
+  border-right: 1px solid #e2e2e2;
+}
+.user-link-box{
+  padding-top: 80rpx;
+  padding-left: 20rpx;
+}
+.other-text{
+  line-height: 90rpx;
+  color:#999;
+}
+
+

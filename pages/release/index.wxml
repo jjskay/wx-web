@@ -1,0 +1,74 @@
+<!--pages/releasse/index.wxml-->
+<view class='page-content'>
+    <view class='page-header'>
+      <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
+      <image class='ic-info' src='../../../images/ic-info.png' mode="widthFix"></image>
+      <view class='header-text'>
+        佣金默认为面议，佣金最大值不超过车价的2%
+      </view>
+    </view>
+
+    <view class='page-info-content'>
+        <view class="logi-code-model">
+          <view class='model-box border-none'>
+            <text class="logi-model-label">车况照片</text>
+            <text class='text-color'>多个角度拍摄车况信息</text>
+          </view>
+        </view>
+        <view class='pic-box'>
+          <view class='pic'>
+            <image src='../../../images/close_btn.png' mode="widthFix"></image>
+          </view>
+          <view class='add-btn'>
+            <image src='../../../images/add_btn.png' mode="widthFix"></image>
+          </view>
+        </view>
+
+        <view class='link-item'>
+            * 选择品牌
+            <text>3</text>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='link-item'>
+            * 上牌时间
+            <text>3</text>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='link-item'>
+            * 年检保修到期时间
+            <text>3</text>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='link-item'>
+            * 填写里程数
+            <text>3</text>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='link-item'>
+            * 填写价格
+            <text>3</text>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='link-item'>
+            <text style='opacity: 0;float: none;' >*</text> 佣金金额
+            <text></text>
+            <text style="color: #e65961">不填默认面议</text>
+            <image style='opacity: 0' class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='other-info-box'>
+            <view class='head'>
+                <image class='ic-close' src='../../../images/other-info.png' mode="widthFix"></image>颜色、排量、车主要求等 
+            </view>
+            <textarea class='other-info-text'></textarea>
+        </view>
+        <view class='release-btn'>
+            <image class='ic-close' src='../../../images/release-btn.png' mode="widthFix"></image>
+        </view>
+    </view> 
+</view>

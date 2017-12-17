@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -44,7 +44,44 @@
 				{
 					"id": -1,
 					"name": "广场",
-					"pathName": "pages/carSquare/index/index"
+					"pathName": "pages/carSquare/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/user/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的意向",
+					"pathName": "pages/user/myIntention/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的关注",
+					"pathName": "pages/user/myFollow/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的发布",
+					"pathName": "pages/user/myRelease/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详细信息",
+					"pathName": "pages/carSquare/info/index",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "发布信息",
+					"pathName": "pages/release/index",
+					"query": ""
 				}
 			]
 		}

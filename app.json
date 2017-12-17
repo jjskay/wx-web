@@ -1,13 +1,18 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/user/user",
     "pages/login/login",
     "pages/applyEnter/first/index",
     "pages/applyEnter/second/index",
     "pages/applyEnter/result/index",
-    "pages/carSquare/index/index"
+    "pages/carSquare/index/index",
+    "pages/user/index/index",
+    "pages/user/myIntention/index",
+    "pages/user/myFollow/index",
+    "pages/user/myRelease/index",
+    "pages/carSquare/info/index",
+    "pages/release/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,7 +46,7 @@
       {
         "selectedIconPath": "images/user1.png",
         "iconPath": "images/user.png",
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/user/index/index",
         "text": "个人中心"
       }
     ]

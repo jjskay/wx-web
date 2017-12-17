@@ -1,0 +1,35 @@
+<!--pages/user/index/index.wxml-->
+<view class='page-content'>
+    <view class='user-title'>
+        <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
+
+        <image class='ic-head-pic' src='' mode="widthFix"></image>
+
+        <view class='user-nickname'>赵本山</view>
+
+        <view class='user-release-info'>
+            <view class='info-left'>
+                已发布 <text>50</text>
+            </view>
+            <view class='info-right'>
+                在售 <text>33</text>
+            </view>
+        </view>
+    </view>
+
+    <view class='user-link-box'>
+        <view class='link-item'>
+            已提交的意向车型
+            <text>3</text>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='link-item'>
+            我关注的
+            <text>3</text>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='other-text'>2017年8月入驻</view>
+    </view>
+</view>

@@ -1,0 +1,37 @@
+<!--pages/user/myIntention/index.wxml-->
+<view class='page-content'>
+    <view class='page-header'>
+      <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
+      <view class='header-text'>
+        已发布  4  辆车
+      </view>
+    </view>
+
+    <view class='intention-list'>
+        <view class='info-item intention-item' wx:for="i in 9">
+            <view class='info-content'>
+                <view class='info-title'>雷克萨斯ES  2016年款精英版</view>
+                <view class='info-datail'>
+                    2016年 <text>/</text> 4.5万公里
+                </view>
+
+                <view class='info-price'>
+                    <view class='info-price-number'>
+                        <text>20.00</text>万
+                    </view>
+                    新车  28.5万
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='list-end'>
+      <image src='../../../images/empty.png' mode="widthFix"></image>
+      已经没有了
+    </view>
+
+    <view class='add-car-category'>
+      <image src='../../../images/ic-close.png' mode="widthFix"></image>
+      添加意向车型
+    </view>
+</view>
