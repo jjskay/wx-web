@@ -1,25 +1,43 @@
 // pages/user/index/index.js
+var app = getApp()
+import { getYM, objectUtil, getYear } from '../../../utils/util.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    userInfo: {},
+    info: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const vm = this
+    vm.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    const vm = this
+    app.ajax({
+      url: `${app.baseUrl}api/v1/user/my`,
+      method: 'GET',
+      success: function (res) {
+        const obj = objectUtil.copy(res)
+        obj.JoinTime = getYM(obj.JoinTime || 0)
+        vm.setData({
+          info: obj
+        })
+      }
+    })
   },
 
   /**
@@ -62,5 +80,7 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+
+  getYear
 })

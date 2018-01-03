@@ -1,5 +1,5 @@
 <!--pages/carSquare/index/index.wxml-->
-<view class='page-content'>
+<view class='page-content {{search ? "search-result-show" : ""}}'>
   <view class='search-head'>
       <image class='bg-icon' src='../../../images/search-bg.png' mode="widthFix"></image>
       <view class='search-box'>
@@ -7,19 +7,19 @@
           <image src='../../../images/ic-map.png' mode="widthFix"></image>
           长沙
         </view>
-        <image class='ic-close' src='../../../images/ic-close.png' mode="widthFix"></image>
-        <input placeholder="搜索" placeholder-style="color:#e2e2e2" confirm-type="search" type="text" />  
+        <image class='ic-close' src='../../../images/ic-close.png' wx:if="{{search}}" mode="widthFix"></image>
+        <input bindtap="clearchSearch" value="{{search}}" bindinput="bindSearchInput" placeholder="搜索" placeholder-style="color:#e2e2e2" confirm-type="search" type="text" />
       </view>
 
-      <view class='search-result'>
-          <view class='search-item'>
-            自由光
+      <view class='search-result' wx:if="{{search}}">
+          <view class='search-item' bindtap="clearchSearch">
+            {{search}}
             <image class='ic-close' src='../../../images/ic-close.png' mode="widthFix"></image>
           </view>
 
-          已搜到   4   辆车况信息
+          已搜到   {{list.length || 0}}   辆车况信息
 
-          <view class='rerefresh-btn'>
+          <view class='rerefresh-btn' bindtap="clearchSearch">
             <image class='ic-close' src='../../../images/ic-refresh.png' mode="widthFix"></image>
             重置
           </view>
@@ -27,23 +27,25 @@
   </view>
 
   <view class='info-list'>
-    <view class='info-item' wx:for="i in 9">
+    <view class='info-item' wx:for="{{list}}" wx:key='index' bindtap="jumpDetailInfo" data-id="{{item.id}}">
         <view class='info-pic'>
-            <text class='info-status-text'>已预订</text>
-            <image src='../../../images/info.png' mode="widthFix"></image>
+            <text class='info-status-text' wx:if="{{item.SellStatus == 0}}">待销售</text>
+            <text class='info-status-text' wx:if="{{item.SellStatus == 1}}">已售</text>
+            <text class='info-status-text' wx:if="{{item.SellStatus == 2}}">预订</text>
+            <image src='{{item.Imgs[0].url}}' mode="widthFix"></image>
         </view>
 
         <view class='info-content'>
-            <view class='info-title'>雷克萨斯ES  2016年款精英版</view>
+            <view class='info-title'>{{item.CarSeries.Name}}  {{item.CarModels.Name}}</view>
 
             <view class='info-datail'>
-                2016年 <text>/</text> 4.5万公里
-                <text class='info-commission-price'>佣金  ￥5000</text>
+                {{getYear(item.OnLicenseDate)}}年 <text>/</text> {{item.Mileage}}万公里
+                <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text>
             </view>
 
             <view class='info-price'>
                 <view class='info-price-number'>
-                    <text>20.00</text>万
+                    <text>{{item.Price}}</text>万
                 </view>
 
                 新车  28.5万
@@ -52,11 +54,10 @@
     </view>
   </view>
 
-  <view class='list-end'>
+  <view class='list-end' wx:if="{{loadAll}}">
     <image src='../../../images/empty.png' mode="widthFix"></image>
     已经没有了
   </view>
-
   <view class='add-car-category'>
     <image src='../../../images/ic-close.png' mode="widthFix"></image>
     添加意向车型

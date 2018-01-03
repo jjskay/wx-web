@@ -1,104 +1,228 @@
 //app.js
 App({
+  baseUrl: 'https://win.grand56.com/',
+  pageSize: 30,
   onLaunch: function() {
     //调用API从本地缓存中获取数据
-    var vm = this
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
-
-    wx.getStorage({
-      key: 'token',
-      success: function (res) {
-        if (res && res.data && res.data.token){
-          // 登录超时
-          if (new Date().getTime() - res.data.time >= 30 * 3600 * 24 * 1000) {
-            wx.showModal({
-              title: '提示',
-              content: '登录失效，请重新授权登录！',
-              showCancel: false,
-              success: function(){
-                wx.removeStorageSync('token')
-                vm.authorizeUserInfo()
-              }
-            })
-          }else{
-            wx.hideLoading()
-          }
-        }else{
-          wx.hideLoading()
-          vm.authorizeUserInfo()
-        }
-      },
-      fail: function() {
-        vm.authorizeUserInfo()
-        wx.hideLoading()
-      }
-    })
-
+    
   },
 
-  getUserInfo: function(cb) {
-    var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
+  getAuthInfo(cb) {
+    var vm = this
+    if (vm.getToken()) {
       wx.getUserInfo({
-        withCredentials: false,
-        success: function(res) {
-          that.globalData.userInfo = res.userInfo
-          typeof cb == "function" && cb(that.globalData.userInfo)
-        },
-        fail: function(){
-          wx.showModal({
-            title: '警告',
-            content: '您已经取消授权，请重新授权后才能使用~！。',
-            success: function (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              }
-            }
-          })
+        success: function (res) {
+          vm.globalData.userInfo = res.userInfo
+          cb && cb()
         }
       })
+    } else {
+      vm.wechartLogin(cb)
     }
   },
-  authorizeUserInfo: function() {
+
+  getToken() {
+    var vm = this
+    const tokenObj = wx.getStorageSync('tokenObj') || {}
+    const { time, token } = tokenObj
+    const oneWeekTime = 60 * 60 * 24 * 7 * 1000
+    if (!time || new Date().getTime() - time > oneWeekTime) {
+      return false
+    }
+    return token
+  },
+
+  // 删除token
+  clearToken() {
+    wx.removeStorageSync('tokenObj')
+  },
+
+  // 登录
+  wechartLogin: function (cb) {
+    var vm = this
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.userInfo']) {
           wx.authorize({
             scope: 'scope.userInfo',
-            success() {
-              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
-              wx.hideLoading()
-            },
-            fail() {
-              wx.hideLoading()
-              wx.showModal({
-                title: '提示',
-                content: '您已经取消授权，请重新授权后才能使用~！',
-                showCancel: false,
-                success: function () {
-                  wx.showLoading({
-                    title: '请重新打开小程序授权~!',
-                    mask: true
-                  })
+            success(res) {
+              wx.getUserInfo({
+                success: function (res) {
+                  vm.globalData.userInfo = res
                 }
               })
+              vm.login_(cb)
             }
           })
+        } else {
+          vm.login_(cb)
         }
+      },
+      fail() {
+        wx.showModal({
+          title: '提示',
+          content: '微信授权失败，请重新授权~',
+          cancel: false,
+          success: function (res) {}
+        })
+      }
+    })
+  },
+
+  login_: function () {
+    const vm = this
+    wx.login({
+      success: res => {
+        wx.request({
+          method: 'POST',
+          url: `${vm.baseUrl}api/v1/user/wapplogin/`,
+          data: {
+            code: res.code
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            const {Error, UserPem, data} = res.data
+            if (UserPem < 600) {
+              wx.showModal({
+                title: '提示',
+                content: Error || '服务器错误',
+                showCancel: false
+              })
+              return
+            }
+
+            // 存入token
+            if (data && data.Authorization) {
+              wx.setStorage({
+                key: 'tokenObj',
+                data: {
+                  time: new Date().getTime(),
+                  token: data.Authorization
+                }
+              })
+              cb()
+            }
+
+            if (UserPem == 602) {
+              wx.showModal({
+                title: '提示',
+                content: '微信登录成功，入驻易卖车使用全部功能！',
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: 'pages/applyEnter/first/index'
+                    })
+                  } else if (res.cancel) {
+                    wx.showToast({
+                      title: '入驻易卖车才能使用全部功能！',
+                      icon: 'loading',
+                      mask: true
+                    })
+                  }
+                }
+              })
+            } else {
+
+            }
+          },
+          fail: function () {
+            wx.showModal({
+              title: '提示',
+              content: '微信登录失败，请重试！',
+              showCancel: false
+            })
+          }
+        })
       }
     })
   },
 
   globalData: {
     userInfo: null
+  },
+
+  /**
+  * ajax中间层拦截处理
+  * exception 是否不需要结果拦截，直接返回
+  */
+  ajax: function (obj) {
+    if (!obj) {
+      wx.showToast({
+        title: '参数有问题',
+        icon: 'warn',
+        duration: 1000,
+        mask: true
+      })
+      return
+    }
+    var header = {}
+    var sysInfo = wx.getSystemInfoSync ? wx.getSystemInfoSync() : {}
+    const tokenObj = wx.getStorageSync('tokenObj') || {}
+    header = Object.assign(obj.header || { "Content-Type": "application/json" }, sysInfo, { 'AUTHORIZATION': tokenObj.token})
+    wx.request({
+      url: obj.url,
+      header: header,
+      method: obj.method || 'GET',
+      data: obj.data,
+      dataType: obj.dataType || 'json',
+      success: function (res) {
+        var err = ''
+        const {data, status, Error} = res.data
+        if (res.data) {
+          if (obj.exception) {
+            obj.success(res.data)
+            return
+          }
+
+
+
+          if (res.data.data) {
+            obj.success(res.data.data || true)
+            return
+          }
+
+          if (res.data.code == -1) {
+            err = '服务器繁忙，请稍后再试！'
+          }
+
+          wx.showToast({
+            title: res.data.message || err,
+            icon: 'loading',
+            duration: 1000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: '网络有点问题',
+            icon: 'loading',
+            duration: 1000,
+            mask: true
+          })
+        }
+        wx.hideLoading && wx.hideLoading()
+      },
+      fail: obj.faild || function (res) {
+        wx.hideLoading && wx.hideLoading()
+        wx.showToast({
+          title: '网络有点问题',
+          icon: 'loading',
+          duration: 1000,
+          mask: true
+        })
+      },
+      complete: obj.complete || function (res) {
+      }
+    })
+  },
+
+  wxApi: {
+    showLoading(config) {
+      wx.showLoading && wx.showLoading(config || {})
+    },
+    hideLoading() {
+      wx.hideLoading && wx.hideLoading()
+    }
   }
 })

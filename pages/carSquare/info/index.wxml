@@ -4,16 +4,18 @@
 
     <view class='page-info-head'>
         <view class='head-title'>
-            <text class='title-tag'>待售</text>
-            Jeep自由光 2016年款精英版
+            <text class='info-status-text' wx:if="{{detail.SellStatus == 0}}">待销售</text>
+            <text class='info-status-text' wx:if="{{detail.SellStatus == 1}}">已售</text>
+            <text class='info-status-text' wx:if="{{detail.SellStatus == 2}}">预订</text>
+            {{detail.CarBrand.Name || '' + detail.CarSeries.Name || '' + detail.Title || ''}}
         </view>
 
         <view class='head-price'>
-            <text class='color'>￥ <text class='max'>20.00</text>万</text>
+            <text class='color'>￥ <text class='max'>{{detail.Price}}</text>万</text>
             新车价 28.5万
 
             <view class='btn'>
-                <text>佣金 ￥5000</text>
+                <text>佣金 ￥{{detail.Commission}}</text>
             </view>
         </view>
     </view>
@@ -26,7 +28,7 @@
 
         <view class='info-text-content'>
             <view class='info-text-item'>
-                <view class='item-label'>上牌日期</view>2016年5月5日
+                <view class='item-label'>上牌日期</view>{{getYMD(detail.OnLicenseDate)}}
             </view>
             <view class='info-text-item blank-bg'>
                 <view class='item-label'>年检保修到期</view>2016年5月5日

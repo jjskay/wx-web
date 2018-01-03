@@ -88,6 +88,7 @@ image{
   width: 240rpx;
   height: 160rpx;
   box-sizing: border-box;
+  background: #bbb;
 }
 
 .follow-item .info-pic{

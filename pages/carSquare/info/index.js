@@ -1,18 +1,47 @@
 // pages/carSquare/info/index.js
+const app = getApp()
+import { objectUtil, getYMD } from '../../../utils/util.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    detail: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const {id} = options
+    const vm = this
+    if (!id){
+      wx.showModal({
+        title: '提示',
+        content: '参数有误~',
+        cancel: false,
+        success: function (res) { }
+      })
+      return
+    }
+
+    app.wxApi.showLoading({})
+    app.getAuthInfo(() => {
+      const token = app.getToken()
+      if (!token) {
+        wx.showModal({
+          title: '提示',
+          content: '微信授权失败，请重新授权~',
+          cancel: false,
+          success: function (res) { }
+        })
+        app.wxApi.hideLoading()
+        return
+      }
+      vm.getDetailInfo()
+    })
   },
 
   /**
@@ -62,5 +91,26 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+
+  // 获取信息详情
+  getDetailInfo() {
+    const vm = this
+    const {id} = vm.options
+    app.ajax({
+      url: `${app.baseUrl}api/v1/p/posts/view/${id}`,
+      method: 'GET',
+      success: function (res) {
+        const { ListView } = res
+
+        vm.setData({
+          detail: objectUtil.copy(ListView[0])
+        })
+        wx.stopPullDownRefresh()
+        app.wxApi.hideLoading()
+      }
+    })
+  },
+
+  getYMD
 })

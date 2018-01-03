@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -42,7 +42,7 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "广场",
 					"pathName": "pages/carSquare/index/index",
 					"query": ""
