@@ -76,7 +76,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    const vm = this
+    vm.getDetailInfo()
   },
 
   /**
@@ -98,13 +99,14 @@ Page({
     const vm = this
     const {id} = vm.options
     app.ajax({
-      url: `${app.baseUrl}api/v1/p/posts/view/${id}`,
+      url: `${app.baseUrl}api/v1/p/view/posts/${id}`,
       method: 'GET',
       success: function (res) {
-        const { ListView } = res
-
+        const detailInfo = objectUtil.copy(res)
+        detailInfo.OnLicenseDate = getYMD(detailInfo.OnLicenseDate)
+        detailInfo.year = getYMD(detailInfo.OnLicenseDate)
         vm.setData({
-          detail: objectUtil.copy(ListView[0])
+          detail: detailInfo
         })
         wx.stopPullDownRefresh()
         app.wxApi.hideLoading()

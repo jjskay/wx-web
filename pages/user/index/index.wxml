@@ -8,23 +8,23 @@
         <view class='user-nickname'>{{inof.RealName || userInfo.nickName}}</view>
 
         <view class='user-release-info'>
-            <view class='info-left'>
+            <view class='info-left' bindtap='viewMyRelease' data-type="0">
                 已发布 <text>{{info.ItemCount || 0}}</text>
             </view>
-            <view class='info-right'>
+            <view class='info-right' bindtap='viewMyRelease' data-type="1">
                 在售 <text>{{info.OnSaleCount || 0}}</text>
             </view>
         </view>
     </view>
 
     <view class='user-link-box'>
-        <view class='link-item'>
+        <view class='link-item' bindtap='viewMyIntentionList'>
             已提交的意向车型
             <text>{{info.IntensionCount}}</text>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
-        <view class='link-item'>
+        <view class='link-item' bindtap='viewMyFollowList'>
             我关注的
             <text>{{info.FellowCount}}</text>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>

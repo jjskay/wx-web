@@ -213,6 +213,7 @@ App({
         })
       },
       complete: obj.complete || function (res) {
+        wx.hideLoading && wx.hideLoading()
       }
     })
   },

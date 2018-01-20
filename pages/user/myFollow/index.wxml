@@ -3,20 +3,22 @@
     <view class='page-header'>
       <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
       <view class='header-text'>
-        关注  3  人，可收到关注人的最新发布信息推送
+        关注  {{list.length}}  人，可收到关注人的最新发布信息推送
       </view>
     </view>
 
     <view class='info-list'>
-      <view class='info-item follow-item' wx:for="i in 9">
+      <view class='info-item follow-item' wx:for="{{list}}" wx:key="{{new Date().getTime()}}">
           <view class='info-pic'>
-              <image src='../../../images/info.png' mode="widthFix"></image>
+              <image src='{{item.ExtInfo.Avatar}}' mode="widthFix"></image>
           </view>
 
           <view class='info-content'>
-              <view class='info-title'>王志刚</view>
+              <view class='info-title'>{{item.ExtInfo.UserName}}</view>
 
-              <view class='info-price'>2017年入驻</view>
+              <view class='info-price'>{{item.year || 'XXXX'}}年入驻</view>
+
+              <view class='cancel-follow-btn' bindtap='cancelFollow' data-phone="{{item.ExtInfo.PhoneNum}}">取消关注</view>
           </view>
       </view>
     </view>

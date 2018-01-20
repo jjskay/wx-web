@@ -28,3 +28,14 @@
   font-size: 24rpx;
   vertical-align: middle;
 }
+
+.cancel-follow-btn{
+  position: absolute;
+  width: 150rpx;
+  text-align: center;
+  padding: 10rpx 0;
+  border: 1px solid #999;
+  color:#999;
+  right: 20rpx;
+  bottom: 0;
+}

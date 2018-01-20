@@ -1,1 +1,7 @@
-{}
+{
+  "navigationBarTitleText": "我的发布",
+  "enablePullDownRefresh": true,
+  "window": {
+    "enablePullDownRefresh": true
+  }
+}

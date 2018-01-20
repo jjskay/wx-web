@@ -100,10 +100,11 @@ image{
   box-sizing: border-box;
   background: #999;
 }
-.follow-item .follow-btn{
+.follow-item .follow-btn,
+.follow-item .follow-active-btn{
   position: absolute;
   right: 20rpx;
-  bottom: 0;
+  bottom: 20rpx;
   width: 160rpx;
   line-height: 70rpx;
   background: #f2f2f2;
@@ -113,6 +114,9 @@ image{
   color: #333;
   font-size: 26rpx;
   border: 1px solid #999;
+}
+.follow-item .follow-active-btn{
+  padding-left: 0;
 }
 .follow-item .follow-btn image{
   position: absolute;
@@ -243,6 +247,17 @@ image{
   font-size: 26rpx;
 }
 
+.delete-btn{
+  position: absolute;
+  padding: 10rpx 0;
+  font-size: 30rpx;
+  width: 100rpx;
+  color: #fd511c;
+  text-align: center;
+  border: 1px solid #fd511c;
+  right: 20rpx;
+  bottom: 0rpx;
+}
 
 
 

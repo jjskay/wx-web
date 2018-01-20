@@ -3,29 +3,31 @@
     <view class='page-header'>
       <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
       <view class='header-text'>
-        已发布  4  辆车
+        已发布  {{list.length || 0}}  辆车
       </view>
     </view>
 
     <view class='intention-list'>
-        <view class='info-item intention-item' wx:for="i in 9">
+        <view class='info-item intention-item' wx:for="{{list}}" wx:key="{{new Date().getTime()}}">
             <view class='info-content'>
-                <view class='info-title'>雷克萨斯ES  2016年款精英版</view>
+                <view class='info-title'>{{item.KeyWords}}</view>
                 <view class='info-datail'>
-                    2016年 <text>/</text> 4.5万公里
+                    {{item.Age}}年 <text>/</text> {{item.Mileage}}万公里
                 </view>
 
                 <view class='info-price'>
                     <view class='info-price-number'>
-                        <text>20.00</text>万
+                        <text>{{item.Price}}</text>万
                     </view>
-                    新车  28.5万
+                    <!-- 新车  28.5万 -->
                 </view>
+
+                <view class='delete-btn' bindtap='deleteItem' data-id="{{item.id}}">删除</view>
             </view>
         </view>
     </view>
 
-    <view class='list-end'>
+    <view class='list-end' wx:if="{{loadAll}}">
       <image src='../../../images/empty.png' mode="widthFix"></image>
       已经没有了
     </view>

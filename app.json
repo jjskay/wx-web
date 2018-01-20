@@ -40,7 +40,7 @@
       {
         "selectedIconPath": "images/list1.png",
         "iconPath": "images/list.png",
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/user/myRelease/index",
         "text": "我的发布"
       },
       {

@@ -1,5 +1,6 @@
 // pages/carSquare/index/index.js
 const app = getApp()
+import { getYM, objectUtil, getYear } from '../../../utils/util.js'
 
 Page({
 
@@ -95,7 +96,7 @@ Page({
   getList() {
     const vm = this
     app.ajax({
-      url: `${app.baseUrl}api/v1/p/posts/listview?page=1&perpage=30`,
+      url: `${app.baseUrl}api/v1/p/posts/listview?page=${vm.pageNo}&perpage=30`,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
@@ -107,9 +108,13 @@ Page({
       method: 'GET',
       success: function (res) {
         const {ListView} = res
-        
+        const listArr = [].concat(ListView)
+        listArr.map((item) =>{
+          item.year = getYear(item.OnLicenseDate)
+        })
+
         vm.setData({
-          list: vm.pageNo == 1 ? [].concat(ListView) : vm.data.list.concat(ListView),
+          list: vm.pageNo == 1 ? [].concat(listArr) : vm.data.list.concat(listArr),
           loadAll: ListView && ListView.length < 8,
           isInitData: false
         })

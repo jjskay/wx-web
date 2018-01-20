@@ -39,7 +39,7 @@
             <view class='info-title'>{{item.CarSeries.Name}}  {{item.CarModels.Name}}</view>
 
             <view class='info-datail'>
-                {{getYear(item.OnLicenseDate)}}年 <text>/</text> {{item.Mileage}}万公里
+                {{item.year}}年 <text>/</text> {{item.Mileage}}万公里
                 <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text>
             </view>
 
@@ -48,7 +48,7 @@
                     <text>{{item.Price}}</text>万
                 </view>
 
-                新车  28.5万
+                新车  {{item.RecommendPrice}}万
             </view>
         </view>
     </view>

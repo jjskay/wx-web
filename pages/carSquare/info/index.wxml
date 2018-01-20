@@ -12,7 +12,7 @@
 
         <view class='head-price'>
             <text class='color'>￥ <text class='max'>{{detail.Price}}</text>万</text>
-            新车价 28.5万
+            新车价 {{detail.RecommendPrice}}万
 
             <view class='btn'>
                 <text>佣金 ￥{{detail.Commission}}</text>
@@ -28,19 +28,19 @@
 
         <view class='info-text-content'>
             <view class='info-text-item'>
-                <view class='item-label'>上牌日期</view>{{getYMD(detail.OnLicenseDate)}}
+                <view class='item-label'>上牌日期</view>{{detail.detailInfo}}
             </view>
             <view class='info-text-item blank-bg'>
                 <view class='item-label'>年检保修到期</view>2016年5月5日
             </view>
             <view class='info-text-item'>
-                <view class='item-label'>填写里程数</view>2016年5月5日
+                <view class='item-label'>填写里程数</view>{{detail.Mileage}}公里
             </view>
             <view class='info-text-item blank-bg'>
-                <view class='item-label'>本车佣金</view>￥5000   以线下协商为准
+                <view class='item-label'>本车佣金</view>￥{{detail.Commission}}   以线下协商为准
             </view>
             <view class='info-text-item'>
-                <view class='item-label'>其他信息</view>￥5000   以线下协商为准
+                <view class='item-label'>其他信息</view>{{detail.Title}}
             </view>
         </view>
     </view>
@@ -53,18 +53,22 @@
           <view class='info-item follow-item'>
               <text class='item-tag'>推荐</text>
               <view class='info-pic'>
-                  <image src='../../../images/info.png' mode="widthFix"></image>
+                  <image src='{{detail.ExtInfo.Avatar}}' mode="widthFix"></image>
               </view>
 
               <view class='info-content'>
-                  <view class='info-title'>王志刚</view>
+                  <view class='info-title'>{{detail.ExtInfo.UserName}}</view>
 
-                  <view class='info-price'>2017年入驻</view>
+                  <!-- <view class='info-price'>2017年入驻</view> -->
               </view>
 
-              <view class='follow-btn'>
+              <view class='follow-btn' wx:if="{{!detail.ExtInfo.Following}}">
                   <image src='../../../images/ic-close.png' mode="widthFix"></image>
                   关注
+              </view>
+
+              <view class='follow-active-btn' wx:if="{{detail.ExtInfo.Following}}">
+                  取消关注
               </view>
           </view>
         </view>

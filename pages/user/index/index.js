@@ -17,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     const vm = this
+    console.log(app.globalData.userInfo)
     vm.setData({
       userInfo: app.globalData.userInfo
     })
@@ -82,5 +83,32 @@ Page({
   
   },
 
-  getYear
+  getYear,
+
+  /**
+   * 查看我提交的意向车型
+   */
+  viewMyIntentionList() {
+    wx.navigateTo({
+      url: `../../user/myIntention/index`
+    })
+  },
+
+  /**
+   * 查看我关注的
+   */
+  viewMyFollowList() {
+    wx.navigateTo({
+      url: `../../user/myFollow/index`
+    })
+  },
+  /**
+   * 查看我发布的列表/在售列表
+   */
+  viewMyRelease(e) {
+    const { type } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `../../user/myRelease/index?type=${type}`
+    })
+  }
 })
