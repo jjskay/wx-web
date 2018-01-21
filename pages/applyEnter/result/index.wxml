@@ -5,19 +5,18 @@
       <image src='../../../images/succ-logo.jpg' mode="widthFix"></image>欢迎“环游世界”申请入驻易卖车
     </view>
     <view class='user-name'>
-      <text>真实姓名</text>王志刚
+      <text>真实姓名</text>{{userName}}
     </view>
     <view class='user-phone'>
-      <text>手机号码</text>13500000000
+      <text>手机号码</text>{{phone}}
     </view>
     <view class='user-cert'>
-      <text>身份证号</text>432234111234455553
+      <text>身份证号</text>{{idCert}}
     </view>
 
     <view class='pic-box'>
-      <view class='pic'>
-      </view>
-      <view class='pic'>
+      <view class='pic' wx:for="{{certImgs}}">
+        <image src='{{item}}' mode="widthFix"></image>
       </view>
     </view>
   </view>

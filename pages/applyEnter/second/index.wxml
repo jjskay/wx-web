@@ -6,14 +6,14 @@
   <view class="logi-code-model">
     <view class='model-box'>
       <text class="logi-model-label">真实姓名</text>
-      <input bindinput="bindCodeInput" type="text" placeholder="请输入姓名" placeholder-style="color: #999;" />
+      <input bindinput="bindCodeInput" type="text" bindinput='changeInputVal' data-type="userName" placeholder="请输入姓名" placeholder-style="color: #999;" />
     </view>
   </view>
 
   <view class="logi-code-model">
     <view class='model-box'>
       <text class="logi-model-label">身份证号</text>
-      <input bindinput="bindCodeInput" type="text" placeholder="请输入身份证" placeholder-style="color: #999;" />
+      <input bindinput="bindCodeInput" type="text" bindinput='changeInputVal' data-type="userCertNum" placeholder="请输入身份证" placeholder-style="color: #999;" />
     </view>
   </view>
 
@@ -24,10 +24,11 @@
     </view>
   </view>
   <view class='pic-box'>
-    <view class='pic'>
-      <image src='../../../images/close_btn.png' mode="widthFix"></image>
+    <view class='pic' wx:for="{{certImgs}}" wx:key="{{new Date().getTime()}}">
+      <image class='icon-delete' src='../../../images/close_btn.png' mode="widthFix" bindtap='deleteItem' data-type="certImgs"  data-index="{{index}}"></image>
+      <image src="{{item.url}}" mode="widthFix"></image>
     </view>
-    <view class='add-btn'>
+    <view class='add-btn' wx:if="{{certImgs.length < 2}}" bindtap="uploadImg" data-type="certImgs">
       <image src='../../../images/add_btn.png' mode="widthFix"></image>
     </view>
   </view>
@@ -35,21 +36,30 @@
   <view class="logi-code-model">
     <view class='model-box'>
       <text class="logi-model-label">店铺名称</text>
-      <input bindinput="bindCodeInput" type="text" placeholder="请输入店铺名称" placeholder-style="color: #999;" />
+      <input bindinput="bindCodeInput" type="text" bindinput='changeInputVal' data-type="shopName" placeholder="请输入店铺名称" placeholder-style="color: #999;" />
     </view>
   </view>
 
   <view class="logi-code-model">
     <view class='model-box'>
       <text class="logi-model-label">店面地址</text>
-      <input bindinput="bindCodeInput" type="text" placeholder="请输入店面地址" placeholder-style="color: #999;" />
+      <input bindinput="bindCodeInput" type="text" bindinput='changeInputVal' data-type="shopAddress" placeholder="请输入店面地址" placeholder-style="color: #999;" />
     </view>
   </view>
-  <view class='pic-box'>
-    <view class='pic'>
-      <image src='../../../images/close_btn.png' mode="widthFix"></image>
+
+  <view class="logi-code-model">
+    <view class='model-box border-none'>
+      <text class="logi-model-label">店铺照片</text>
+      <input bindinput="bindCodeInput" type="text" disabled='true' placeholder="请上传" placeholder-style="color: #999;" />
     </view>
-    <view class='add-btn'>
+  </view>
+
+  <view class='pic-box'>
+    <view class='pic' wx:for="{{shopImgs}}" wx:key="{{new Date().getTime()}}">
+      <image  class='icon-delete' src='../../../images/close_btn.png' mode="widthFix" bindtap='deleteItem' data-type="shopImgs" data-index="{{index}}"></image>
+      <image src="{{item.url}}" mode="widthFix"></image>
+    </view>
+    <view class='add-btn' wx:if="{{!shopImgs.length}}" bindtap="uploadImg" data-type="shopImgs">
       <image src='../../../images/add_btn.png' mode="widthFix"></image>
     </view>
   </view>

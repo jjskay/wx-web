@@ -8,7 +8,7 @@
     <view class='model-box'>
       <text class="logi-model-label">手机号</text>
       <input bindinput="bindPhoneInput" type="number" placeholder="请输入手机号" placeholder-style="color: #999;" />
-      <view class='get-code-btn' bindtap="getQrCode" disabled="{{getCodeDisabled}}" type="primary">{{loginCodeText}}</view>
+      <view class="get-code-btn {{getCodeDisabled ? 'disabled' : ''}}" bindtap="getQrCode" disabled="{{getCodeDisabled}}" type="primary">{{loginCodeText}}</view>
     </view>    
   </view>
 

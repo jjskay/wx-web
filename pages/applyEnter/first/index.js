@@ -112,8 +112,12 @@ Page({
   // 获取验证码
   getQrCode: function () {
     var vm = this;
+    if (vm.data.getCodeDisabled){
+      return
+    }
+
     if (!this.getCodeNumber) {
-      var token = wx.getStorageSync('token')
+      var token = wx.getStorageSync('tokenObj')
       wx.request({
         method: 'POST',
         url: 'https://win.grand56.com/api/v1/user/getvalid', //仅为示例，并非真实的接口地址
@@ -160,6 +164,8 @@ Page({
   },
 
   redirect() {
+    const vm = this
+    vm.submitCode();
     wx.navigateTo({
       url: '../second/index'
     })
@@ -167,7 +173,7 @@ Page({
 
   submitCode: function () {
     var vm = this
-    var token = wx.getStorageSync('token')
+    var token = wx.getStorageSync('tokenObj')
     wx.request({
       method: 'POST',
       url: 'https://win.grand56.com/api/v1/user/validcode', //仅为示例，并非真实的接口地址

@@ -114,5 +114,74 @@ Page({
     })
   },
 
-  getYMD
+  getYMD,
+  /**
+   * 关注
+   */
+  followAction() {
+    const vm = this
+    const { PhoneNum } = vm.data.detail.ExtInfo || {}
+    app.ajax({
+      url: `${app.baseUrl}api/v1/user/fellow/add`,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        UserPhoneNum: PhoneNum
+      },
+      method: 'POST',
+      success: function (res) {
+        const { message } = res
+        message && wx.showToast({
+          title: message || '服务器繁忙~请稍后再试！',
+          duration: 1000,
+          mask: true
+        })
+        app.wxApi.hideLoading()
+        vm.onPullDownRefresh()
+      }
+    })
+  },
+
+  /**
+   * 取消关注
+   */
+  unFollowAction() {
+    const vm = this
+    const { PhoneNum } = vm.data.detail.ExtInfo || {}
+    wx.showModal({
+      title: '提示',
+      content: '确定取消关注此信息吗？',
+      cancel: true,
+      success: function (res) {
+        const { confirm } = res;
+        if (!confirm) {
+          return;
+        }
+        app.wxApi.showLoading()
+
+        app.ajax({
+          url: `${app.baseUrl}api/v1/fellow/cancel`,
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            UserNum: PhoneNum
+          },
+          method: 'POST',
+          success: function (res) {
+            const { message } = res
+            wx.showToast({
+              title: message || '服务器繁忙~请稍后再试！',
+              duration: 1000,
+              mask: true
+            })
+            app.wxApi.hideLoading()
+            this.onPullDownRefresh()
+          }
+        })
+
+      }
+    })
+  }
 })

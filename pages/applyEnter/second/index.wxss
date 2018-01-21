@@ -116,5 +116,8 @@ input{
   right: -25rpx;
   position: absolute;
 }
+.icon-delete{
+  z-index: 100;
+}
 
 

@@ -170,29 +170,32 @@ App({
       success: function (res) {
         var err = ''
         const {data, status, Error} = res.data
-        if (res.data) {
+
+        if (Error || err){
+          wx.showModal({
+            title: '提示',
+            content: Error || err,
+            cancel: false
+          })
+          return
+        } 
+
+        if (data) {
           if (obj.exception) {
-            obj.success(res.data)
+            obj.success(data)
             return
           }
 
 
 
-          if (res.data.data) {
-            obj.success(res.data.data || true)
+          if (data) {
+            obj.success(data || true)
             return
           }
 
-          if (res.data.code == -1) {
+          if (data.code == -1) {
             err = '服务器繁忙，请稍后再试！'
           }
-
-          wx.showToast({
-            title: res.data.message || err,
-            icon: 'loading',
-            duration: 1000,
-            mask: true
-          })
         } else {
           wx.showToast({
             title: '网络有点问题',

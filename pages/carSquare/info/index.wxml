@@ -7,7 +7,7 @@
             <text class='info-status-text' wx:if="{{detail.SellStatus == 0}}">待销售</text>
             <text class='info-status-text' wx:if="{{detail.SellStatus == 1}}">已售</text>
             <text class='info-status-text' wx:if="{{detail.SellStatus == 2}}">预订</text>
-            {{detail.CarBrand.Name || '' + detail.CarSeries.Name || '' + detail.Title || ''}}
+            {{(detail.CarBrand.Name || '') + (detail.CarSeries.Name || '') + (detail.Title || '')}}
         </view>
 
         <view class='head-price'>
@@ -62,12 +62,12 @@
                   <!-- <view class='info-price'>2017年入驻</view> -->
               </view>
 
-              <view class='follow-btn' wx:if="{{!detail.ExtInfo.Following}}">
+              <view class='follow-btn' wx:if="{{!detail.ExtInfo.Following}}" bindtap='followAction'>
                   <image src='../../../images/ic-close.png' mode="widthFix"></image>
                   关注
               </view>
 
-              <view class='follow-active-btn' wx:if="{{detail.ExtInfo.Following}}">
+              <view class='follow-active-btn' wx:if="{{detail.ExtInfo.Following}}" bindtap='unFollowAction'>
                   取消关注
               </view>
           </view>

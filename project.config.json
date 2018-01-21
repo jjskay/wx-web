@@ -82,6 +82,12 @@
 					"name": "发布信息",
 					"pathName": "pages/release/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": ""
 				}
 			]
 		}
