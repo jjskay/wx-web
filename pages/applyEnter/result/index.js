@@ -1,4 +1,7 @@
 // pages/applyEnter/result/index.js
+import { dataFormat } from '../../../utils/util.js'
+const app = getApp()
+
 Page({
 
   /**
@@ -8,14 +11,34 @@ Page({
     userName: '',
     phone: '',
     idCert: '',
-    certImgs: []
+    certImgs: [],
+    isPass: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const vm = this
+    app.ajax({
+      url: `${app.baseUrl}api/v1/user/apply`,
+      method: 'GET',
+      exception: true,
+      success: function (res) {
+        const { statusCode} = res
+        const { data, status, Error } = res.data
+        const { RealName, IdNumber, IdImageA, IdImageB, PhoneNumber, JoinTime } = data
+        vm.setData({
+          userName: RealName,
+          phone: PhoneNumber || 'XXX',
+          idCert: IdNumber,
+          certImgs: [IdImageA, IdImageB],
+          isPass: statusCode === 301,
+          time: dataFormat(JoinTime)
+        })
+        app.wxApi.hideLoading()
+      }
+    })
   },
 
   /**
@@ -65,5 +88,11 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  redirect() {
+    wx.navigateTo({
+      url: 'pages/release/index'
+    })
   }
 })

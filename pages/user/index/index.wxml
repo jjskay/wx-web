@@ -5,7 +5,7 @@
 
         <image class='ic-head-pic' src='{{inof.Avatar || userInfo.avatarUrl}}' mode="widthFix"></image>
 
-        <view class='user-nickname'>{{inof.RealName || userInfo.nickName}}</view>
+        <view class='user-nickname'>{{info.RealName || userInfo.nickName}}</view>
 
         <view class='user-release-info'>
             <view class='info-left' bindtap='viewMyRelease' data-type="0">

@@ -182,7 +182,7 @@ App({
 
         if (data) {
           if (obj.exception) {
-            obj.success(data)
+            obj.success(res)
             return
           }
 

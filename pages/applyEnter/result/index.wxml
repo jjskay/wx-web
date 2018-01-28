@@ -15,7 +15,7 @@
     </view>
 
     <view class='pic-box'>
-      <view class='pic' wx:for="{{certImgs}}">
+      <view class='pic' wx:for="{{certImgs}}" wx:key="{{index}}">
         <image src='{{item}}' mode="widthFix"></image>
       </view>
     </view>
@@ -26,25 +26,25 @@
       <text class="number">1</text>
 
       <view class="title-text">申请已提交</view>
-      <view class="content-text">2017-10-10 21：00</view>
+      <view class="content-text">{{time}}</view>
     </view>
 
-    <view class="status-number">
+    <view class="status-number pass">
       <text class="number">2</text>
 
       <view class="title-text">入驻信息审核</view>
       <view class="content-text">预计2个工作日内完成审核</view>
     </view>
 
-    <view class="status-number">
+    <view class="status-number {{isPass ? 'pass' : ''}}">
       <text class="number">3</text>
 
-      <view class="title-text">申请结果</view>
+      <view class="title-text" style="padding-top: 20rpx;">{{isPass ? '入驻申请成功' : '申请结果'}}</view>
       <view class="content-text"></view>
     </view>
   </view>
 
-  <view class='submit-btn' bindtap='redirect'>
+  <view class='submit-btn' bindtap='redirect' wx:if="{{isPass}}">
     <image src='../../../images/release-info-btn.png' mode="widthFix"></image>
   </view>
 </view>

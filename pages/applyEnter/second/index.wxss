@@ -88,13 +88,14 @@ input{
 }
 
 .pic-box > view{
-  display: inline-block;
   min-height: 250rpx;
   width: 40%;
   margin-right: 8%;
   border: 1px solid #999;
   border-radius: 10rpx;
   position: relative;
+  display: block;
+  float: left;
 }
 
 .add-btn{
@@ -111,13 +112,13 @@ input{
   position: absolute;
 }
 .pic image{
+  width: 100%;
+}
+.pic image.icon-delete{
   width: 50rpx;
   top: -25rpx;
   right: -25rpx;
   position: absolute;
-}
-.icon-delete{
-  z-index: 100;
 }
 
 

@@ -51,13 +51,15 @@
 }
 
 .pic-box > view{
-  display: inline-block;
   min-height: 250rpx;
-  width: 25%;
-  margin-right: 4%;
+  width: 30%;
+  margin-right: 2%;
   border: 1px solid #999;
   border-radius: 10rpx;
   position: relative;
+  display: block;
+  float: left;
+  margin-bottom: 30rpx;
 }
 
 .add-btn{
@@ -74,6 +76,9 @@
   position: absolute;
 }
 .pic image{
+  width: 100%;
+}
+.pic image.icon-delete{
   width: 50rpx;
   top: -25rpx;
   right: -25rpx;
@@ -122,4 +127,16 @@
   width: 100%;
 }
 
+.link-item{
+  position: relative;
+  overflow: hidden;
+}
 
+.select-car{
+  position: absolute;
+  opacity: 0;
+  z-index: 100;
+  top: -100rpx;
+  left: 0;
+
+}

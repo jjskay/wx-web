@@ -245,6 +245,13 @@ image{
   float: right;
   color: #999;
   font-size: 26rpx;
+  max-width: 70%;
+  overflow: hidden;
+  word-break: keep-all;
+  display: inline-block;
+  word-wrap: normal;
+  height: 85rpx;
+  text-overflow: ellipsis;
 }
 
 .delete-btn{

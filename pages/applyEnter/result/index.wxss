@@ -67,6 +67,11 @@
   position: relative;
 }
 
+.pic-box > view image{
+  display: block;
+  width: 100%;
+}
+
 .enter-status{
   padding-top: 70rpx;
   box-sizing: border-box;
@@ -112,8 +117,12 @@
 
 .status-number .title-text{
   font-size: 30rpx;
-  color:#191f5d;
+  color:#7a7d99;
   font-weight: bold;
+}
+
+.status-number.pass .title-text{
+  color:#191f5d;
 }
 
 .content-text{

@@ -165,13 +165,33 @@ Page({
 
   redirect() {
     const vm = this
-    vm.submitCode();
-    wx.navigateTo({
-      url: '../second/index'
-    })
+    let err = ''
+
+    if (!vm.data.code) {
+      err = '请填写验证码~'
+    }
+
+    if (`${vm.data.phone + ''}`.length !== 11){
+      err = '请填写正确的手机号~'
+    }
+
+    if (err){
+      wx.showModal({
+        title: '提示',
+        content: err,
+        showCancel: false
+      })
+      return
+    }
+
+    vm.submitCode(() => {
+      wx.navigateTo({
+        url: '../second/index'
+      })
+    });
   },
 
-  submitCode: function () {
+  submitCode: function (cb) {
     var vm = this
     var token = wx.getStorageSync('tokenObj')
     wx.request({
@@ -186,15 +206,16 @@ Page({
         'AUTHORIZATION': token.token
       },
       success: function (res) {
-        if (res.data.status == -1) {
+        const { data, UserPem} = res.data
+        if (UserPem !== 602){
           wx.showModal({
             title: '提示',
-            content: res.data.data.message,
+            content: data.message,
             showCancel: false
           })
           return
         }
-        console.log(res)
+        cb()
       }
     })
   }
