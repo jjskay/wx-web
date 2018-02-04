@@ -1,0 +1,42 @@
+<!--pages/user/addIntention/index.wxml-->
+<view class='page-intention'>
+  <view class='other-info-box'>
+      <view class='head'>
+          <image class='ic-close' src='../../../images/icon-intention.png' mode="widthFix"></image>
+          <image src='../../../images/icon-warning.png' class='icon-info' mode="widthFix"></image>设为意向车型，有新车将通知你
+      </view>
+  </view>
+
+  <view class='link-item'>
+      * 品牌
+      <text>{{carVal || '请选择'}}</text>
+      <view class="section select-car">
+        <view class="section__title">省市区选择器</view>
+        <picker mode="multiSelector" range-key="Name" bindchange="bindMultiCarPickerChange" bindcolumnchange="bindMultiCarPickerColumnChange" value="{{regionIndex}}" range="{{region}}">
+          <view class="picker">
+            当前选择：{{region[0][regionIndex[0]].Name}}，{{region[1][regionIndex[1]].Name}}，{{region[2][regionIndex[2]].Name}}
+          </view>
+        </picker>
+      </view>
+      <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+  </view>
+  <view class='link-item'>
+      * 车龄
+      <input value='{{Mileage}}' bindinput='changeText' data-type="Mileage" placeholder='请输入（单位：年）'></input>
+      <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+  </view>
+  <view class='link-item'>
+      * 行驶里程
+      <input value='{{Mileage}}' bindinput='changeText' data-type="Mileage" placeholder='请输入（单位：万公里）'></input>
+      <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+  </view>
+  <view class='link-item'>
+      * 价格范围
+      <input value='{{Mileage}}' bindinput='changeText' data-type="Mileage" placeholder='请输入（单位：万元）'></input>
+      <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+  </view>
+
+  <view class='release-btn'>
+      <image bindtap='releaseInfo' bindtap='addIntention' class='ic-close' src='../../../images/add-intention-btn.png' mode="widthFix"></image>
+  </view>
+</view>
