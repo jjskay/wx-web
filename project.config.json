@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -87,6 +87,12 @@
 					"id": -1,
 					"name": "登录",
 					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加意向",
+					"pathName": "pages/user/addIntention/index",
 					"query": ""
 				}
 			]

@@ -12,7 +12,8 @@
     "pages/user/myFollow/index",
     "pages/user/myRelease/index",
     "pages/carSquare/info/index",
-    "pages/release/index"
+    "pages/release/index",
+    "pages/user/addIntention/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
