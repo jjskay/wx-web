@@ -10,7 +10,13 @@ Page({
       certImgs: [],
       region: [[{ Name: '请选择' }], [{ Name: '请选择' }], [{ Name: '请选择' }]],
       regionIndex: [0,0,0],
-      carVal: '请选择'
+      carVal: '请选择',
+      startData: '',
+      endData: '',
+      Mileage: '',
+      Price: '',
+      Commission: '',
+      carId: ''
   },
 
   /**
@@ -139,9 +145,6 @@ Page({
           header: {
             'AUTHORIZATION': tokenObj.token
           },
-          // formData: {
-          //   'user': 'test'
-          // },
           success: function (res) {
             const { data } = JSON.parse(res.data)
             const obj = {}
@@ -169,20 +172,140 @@ Page({
     console.log(123)
   },
 
-  bindMultiPickerChange: function (e) {
+  bindMultiCarPickerChange: function (e) {
     const vm = this
     const { value } = e.detail
     vm.setData({
-      carVal: `${vm.data.region[0][value[0]].Name} ${vm.data.region[1][value[1]].Name} ${vm.data.region[2][value[2]].Name}`
+      carVal: `${vm.data.region[0][value[0]].Name} ${vm.data.region[1][value[1]].Name} ${vm.data.region[2][value[2]].Name}`,
+      carId: vm.data.region[2][value[2]].id
     })
-    console.log('picker发送选择改变，携带值为', e.detail.value)
   },
 
-  bindMultiPickerColumnChange(e) {
+  bindMultiCarPickerColumnChange(e) {
     const { column, value } = e.detail
     const vm = this
   
     !column && vm.getSeriesList(vm.data.region[column][value].id)
     1 === column && vm.getCarList(vm.data.region[column][value].id)
+  },
+
+  bindStartDateChange(e) {
+    const date = e.detail.value
+    if (new Date(date).getTime() > new Date().getTime()) {
+      wx.showToast({
+        title: '上牌时间只能选择今日之前的时间~',
+        icon: 'loading',
+        duration: 1000,
+        mask: true
+      })
+      return
+    }
+    this.setData({
+      startData: date
+    })
+  },
+
+  // 年检保修到期时间
+  bindEndDateChange(e){
+    const date = e.detail.value
+    if (!e.detail.value) {
+      wx.showToast({
+        title: '请选择保修到期时间~',
+        icon: 'loading',
+        duration: 1000,
+        mask: true
+      })
+      return
+    }
+    this.setData({
+      endData: date
+    })
+  },
+
+  // 多个输入框填写的内容
+  changeText(e) {
+    const { type } = e.currentTarget.dataset
+    const obj = {}
+    obj[type] = e.detail.value
+    this.setData(obj)
+  },
+
+  getData() {
+    const vm = this
+    const {
+      Price,
+      Mileage,
+      endData,
+      startData,
+      carId,
+      Commission,
+      Title,
+      certImgs
+    } = vm.data
+    let error = ''
+    !Price && (error = '请填写价格~')
+    !Mileage && (error = '请填写里程数~')
+    !endData && (error = '请选择保修到期时间~')
+    !startData && (error = '请选择上牌时间~')
+    !carId && (error = '请选择品牌~')
+    !certImgs.length && (error = '请上传车况照片~')
+
+    let data = {
+      Price,
+      Mileage,
+      OnLicenseDate: parseInt(new Date(startData) / 1000),
+      AuditDate: parseInt(new Date(endData) / 1000),
+      CarModel: carId,
+      Imgs: []
+    }
+
+    Commission && (data.Commission = Commission)
+    Title && (data.Title = Title)
+
+    certImgs.map(item => {
+      data.Imgs.push(item.uuid)
+    })
+    data.Thumb = data.Imgs[0]
+
+    return {
+      error,
+      data
+    }
+  },
+
+  // 发布信息
+  releaseInfo() {
+    const vm = this
+    const {data, error} = vm.getData()
+    if (error){
+      wx.showModal({
+        title: '提示',
+        content: error,
+        showCancel: false
+      })
+      return
+    }
+
+    app.wxApi.showLoading()
+
+    app.ajax({
+      url: `${app.baseUrl}api/v1/p/add/posts`,
+      method: 'POST',
+      data,
+      success: function (res) {
+        wx.showToast({
+          title: '发布成功~',
+          duration: 1000,
+          mask: true
+        })
+
+        setTimeout(() => {
+          wx.navigateTo({
+            url: `../user/myIntention/index`
+          })
+        }, 500)
+        app.wxApi.hideLoading()
+      }
+    })
   }
 })

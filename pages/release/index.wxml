@@ -30,7 +30,7 @@
             <text>{{carVal}}</text>
             <view class="section select-car">
               <view class="section__title">省市区选择器</view>
-              <picker mode="multiSelector" range-key="Name" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{regionIndex}}" range="{{region}}">
+              <picker mode="multiSelector" range-key="Name" bindchange="bindMultiCarPickerChange" bindcolumnchange="bindMultiCarPickerColumnChange" value="{{regionIndex}}" range="{{region}}">
                 <view class="picker">
                   当前选择：{{region[0][regionIndex[0]].Name}}，{{region[1][regionIndex[1]].Name}}，{{region[2][regionIndex[2]].Name}}
                 </view>
@@ -41,32 +41,47 @@
 
         <view class='link-item'>
             * 上牌时间
-            <text>3</text>
+            <text>{{startData || '请选择'}}</text>
+            <view class="section select-car">
+              <view class="section__title">时间选择器</view>
+              <picker mode="date" value="{{startData}}" start="2000-09-01" end="2022-02-01" bindchange="bindStartDateChange">
+                <view class="picker">
+                  当前选择: {{startData}}
+                </view>
+              </picker>
+            </view>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
             * 年检保修到期时间
-            <text>3</text>
+            <text>{{endData || '请选择'}}</text>
+            <view class="section select-car">
+              <view class="section__title">时间选择器</view>
+              <picker mode="date" value="{{endData}}" start="2000-09-01" end="2032-02-01" bindchange="bindEndDateChange">
+                <view class="picker">
+                  当前选择: {{endData}}
+                </view>
+              </picker>
+            </view>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
             * 填写里程数
-            <text>3</text>
+            <input value='{{Mileage}}' bindinput='changeText' data-type="Mileage" placeholder='请输入'></input>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
             * 填写价格
-            <text>3</text>
+            <input placeholder='请输入' bindinput='changeText' data-type="Price" value='{{Price}}'></input>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
-            <text style='opacity: 0;float: none;' >*</text> 佣金金额
-            <text></text>
-            <text style="color: #e65961">不填默认面议</text>
+            佣金金额
+            <input placeholder='不填默认面议' bindinput='changeText' data-type="Commission" value='{{Commission}}' placeholder-style='color: #e65961'></input>
             <image style='opacity: 0' class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
@@ -74,10 +89,10 @@
             <view class='head'>
                 <image class='ic-close' src='../../../images/other-info.png' mode="widthFix"></image>颜色、排量、车主要求等 
             </view>
-            <textarea class='other-info-text'></textarea>
+            <textarea value='{{Title}}' bindinput='changeText' data-type="Title" class='other-info-text'></textarea>
         </view>
         <view class='release-btn'>
-            <image class='ic-close' src='../../../images/release-btn.png' mode="widthFix"></image>
+            <image bindtap='releaseInfo' class='ic-close' src='../../../images/release-btn.png' mode="widthFix"></image>
         </view>
     </view> 
 </view>
