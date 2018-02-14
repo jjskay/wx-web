@@ -147,5 +147,10 @@ Page({
     wx.navigateTo({
       url: `../info/index?id=${id}`
     })
+  },
+  goMyIntention() {
+    wx.navigateTo({
+      url: '../../user/addIntention/index'
+    })
   }
 })

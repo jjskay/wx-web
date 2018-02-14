@@ -69,7 +69,7 @@ App({
     })
   },
 
-  login_: function () {
+  login_(cb) {
     const vm = this
     wx.login({
       success: res => {
@@ -102,7 +102,9 @@ App({
                   token: data.Authorization
                 }
               })
-              cb()
+              cb && setTimeout(() => {
+                cb()
+              }, 500)
             }
 
             if (UserPem == 602) {

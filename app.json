@@ -41,7 +41,7 @@
       {
         "selectedIconPath": "images/list1.png",
         "iconPath": "images/list.png",
-        "pagePath": "pages/user/myRelease/index",
+        "pagePath": "pages/carSquare/index/index",
         "text": "我的发布"
       },
       {

@@ -39,7 +39,7 @@
       已经没有了
     </view>
 
-    <view class='add-car-category'>
+    <view class='add-car-category' bindtap='goMyIntention'>
       <image src='../../../images/ic-close.png' mode="widthFix"></image>
       添加意向车型
     </view>

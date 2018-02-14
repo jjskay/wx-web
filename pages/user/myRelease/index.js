@@ -163,5 +163,10 @@ Page({
 
       }
     })
+  },
+  goMyIntention() {
+    wx.navigateTo({
+      url: '../../user/addIntention/index'
+    })
   }
 })

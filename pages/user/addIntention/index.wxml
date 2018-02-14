@@ -14,7 +14,7 @@
         <view class="section__title">省市区选择器</view>
         <picker mode="multiSelector" range-key="Name" bindchange="bindMultiCarPickerChange" bindcolumnchange="bindMultiCarPickerColumnChange" value="{{regionIndex}}" range="{{region}}">
           <view class="picker">
-            当前选择：{{region[0][regionIndex[0]].Name}}，{{region[1][regionIndex[1]].Name}}，{{region[2][regionIndex[2]].Name}}
+            当前选择：{{region[0][regionIndex[0]].Name}}，{{region[1][regionIndex[1]].Name}}
           </view>
         </picker>
       </view>
@@ -22,7 +22,7 @@
   </view>
   <view class='link-item'>
       * 车龄
-      <input value='{{Mileage}}' bindinput='changeText' data-type="Mileage" placeholder='请输入（单位：年）'></input>
+      <input value='{{Age}}' bindinput='changeText' data-type="Age" placeholder='请输入（单位：年）'></input>
       <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
   </view>
   <view class='link-item'>
@@ -32,7 +32,7 @@
   </view>
   <view class='link-item'>
       * 价格范围
-      <input value='{{Mileage}}' bindinput='changeText' data-type="Mileage" placeholder='请输入（单位：万元）'></input>
+      <input value='{{Price}}' bindinput='changeText' data-type="Price" placeholder='请输入（单位：万元）'></input>
       <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
   </view>
 

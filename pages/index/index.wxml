@@ -14,7 +14,7 @@
         <swiper-item class="refresh{{item}}" wx:for="{{[0,1,2]}}" wx:key="{{new Date().getTime()}}">
             <scroll-view style="{{scrollTopStyle}}" scroll-y="true" class="scoll-h" >
                 <block wx:for="{{expertList}}" wx:key="*this">
-                    <view bindtap='goSetup'>入驻设置第一步</view>
+                    <view class='setting-entry' bindtap='goSetup'>入驻设置第一步</view>
                     <view bindtouchmove="moveEvent" class="item-ans">
                         <view class="avatar">
                             <image class="img" src="http://ookzqad11.bkt.clouddn.com/avatar.png"></image>
