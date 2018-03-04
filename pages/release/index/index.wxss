@@ -1,6 +1,6 @@
 /* pages/releasse/index.wxss */
 .page-content{
-  padding: 70rpx 0 200rpx;
+  padding: 70rpx 0 30rpx;
 }
 .page-header{
   position: fixed;

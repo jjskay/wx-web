@@ -172,7 +172,7 @@ Page({
     if (tabIndex == index) {
       return
     }
-    let url = '/pages/release/index'
+    let url = '/pages/release/index/index'
     1 == index && (url = '/pages/carSquare/index/index')
     2 == index && (url = '/pages/user/myRelease/index')
     3 == index && (url = '/pages/user/index/index')

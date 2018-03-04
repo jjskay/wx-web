@@ -150,13 +150,19 @@ Page({
     })
   },
 
+  addIntention() {
+    wx.navigateTo({
+      url: '/pages/user/addIntention/index'
+    })
+  },
+
   redirectTab(e) {
     const { tabIndex } = this.data
     const { index } = e.currentTarget.dataset
     if (tabIndex == index) {
         return
     }
-    let url = '/pages/release/index'
+    let url = '/pages/release/index/index'
     1 == index && (url = '/pages/carSquare/index/index')
     2 == index && (url = '/pages/user/myRelease/index')
     3 == index && (url = '/pages/user/index/index')

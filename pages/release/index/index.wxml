@@ -96,7 +96,7 @@
         </view>
     </view> 
 
-    <view class='tabbar-box'>
+    <!-- <view class='tabbar-box'>
       <view class="tabbar-nav" bindtap='redirectTab' data-index='0'>  
           <image class="tabbar-icon fist-icon"  wx:if="{{0 === tabIndex}}" src="../../../images/release1.png"></image>  
           <image class="tabbar-icon fist-icon"  wx:if="{{0 != tabIndex}}" src="../../../images/release.png"></image>  
@@ -118,5 +118,5 @@
           <image class="tabbar-icon" wx:if="{{3 != tabIndex}}" src="../../../images/user.png"></image>  
           <text>个人中心</text>  
       </view>
-  </view>
+  </view> -->
 </view>
