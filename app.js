@@ -102,13 +102,7 @@ App({
                   token: data.Authorization
                 }
               })
-<<<<<<< HEAD
               typeof cb === 'function' && cb()
-=======
-              cb && setTimeout(() => {
-                cb()
-              }, 500)
->>>>>>> 7f9c4fac8fb5ba57b8e610f0c94e5d4151b0447a
             }
 
             if (UserPem == 602) {

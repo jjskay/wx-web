@@ -165,7 +165,6 @@ Page({
       }
     })
   },
-<<<<<<< HEAD
 
   redirectTab(e) {
     const { tabIndex } = this.data
@@ -180,11 +179,11 @@ Page({
 
     wx.navigateTo({
       url
-=======
+    })
+  },
   goMyIntention() {
     wx.navigateTo({
       url: '../../user/addIntention/index'
->>>>>>> 7f9c4fac8fb5ba57b8e610f0c94e5d4151b0447a
     })
   }
 })
