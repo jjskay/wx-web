@@ -1,8 +1,11 @@
 /* pages/carSquare/index/index.wxss */
+page{
+  padding-bottom: 120rpx;
+}
 .page-content{
   background: #fff;
   padding-top: 100rpx;
-  padding-bottom: 30rpx;
+  padding-bottom: 20rpx;
 }
 .page-content.search-result-show{
   padding-top: 180rpx;

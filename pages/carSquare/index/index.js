@@ -11,7 +11,8 @@ Page({
     list: [],
     loadAll: false,
     search: '',
-    isInitData: true
+    isInitData: true,
+    tabIndex: 1
   },
 
   /**
@@ -146,6 +147,22 @@ Page({
     const { id } = e.currentTarget.dataset
     wx.navigateTo({
       url: `../info/index?id=${id}`
+    })
+  },
+
+  redirectTab(e) {
+    const { tabIndex } = this.data
+    const { index } = e.currentTarget.dataset
+    if (tabIndex == index) {
+        return
+    }
+    let url = '/pages/release/index'
+    1 == index && (url = '/pages/carSquare/index/index')
+    2 == index && (url = '/pages/user/myRelease/index')
+    3 == index && (url = '/pages/user/index/index')
+
+    wx.navigateTo({
+      url
     })
   }
 })

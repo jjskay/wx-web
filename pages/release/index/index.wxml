@@ -1,8 +1,8 @@
 <!--pages/releasse/index.wxml-->
 <view class='page-content'>
     <view class='page-header'>
-      <image class='ic-bg' src='../../../../images/user-title.png' mode="widthFix"></image>
-      <image class='ic-info' src='../../../../images/ic-info.png' mode="widthFix"></image>
+      <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
+      <image class='ic-info' src='../../../images/ic-info.png' mode="widthFix"></image>
       <view class='header-text'>
         佣金默认为面议，佣金最大值不超过车价的2%
       </view>
@@ -17,11 +17,11 @@
         </view>
         <view class='pic-box'>
           <view class='pic' wx:for="{{certImgs}}" wx:key="{{new Date().getTime()}}">
-            <image src='../../../../images/close_btn.png' class='icon-delete' mode="widthFix" bindtap='deleteItem' data-index="{{index}}"></image>
+            <image src='../../../images/close_btn.png' class='icon-delete' mode="widthFix" bindtap='deleteItem' data-index="{{index}}"></image>
             <image src="{{item.url}}" mode="widthFix"></image>
           </view>
           <view class='add-btn'  wx:if="{{certImgs.length < 9}}" bindtap="uploadImg">
-            <image src='../../../../images/add_btn.png' mode="widthFix"></image>
+            <image src='../../../images/add_btn.png' mode="widthFix"></image>
           </view>
         </view>
 
@@ -36,7 +36,7 @@
                 </view>
               </picker>
             </view>
-            <image class='ic-bg' src='../../../../images/ic-right.png' mode="widthFix"></image>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
@@ -50,7 +50,7 @@
                 </view>
               </picker>
             </view>
-            <image class='ic-bg' src='../../../../images/ic-right.png' mode="widthFix"></image>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
@@ -64,7 +64,7 @@
                 </view>
               </picker>
             </view>
-            <image class='ic-bg' src='../../../../images/ic-right.png' mode="widthFix"></image>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
@@ -76,7 +76,7 @@
         <view class='link-item'>
             * 填写价格
             <input placeholder='请输入' bindinput='changeText' data-type="Price" value='{{Price}}'></input>
-            <image class='ic-bg' src='../../../../images/ic-right.png' mode="widthFix"></image>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
@@ -92,11 +92,11 @@
             <textarea value='{{Title}}' bindinput='changeText' data-type="Title" class='other-info-text'></textarea>
         </view>
         <view class='release-btn'>
-            <image bindtap='releaseInfo' class='ic-close' src='../../../../images/release-btn.png' mode="widthFix"></image>
+            <image bindtap='releaseInfo' class='ic-close' src='../../../images/release-btn.png' mode="widthFix"></image>
         </view>
     </view> 
 
-    <!-- <view class='tabbar-box'>
+    <view class='tabbar-box'>
       <view class="tabbar-nav" bindtap='redirectTab' data-index='0'>  
           <image class="tabbar-icon fist-icon"  wx:if="{{0 === tabIndex}}" src="../../../images/release1.png"></image>  
           <image class="tabbar-icon fist-icon"  wx:if="{{0 != tabIndex}}" src="../../../images/release.png"></image>  
@@ -118,5 +118,5 @@
           <image class="tabbar-icon" wx:if="{{3 != tabIndex}}" src="../../../images/user.png"></image>  
           <text>个人中心</text>  
       </view>
-  </view> -->
+  </view>
 </view>

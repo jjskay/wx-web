@@ -11,7 +11,8 @@ Page({
     list: [],
     loadAll: false,
     isInitData: true,
-    text: '已发布'
+    text: '已发布',
+    tabIndex: 2
   },
 
   /**
@@ -162,6 +163,22 @@ Page({
         })
 
       }
+    })
+  },
+
+  redirectTab(e) {
+    const { tabIndex } = this.data
+    const { index } = e.currentTarget.dataset
+    if (tabIndex == index) {
+      return
+    }
+    let url = '/pages/release/index'
+    1 == index && (url = '/pages/carSquare/index/index')
+    2 == index && (url = '/pages/user/myRelease/index')
+    3 == index && (url = '/pages/user/index/index')
+
+    wx.navigateTo({
+      url
     })
   }
 })

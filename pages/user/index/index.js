@@ -9,7 +9,8 @@ Page({
    */
   data: {
     userInfo: {},
-    info: {}
+    info: {},
+    tabIndex: 3
   },
 
   /**
@@ -109,6 +110,21 @@ Page({
     const { type } = e.currentTarget.dataset
     wx.navigateTo({
       url: `../../user/myRelease/index?type=${type}`
+    })
+  },  
+  redirectTab(e) {
+    const { tabIndex } = this.data
+    const { index } = e.currentTarget.dataset
+    if (tabIndex == index) {
+      return
+    }
+    let url = '/pages/release/index'
+    1 == index && (url = '/pages/carSquare/index/index')
+    2 == index && (url = '/pages/user/myRelease/index')
+    3 == index && (url = '/pages/user/index/index')
+
+    wx.navigateTo({
+      url
     })
   }
 })

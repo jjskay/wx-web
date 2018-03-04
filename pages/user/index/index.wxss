@@ -1,4 +1,7 @@
 /* pages/user/index/index.wxss */
+page{
+  padding-bottom: 200rpx;
+}
 
 .user-title{
   position: relative;

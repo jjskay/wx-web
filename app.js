@@ -13,11 +13,11 @@ App({
       wx.getUserInfo({
         success: function (res) {
           vm.globalData.userInfo = res.userInfo
-          cb && cb()
+          typeof cb === 'function' && cb()
         }
       })
     } else {
-      vm.wechartLogin(cb)
+      vm.wechartLogin(cb || '')
     }
   },
 
@@ -102,7 +102,7 @@ App({
                   token: data.Authorization
                 }
               })
-              cb()
+              typeof cb === 'function' && cb()
             }
 
             if (UserPem == 602) {

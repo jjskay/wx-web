@@ -62,4 +62,28 @@
     <image src='../../../images/ic-close.png' mode="widthFix"></image>
     添加意向车型
   </view>
+
+  <view class='tabbar-box'>
+      <view class="tabbar-nav" bindtap='redirectTab' data-index='0'>  
+          <image class="tabbar-icon fist-icon"  wx:if="{{0 === tabIndex}}" src="../../../images/release1.png"></image>  
+          <image class="tabbar-icon fist-icon"  wx:if="{{0 != tabIndex}}" src="../../../images/release.png"></image>  
+          <image class="tabbar-icon" style='opacity: 0' src="../../../images/release.png"></image>  
+          <text>发布车况</text>  
+      </view>  
+      <view class="tabbar-nav"  bindtap='redirectTab' data-index='1'>  
+          <image class="tabbar-icon" wx:if="{{1 === tabIndex}}" src="../../../images/home1.png"></image>  
+          <image class="tabbar-icon" wx:if="{{1 != tabIndex}}" src="../../../images/home.png"></image>  
+          <text>买车广场</text>  
+      </view> 
+      <view class="tabbar-nav"  bindtap='redirectTab' data-index='2'>  
+          <image class="tabbar-icon" wx:if="{{2 === tabIndex}}" src="../../../images/list1.png"></image>  
+          <image class="tabbar-icon" wx:if="{{2 != tabIndex}}" src="../../../images/list.png"></image>  
+          <text>我的发布</text>  
+      </view>  
+      <view class="tabbar-nav"  bindtap='redirectTab' data-index='3'>  
+          <image class="tabbar-icon" wx:if="{{3 === tabIndex}}" src="../../../images/user.png"></image>  
+          <image class="tabbar-icon" wx:if="{{3 != tabIndex}}" src="../../../images/user.png"></image>  
+          <text>个人中心</text>  
+      </view>
+  </view>
 </view>
