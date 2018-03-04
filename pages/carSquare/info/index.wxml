@@ -1,6 +1,8 @@
 <!--pages/carSquare/info/index.wxml-->
 <view class='page-content'>
-    <view class='page-swiper'></view>
+    <view class='page-swiper'>
+      <image class='ic-close' src='{{detail.Imgs[0].url}}' mode="widthFix"></image>
+    </view>
 
     <view class='page-info-head'>
         <view class='head-title'>
