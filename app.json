@@ -20,5 +20,39 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "易卖车",
     "navigationBarTextStyle": "black"
+<<<<<<< HEAD
+=======
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#333",
+    "borderStyle": "#666",
+    "list": [
+      {
+        "selectedIconPath": "images/release1.png",
+        "iconPath": "images/release.png",
+        "pagePath": "pages/index/index",
+        "text": "发布情况"
+      },
+      {
+        "selectedIconPath": "images/home1.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/carSquare/index/index",
+        "text": "买车广场"
+      },
+      {
+        "selectedIconPath": "images/list1.png",
+        "iconPath": "images/list.png",
+        "pagePath": "pages/carSquare/index/index",
+        "text": "我的发布"
+      },
+      {
+        "selectedIconPath": "images/user1.png",
+        "iconPath": "images/user.png",
+        "pagePath": "pages/user/index/index",
+        "text": "个人中心"
+      }
+    ]
+>>>>>>> 7f9c4fac8fb5ba57b8e610f0c94e5d4151b0447a
   }
 }

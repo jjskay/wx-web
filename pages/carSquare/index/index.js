@@ -149,6 +149,7 @@ Page({
       url: `../info/index?id=${id}`
     })
   },
+<<<<<<< HEAD
 
   addIntention() {
     wx.navigateTo({
@@ -169,6 +170,11 @@ Page({
 
     wx.navigateTo({
       url
+=======
+  goMyIntention() {
+    wx.navigateTo({
+      url: '../../user/addIntention/index'
+>>>>>>> 7f9c4fac8fb5ba57b8e610f0c94e5d4151b0447a
     })
   }
 })

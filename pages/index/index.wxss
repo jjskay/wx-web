@@ -31,3 +31,16 @@
   box-sizing: border-box;
 }
 .scoll-h{height: 100%;}
+
+.setting-entry{
+  line-height: 100rpx;
+  background: #888;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  margin: 20rpx auto;
+  position: relative;
+  left: 50%;
+  margin-left: -100rpx;
+}
