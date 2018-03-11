@@ -121,6 +121,11 @@ Page({
   followAction() {
     const vm = this
     const { PhoneNum } = vm.data.detail.ExtInfo || {}
+    const userPromise = wx.getStorageSync('UserPem')
+    if (userPromise != 700) {
+      app.checkLoginState()
+      return
+    }
     app.ajax({
       url: `${app.baseUrl}api/v1/user/fellow/add`,
       header: {
@@ -149,6 +154,11 @@ Page({
   unFollowAction() {
     const vm = this
     const { PhoneNum } = vm.data.detail.ExtInfo || {}
+    const userPromise = wx.getStorageSync('UserPem')
+    if (userPromise != 700) {
+      app.checkLoginState()
+      return
+    }
     wx.showModal({
       title: '提示',
       content: '确定取消关注此信息吗？',
@@ -182,6 +192,14 @@ Page({
         })
 
       }
+    })
+  },
+  
+  // 预约看车
+  callPhoneNumber() {
+    const { PhoneNum } = this.data.detail.ExtInfo || {}
+    wx.makePhoneCall({
+      phoneNumber: PhoneNum || '' //仅为示例，并非真实的电话号码
     })
   }
 })

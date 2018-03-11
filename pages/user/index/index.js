@@ -90,6 +90,11 @@ Page({
    * 查看我提交的意向车型
    */
   viewMyIntentionList() {
+    const userPromise = wx.getStorageSync('UserPem')
+    if (userPromise != 700) {
+      app.checkLoginState()
+      return
+    }
     wx.navigateTo({
       url: `../../user/myIntention/index`
     })
@@ -99,6 +104,11 @@ Page({
    * 查看我关注的
    */
   viewMyFollowList() {
+    const userPromise = wx.getStorageSync('UserPem')
+    if (userPromise != 700) {
+      app.checkLoginState()
+      return
+    }
     wx.navigateTo({
       url: `../../user/myFollow/index`
     })
@@ -108,20 +118,31 @@ Page({
    */
   viewMyRelease(e) {
     const { type } = e.currentTarget.dataset
+    const userPromise = wx.getStorageSync('UserPem')
+    if (userPromise != 700) {
+      app.checkLoginState()
+      return
+    }
     wx.navigateTo({
       url: `../../user/myRelease/index?type=${type}`
     })
   },  
   redirectTab(e) {
     const { tabIndex } = this.data
-    const { index } = e.currentTarget.dataset
+    const index = Number(e.currentTarget.dataset.index)
+    const userPromise = wx.getStorageSync('UserPem')
     if (tabIndex == index) {
       return
     }
     let url = '/pages/release/index/index'
     1 == index && (url = '/pages/carSquare/index/index')
-    2 == index && (url = '/pages/user/myRelease/index')
+    2 == index && (url = '/pages/user/myRelease/index?type=0')
     3 == index && (url = '/pages/user/index/index')
+
+    if ((!index || 2 == index) && userPromise !== 700) {
+      app.checkLoginState()
+      return
+    }
 
     wx.navigateTo({
       url

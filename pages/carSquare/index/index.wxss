@@ -5,7 +5,7 @@ page{
 .page-content{
   background: #fff;
   padding-top: 100rpx;
-  padding-bottom: 20rpx;
+  padding-bottom: 220rpx;
 }
 .page-content.search-result-show{
   padding-top: 180rpx;

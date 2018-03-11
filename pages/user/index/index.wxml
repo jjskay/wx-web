@@ -12,7 +12,7 @@
                 已发布 <text>{{info.ItemCount || 0}}</text>
             </view>
             <view class='info-right' bindtap='viewMyRelease' data-type="1">
-                在售 <text>{{info.OnSaleCount || 0}}</text>
+                在售 <text>{{info.ItemCount || 0}}</text>
             </view>
         </view>
     </view>

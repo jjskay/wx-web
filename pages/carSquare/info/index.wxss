@@ -4,10 +4,16 @@
 }
 .page-swiper{
   overflow: hidden;
-  height: 355rpx;
+  max-height: 400rpx;
+  min-height: 300rpx;
   width: 100%;
   background: #eee;
 }
+.page-swiper image{
+  display: block;
+  width: 100%;
+}
+
 .page-info-head{
   padding:10rpx 20rpx;
   overflow: hidden;
@@ -108,6 +114,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  z-index: 30;
 }
 .fix-footer-btn image{
   width: 100%;

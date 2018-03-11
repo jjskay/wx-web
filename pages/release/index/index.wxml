@@ -54,7 +54,21 @@
         </view>
 
         <view class='link-item'>
-            * 年检保修到期时间
+            * 年检到期时间
+            <text>{{InspectionDate || '请选择'}}</text>
+            <view class="section select-car">
+              <view class="section__title">时间选择器</view>
+              <picker mode="date" value="{{InspectionDate}}" start="2000-09-01" end="2032-02-01" bindchange="bindInspectionDateChange">
+                <view class="picker">
+                  当前选择: {{InspectionDate}}
+                </view>
+              </picker>
+            </view>
+            <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
+        </view>
+
+        <view class='link-item'>
+            * 保修到期时间
             <text>{{endData || '请选择'}}</text>
             <view class="section select-car">
               <view class="section__title">时间选择器</view>
@@ -69,19 +83,19 @@
 
         <view class='link-item'>
             * 填写里程数
-            <input value='{{Mileage}}' bindinput='changeText' data-type="Mileage" placeholder='请输入'></input>
+            <input value='{{Mileage}}' bindinput='changeText' type='number' data-type="Mileage" placeholder='请输入（万公里）'></input>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
             * 填写价格
-            <input placeholder='请输入' bindinput='changeText' data-type="Price" value='{{Price}}'></input>
+            <input placeholder='请输入（万元）' type='number' bindinput='changeText' data-type="Price" value='{{Price}}'></input>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
             佣金金额
-            <input placeholder='不填默认面议' bindinput='changeText' data-type="Commission" value='{{Commission}}' placeholder-style='color: #e65961'></input>
+            <input placeholder='不填默认面议' type='number' bindinput='changeText' data-type="Commission" value='{{Commission}}' placeholder-style='color: #e65961'></input>
             <image style='opacity: 0' class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 

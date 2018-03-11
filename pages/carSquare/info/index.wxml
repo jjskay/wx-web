@@ -1,7 +1,14 @@
 <!--pages/carSquare/info/index.wxml-->
 <view class='page-content'>
     <view class='page-swiper'>
-      <image class='ic-close' src='{{detail.Imgs[0].url}}' mode="widthFix"></image>
+      <swiper indicator-dots="true" autoplay="true" duration="1000" bindchange="listenSwiper" >
+          <!--swiper-item只能包含一个节点再多会自动删除-->
+          <swiper-item wx:for="{{detail.Imgs}}" wx:key="{{new Date().getTime()}}">
+              <view style="background: #666; height: 150px">
+                <image class='ic-close' src='{{item.url}}' mode="widthFix"></image>
+              </view>
+          </swiper-item>
+      </swiper>
     </view>
 
     <view class='page-info-head'>
@@ -76,7 +83,7 @@
         </view>
     </view>
 
-    <view class='fix-footer-btn'>
+    <view class='fix-footer-btn' bindtap='callPhoneNumber'>
         <image class='ic-close' src='../../../images/look-car-bg.png' mode="widthFix"></image>
     </view>
 </view>

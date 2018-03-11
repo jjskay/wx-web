@@ -28,8 +28,7 @@ Page({
   onReady: function () {
     const vm = this
     app.wxApi.showLoading({})
-    app.getAuthInfo(() =>{
-      const token = app.getToken()
+    app.getAuthInfo((token) =>{
       if (!token) {
         wx.showModal({
           title: '提示',
@@ -70,10 +69,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    if (this.isSend) {
+      return
+    }
+
+    this.isSend = true
     const vm = this
     vm.setData({
       loadAll: false,
-      isInitData: true
+      isInitData: true,
+      list: []
     })
     vm.pageNo = 1;
     vm.getList()
@@ -122,6 +127,10 @@ Page({
         wx.stopPullDownRefresh()
         vm.pageNo++
         app.wxApi.hideLoading()
+      },
+
+      complete() {
+        vm.isSend = false
       }
     })
   },
@@ -157,14 +166,20 @@ Page({
 
   redirectTab(e) {
     const { tabIndex } = this.data
-    const { index } = e.currentTarget.dataset
+    const index = Number(e.currentTarget.dataset.index)
+    const userPromise = wx.getStorageSync('UserPem')
     if (tabIndex == index) {
-        return
+      return
     }
     let url = '/pages/release/index/index'
     1 == index && (url = '/pages/carSquare/index/index')
-    2 == index && (url = '/pages/user/myRelease/index')
+    2 == index && (url = '/pages/user/myRelease/index?type=0')
     3 == index && (url = '/pages/user/index/index')
+
+    if ((!index || 2 == index) && userPromise !== 700) {
+      app.checkLoginState()
+      return
+    }
 
     wx.navigateTo({
       url

@@ -13,7 +13,7 @@ App({
       wx.getUserInfo({
         success: function (res) {
           vm.globalData.userInfo = res.userInfo
-          typeof cb === 'function' && cb()
+          typeof cb === 'function' && cb(vm.getToken())
         }
       })
     } else {
@@ -34,7 +34,21 @@ App({
 
   // 删除token
   clearToken() {
-    wx.removeStorageSync('tokenObj')
+    wx.clearStorage()
+  },
+
+  // 打开授权控制面板
+  openSetting(cb) {
+    const vm = this
+    wx.openSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.userInfo']) {
+          vm.openSetting(cb)
+        } else {
+          vm.wechartLogin(cb)
+        }
+      }
+    })
   },
 
   // 登录
@@ -48,10 +62,13 @@ App({
             success(res) {
               wx.getUserInfo({
                 success: function (res) {
-                  vm.globalData.userInfo = res
+                  vm.globalData.userInfo = res.userInfo
+                  vm.login_(cb)
                 }
               })
-              vm.login_(cb)
+            },
+            fail() {
+              vm.openSetting(cb)
             }
           })
         } else {
@@ -59,11 +76,14 @@ App({
         }
       },
       fail() {
+        vm.clearToken()
         wx.showModal({
           title: '提示',
           content: '微信授权失败，请重新授权~',
           cancel: false,
-          success: function (res) {}
+          success: function (res) {
+            vm.wechartLogin(cb)
+          }
         })
       }
     })
@@ -84,6 +104,7 @@ App({
           },
           success: function (res) {
             const {Error, UserPem, data} = res.data
+
             if (UserPem < 600) {
               wx.showModal({
                 title: '提示',
@@ -102,7 +123,7 @@ App({
                   token: data.Authorization
                 }
               })
-              typeof cb === 'function' && cb()
+              typeof cb === 'function' && cb(data.Authorization)
             }
 
             if (UserPem == 602) {
@@ -128,6 +149,7 @@ App({
             }
           },
           fail: function () {
+            vm.clearToken()
             wx.showModal({
               title: '提示',
               content: '微信登录失败，请重试！',
@@ -157,6 +179,7 @@ App({
       })
       return
     }
+    const vm = this
     var header = {}
     var sysInfo = wx.getSystemInfoSync ? wx.getSystemInfoSync() : {}
     const tokenObj = wx.getStorageSync('tokenObj') || {}
@@ -169,7 +192,25 @@ App({
       dataType: obj.dataType || 'json',
       success: function (res) {
         var err = ''
-        const {data, status, Error} = res.data
+        const {data, status, Error, UserPem} = res.data
+        wx.setStorage({
+          key: 'UserPem',
+          data: UserPem
+        })
+        if (UserPem == 601) {
+          wx.showModal({
+            title: '提示',
+            content: '未登录或者登陆失效，请重新登陆~',
+            showCancel: false,
+            success() {
+              vm.clearToken()
+              wx.navigateTo({
+                url: '/pages/carSquare/index/index'
+              })
+            }
+          })
+          return
+        }
 
         if (Error || err){
           wx.showModal({
@@ -185,8 +226,6 @@ App({
             obj.success(res)
             return
           }
-
-
 
           if (data) {
             obj.success(data || true)
@@ -228,5 +267,47 @@ App({
     hideLoading() {
       wx.hideLoading && wx.hideLoading()
     }
+  },
+
+  checkLoginState() {
+    const code = wx.getStorageSync('UserPem')
+    let msg = ''
+    let url = ''
+    if (code == 602) {
+      msg = '请绑定手机号~'
+      url = '/pages/applyEnter/first/index'
+    }
+
+    if (code == 603) {
+      msg = '请进行申请入驻才能使用该功能~'
+      url = '/pages/applyEnter/second/index'
+    }
+
+    if (code == 604) {
+      msg = '入驻申请未通过~'
+      url = '/pages/carSquare/index/index'
+    }
+
+    if (code == 605) {
+      msg = '入驻申请审核中~'
+      url = '/pages/applyEnter/result/index'
+    }
+
+    if (code == 606) {
+      msg = '入驻申请已到期，请联系客服续费~'
+      url = '/pages/carSquare/index/index'
+    }
+
+    wx.showModal({
+      title: '提示',
+      content: msg,
+      showCancel: false,
+      success() {
+        wx.navigateTo({
+          url
+        })
+      }
+    })
+
   }
 })

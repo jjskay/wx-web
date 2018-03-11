@@ -136,12 +136,17 @@ Page({
               duration: 1000,
               mask: true
             })
-            app.wxApi.hideLoading()
-            this.onPullDownRefresh()
+            vm.pageNo = 1;
+            vm.getList();
           }
         })
-
       }
+    })
+  },
+
+  addIntention() {
+    wx.navigateTo({
+      url: '/pages/user/addIntention/index'
     })
   }
 })

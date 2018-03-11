@@ -15,6 +15,7 @@ Page({
       endData: '',
       Mileage: '',
       Price: '',
+      InspectionDate: '',
       Commission: '',
       carId: '',
       tabIndex: 0
@@ -170,7 +171,6 @@ Page({
     const data = {}
     data.certImgs = imgs
     vm.setData(data)
-    console.log(123)
   },
 
   bindMultiCarPickerChange: function (e) {
@@ -223,6 +223,13 @@ Page({
     })
   },
 
+  bindInspectionDateChange(e){
+    const date = e.detail.value
+    this.setData({
+      InspectionDate: date
+    })
+  },
+
   // 多个输入框填写的内容
   changeText(e) {
     const { type } = e.currentTarget.dataset
@@ -241,11 +248,13 @@ Page({
       carId,
       Commission,
       Title,
-      certImgs
+      certImgs,
+      InspectionDate
     } = vm.data
     let error = ''
     !Price && (error = '请填写价格~')
     !Mileage && (error = '请填写里程数~')
+    !InspectionDate && (error = '请选择年检到期时间~')
     !endData && (error = '请选择保修到期时间~')
     !startData && (error = '请选择上牌时间~')
     !carId && (error = '请选择品牌~')
@@ -255,6 +264,7 @@ Page({
       Price,
       Mileage,
       OnLicenseDate: parseInt(new Date(startData) / 1000),
+      InspectionDate: parseInt(new Date(InspectionDate) / 1000),
       AuditDate: parseInt(new Date(endData) / 1000),
       CarModel: carId,
       Imgs: []
@@ -302,9 +312,9 @@ Page({
 
         setTimeout(() => {
           wx.navigateTo({
-            url: `../user/myIntention/index`
+            url: '../../user/myRelease/index?type=0'
           })
-        }, 500)
+        }, 200)
         app.wxApi.hideLoading()
       }
     })
@@ -320,6 +330,11 @@ Page({
     1 == index && (url = '/pages/carSquare/index/index')
     2 == index && (url = '/pages/user/myRelease/index')
     3 == index && (url = '/pages/user/index/index')
+
+    if ((!index || 2 == index) && userPromise !== 700) {
+      app.checkLoginState(userPromise)
+      return
+    }
 
     wx.redirectTo({
       url
