@@ -109,12 +109,19 @@
 .car-business-info{
   padding: 0 20rpx 50rpx;
 }
-.fix-footer-btn{
+.fix-footer-btn, .fix-footer-edit-btn{
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 30;
+}
+.fix-footer-edit-btn{
+  background: #6680e3;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 36rpx;
 }
 .fix-footer-btn image{
   width: 100%;

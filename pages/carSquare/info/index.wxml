@@ -71,19 +71,23 @@
                   <!-- <view class='info-price'>2017年入驻</view> -->
               </view>
 
-              <view class='follow-btn' wx:if="{{!detail.ExtInfo.Following}}" bindtap='followAction'>
+              <view class='follow-btn' wx:if="{{!detail.ExtInfo.Following && !detail.ExtInfo.Editble}}" bindtap='followAction'>
                   <image src='../../../images/ic-close.png' mode="widthFix"></image>
                   关注
               </view>
 
-              <view class='follow-active-btn' wx:if="{{detail.ExtInfo.Following}}" bindtap='unFollowAction'>
+              <view class='follow-active-btn' wx:if="{{detail.ExtInfo.Following && !detail.ExtInfo.Editble}}" bindtap='unFollowAction'>
                   取消关注
               </view>
           </view>
         </view>
     </view>
 
-    <view class='fix-footer-btn' bindtap='callPhoneNumber'>
+    <view class='fix-footer-btn' bindtap='callPhoneNumber' wx:if="{{!detail.ExtInfo.Editble}}">
         <image class='ic-close' src='../../../images/look-car-bg.png' mode="widthFix"></image>
+    </view>
+
+    <view class='fix-footer-edit-btn' bindtap='editInfo' wx:if="{{detail.ExtInfo.Editble}}">
+        编辑信息
     </view>
 </view>

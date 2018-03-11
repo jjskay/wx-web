@@ -201,5 +201,12 @@ Page({
     wx.makePhoneCall({
       phoneNumber: PhoneNum || '' //仅为示例，并非真实的电话号码
     })
+  },
+
+  editInfo() {
+    const {id} = this.options
+    wx.redirectTo({
+      url: `/pages/release/index/index?id=${id}`
+    })
   }
 })
