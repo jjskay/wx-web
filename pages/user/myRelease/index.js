@@ -185,5 +185,12 @@ Page({
     wx.navigateTo({
       url: '../../user/addIntention/index'
     })
+  },
+
+  jumpDetailInfo(e) {
+    const { id } = e.currentTarget.dataset
+    wx.redirectTo({
+      url: `/pages/carSquare/info/index?id=${id}`
+    })
   }
 })

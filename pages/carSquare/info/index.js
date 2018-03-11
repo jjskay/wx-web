@@ -208,5 +208,24 @@ Page({
     wx.redirectTo({
       url: `/pages/release/index/index?id=${id}`
     })
+  },
+
+  deleteInfo() {
+    const { id } = this.options
+    wx.showModal({
+      title: '删除',
+      content: '你确定要删除此条信息吗？',
+      success() {
+        app.wxApi.showLoading()
+        app.ajax({
+          url: `${app.baseUrl}api/v1/p/posts/delete/${id}`,
+          method: 'POST',
+          success: function (res) {
+            app.wxApi.hideLoading()
+            console.log(res)
+          }
+        })
+      }
+    })
   }
 })

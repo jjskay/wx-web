@@ -117,11 +117,20 @@
   z-index: 30;
 }
 .fix-footer-edit-btn{
-  background: #6680e3;
+  background: #e65961;
   color: #fff;
   text-align: center;
   line-height: 100rpx;
   font-size: 36rpx;
+  overflow: hidden;
+}
+.fix-footer-edit-btn text{
+  display: block;
+  float: left;
+  width: 50%;
+}
+.fix-footer-edit-btn text.first{
+  background: #6680e3;
 }
 .fix-footer-btn image{
   width: 100%;

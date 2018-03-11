@@ -87,7 +87,8 @@
         <image class='ic-close' src='../../../images/look-car-bg.png' mode="widthFix"></image>
     </view>
 
-    <view class='fix-footer-edit-btn' bindtap='editInfo' wx:if="{{detail.ExtInfo.Editble}}">
-        编辑信息
+    <view class='fix-footer-edit-btn' wx:if="{{detail.ExtInfo.Editble}}">
+        <text bindtap='editInfo' class='first'>编辑</text>
+        <text bindtap='deleteInfo'>删除</text>
     </view>
 </view>
