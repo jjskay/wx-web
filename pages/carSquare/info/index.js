@@ -205,7 +205,7 @@ Page({
 
   editInfo() {
     const {id} = this.options
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/release/index/index?id=${id}`
     })
   },

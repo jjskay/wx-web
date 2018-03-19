@@ -88,9 +88,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "登录",
-					"pathName": "pages/login/login",
+					"pathName": "pages/applyEnter/first/index",
 					"query": ""
 				},
 				{

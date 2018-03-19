@@ -212,6 +212,25 @@ App({
           return
         }
 
+        if (UserPem != 700) {
+          const currentUrl = vm.getCurrentPageUrl()
+          if (currentUrl.indexOf('user/') > -1 || 
+          currentUrl.indexOf('release/') > -1) {
+            wx.showModal({
+              title: '提示',
+              content: '此页面需要登录入驻申请后才能查看~',
+              showCancel: false,
+              success() {
+                vm.clearToken()
+                wx.navigateTo({
+                  url: '/pages/carSquare/index/index'
+                })
+              }
+            })
+            return
+          }
+        }
+
         if (Error || err){
           wx.showModal({
             title: '提示',
@@ -309,5 +328,14 @@ App({
       }
     })
 
+  },
+
+  /*获取当前页url*/
+  getCurrentPageUrl(){
+    var pages = getCurrentPages()    //获取加载的页面
+    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+    var url = currentPage.route    //当前页面url
+    return url
   }
+
 })

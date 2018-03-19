@@ -125,7 +125,7 @@ Page({
           duration: 1000,
           mask: true
         })
-        wx.navigateTo({
+        wx.redirectTo({
           url: `../myIntention/index`
         })
         app.wxApi.hideLoading()

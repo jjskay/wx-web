@@ -184,14 +184,10 @@ Page({
       return
     }
 
-    vm.submitCode(() => {
-      wx.navigateTo({
-        url: '../second/index'
-      })
-    });
+    vm.submitCode();
   },
 
-  submitCode: function (cb) {
+  submitCode: function () {
     var vm = this
     var token = wx.getStorageSync('tokenObj')
     wx.request({
@@ -207,15 +203,36 @@ Page({
       },
       success: function (res) {
         const { data, UserPem} = res.data
-        if (UserPem !== 602){
+
+        // 审核已通过
+        if (UserPem == 700){
           wx.showModal({
             title: '提示',
-            content: data.message,
-            showCancel: false
+            content: '已成功入驻~',
+            showCancel: false,
+            complete() {
+              wx.navigateTo({
+                url: '/pages/carSquare/index/index'
+              })
+            }
           })
           return
         }
-        cb()
+        // 未认证
+        if (UserPem == 603) {
+          wx.navigateTo({
+            url: '../second/index'
+          })
+          return
+        }
+
+        // 认证未通过，审核中
+        if (UserPem == 604 || UserPem == 605) {
+          wx.navigateTo({
+            url: '../result/index'
+          })
+          return
+        }
       }
     })
   }

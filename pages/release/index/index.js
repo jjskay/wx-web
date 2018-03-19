@@ -1,6 +1,6 @@
 // pages/releasse/index.js
 const app = getApp()
-import { objectUtil, getYMD } from '../../../utils/util.js'
+import { objectUtil, getYMD, getDateYMD } from '../../../utils/util.js'
 Page({
 
   /**
@@ -26,7 +26,53 @@ Page({
    */
   onLoad: function (options) {
     const vm = this
+    const {id} = options;
+    if (id){
+      vm.getDetailInfo()
+    }
     vm.getBrandList()
+  },
+
+  getDetailInfo() {
+    const vm = this
+    const { id } = vm.options
+    app.ajax({
+      url: `${app.baseUrl}api/v1/p/view/posts/${id}`,
+      method: 'GET',
+      success: function (res) {
+        const detailInfo = objectUtil.copy(res)
+        detailInfo.OnLicenseDate = getDateYMD(detailInfo.OnLicenseDate)
+        detailInfo.year = getDateYMD(detailInfo.OnLicenseDate)
+
+        const { 
+          Imgs, 
+          OnLicenseDate,
+          CarBrand, 
+          CarModels, 
+          CarSeries,
+          Mileage,
+          Title,
+          Price,
+          Commission,
+          InspectionDate,
+          AuditDate
+        } = detailInfo
+        vm.setData({
+          certImgs: Imgs,
+          carVal: `${CarBrand.Name}${CarSeries.Name}${CarModels.Name}`,
+          startData: OnLicenseDate,
+          endData: getDateYMD(AuditDate),
+          Mileage,
+          Price,
+          InspectionDate: getDateYMD(InspectionDate),
+          Commission,
+          carId: CarModels.id,
+          Title
+        })
+        wx.stopPullDownRefresh()
+        app.wxApi.hideLoading()
+      }
+    })
   },
 
   /**
@@ -274,7 +320,7 @@ Page({
     Title && (data.Title = Title)
 
     certImgs.map(item => {
-      data.Imgs.push(item.uuid)
+      data.Imgs.push(item.uuid || item.id)
     })
     data.Thumb = data.Imgs[0]
 
@@ -287,6 +333,7 @@ Page({
   // 发布信息
   releaseInfo() {
     const vm = this
+    const {id} = vm.options
     const {data, error} = vm.getData()
     if (error){
       wx.showModal({
@@ -298,6 +345,28 @@ Page({
     }
 
     app.wxApi.showLoading()
+    if (id){
+      app.ajax({
+        url: `${app.baseUrl}api/v1/p/posts/edit/${id}`,
+        method: 'POST',
+        data,
+        success: function (res) {
+          wx.showToast({
+            title: '编辑成功~',
+            duration: 1000,
+            mask: true
+          })
+
+          setTimeout(() => {
+            wx.redirectTo({
+              url: '../../user/myRelease/index?type=0'
+            })
+          }, 200)
+          app.wxApi.hideLoading()
+        }
+      })
+      return
+    }
 
     app.ajax({
       url: `${app.baseUrl}api/v1/p/add/posts`,
@@ -311,7 +380,7 @@ Page({
         })
 
         setTimeout(() => {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../../user/myRelease/index?type=0'
           })
         }, 200)

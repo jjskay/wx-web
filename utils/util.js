@@ -44,6 +44,17 @@ function dataFormat(data) {
   return `${year}-${month}-${day} ${hours}:${min} `
 }
 
+function getDateYMD(data) {
+  const time = new Date((data + '').length == 13 ? data : Number(data) * 1000)
+  const year = time.getFullYear()
+  const month = time.getMonth() + 1
+  const day = time.getDay()
+  const hours = time.getHours()
+  const min = time.getMinutes()
+
+  return `${year}-${month}-${day}`
+}
+
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -65,5 +76,6 @@ module.exports = {
   getYear,
   getYMD,
   objectUtil,
-  dataFormat
+  dataFormat,
+  getDateYMD
 }
