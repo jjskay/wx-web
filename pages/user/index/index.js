@@ -28,6 +28,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     const vm = this
     app.ajax({
       url: `${app.baseUrl}api/v1/user/my`,
@@ -40,13 +47,6 @@ Page({
         })
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
   },
 
   /**
@@ -139,7 +139,7 @@ Page({
     2 == index && (url = '/pages/user/myRelease/index?type=0')
     3 == index && (url = '/pages/user/index/index')
 
-    if ((!index || 2 == index) && userPromise !== 700) {
+    if ((!index || 2 == index) && userPromise != 700) {
       app.checkLoginState()
       return
     }

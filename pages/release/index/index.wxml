@@ -83,19 +83,19 @@
 
         <view class='link-item'>
             * 填写里程数
-            <input value='{{Mileage}}' bindinput='changeText' type='number' data-type="Mileage" placeholder='请输入（万公里）'></input>
+            <input value='{{Mileage}}' bindinput='changeText' type='digit' data-type="Mileage" placeholder='请输入（万公里）'></input>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
             * 填写价格
-            <input placeholder='请输入（万元）' type='number' bindinput='changeText' data-type="Price" value='{{Price}}'></input>
+            <input placeholder='请输入（万元）' type='digit' bindinput='changeText' data-type="Price" value='{{Price}}'></input>
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
         <view class='link-item'>
             佣金金额
-            <input placeholder='不填默认面议' type='number' bindinput='changeText' data-type="Commission" value='{{Commission}}' placeholder-style='color: #e65961'></input>
+            <input placeholder='不填默认面议' type='digit' bindinput='changeText' data-type="Commission" value='{{Commission}}' placeholder-style='color: #e65961'></input>
             <image style='opacity: 0' class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 

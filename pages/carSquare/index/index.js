@@ -48,7 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.onPullDownRefresh()
   },
 
   /**
@@ -176,7 +176,7 @@ Page({
     2 == index && (url = '/pages/user/myRelease/index?type=0')
     3 == index && (url = '/pages/user/index/index')
 
-    if ((!index || 2 == index) && userPromise !== 700) {
+    if ((!index || 2 == index) && userPromise != 700) {
       app.checkLoginState()
       return
     }

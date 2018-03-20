@@ -22,17 +22,17 @@
   </view>
   <view class='link-item'>
       * 车龄
-      <input value='{{Age}}' bindinput='changeText' type='number' data-type="Age" placeholder='请输入（单位：年）'></input>
+      <input value='{{Age}}' bindinput='changeText' type='digit' data-type="Age" placeholder='请输入（单位：年）'></input>
       <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
   </view>
   <view class='link-item'>
       * 行驶里程
-      <input value='{{Mileage}}' bindinput='changeText' type='number' data-type="Mileage" placeholder='请输入（单位：万公里）'></input>
+      <input value='{{Mileage}}' bindinput='changeText' type='digit' data-type="Mileage" placeholder='请输入（单位：万公里）'></input>
       <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
   </view>
   <view class='link-item'>
       * 价格范围
-      <input value='{{Price}}' bindinput='changeText' type='number' data-type="Price" placeholder='请输入（单位：万元）'></input>
+      <input value='{{Price}}' bindinput='changeText' type='text' data-type="Price" placeholder='请输入（单位：万元）'></input>
       <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
   </view>
 

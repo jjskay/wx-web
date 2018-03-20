@@ -221,9 +221,12 @@ App({
               content: '此页面需要登录入驻申请后才能查看~',
               showCancel: false,
               success() {
-                vm.clearToken()
-                wx.navigateTo({
-                  url: '/pages/carSquare/index/index'
+                let url = '/pages/carSquare/index/index'
+                602 == UserPem && (url = '/pages/applyEnter/first/index');
+                603 == UserPem && (url = '/pages/applyEnter/second/index');
+                (604 == UserPem || 605 == UserPem) && (url = '/pages/applyEnter/result/index')
+                wx.redirectTo({
+                  url
                 })
               }
             })
