@@ -86,6 +86,7 @@
   position: relative;
   padding-left: 250rpx;
   box-sizing: border-box;
+  height: 60rpx;
 }
 .blank-bg{
   background: #fff;

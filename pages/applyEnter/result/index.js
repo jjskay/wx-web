@@ -92,7 +92,7 @@ Page({
 
   redirect() {
     wx.navigateTo({
-      url: 'pages/release/index'
+      url: '/pages/release/index'
     })
   }
 })

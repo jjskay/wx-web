@@ -33,6 +33,7 @@ Page({
     app.wxApi.showLoading({})
     vm.pageNo = 1;
     vm.getList()
+    vm.isSend = true;
   },
 
   /**
@@ -46,7 +47,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onPullDownRefresh()
+    const vm = this
+    vm.setData({
+      loadAll: false,
+      isInitData: true
+    })
+    vm.pageNo = 1;
+    vm.getList()
   },
 
   /**
@@ -94,7 +101,7 @@ Page({
   getList() {
     const vm = this
     const { type } = vm.options
-    app.ajax({
+    !vm.isSend && app.ajax({
       url: `${app.baseUrl}api/v1/p/posts/listview?index=${type == 1 ? 61 : 60}`,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -106,7 +113,7 @@ Page({
       method: 'GET',
       success: function (res) {
         const { ListView } = res
-        const listArr = [].concat(ListView)
+        const listArr = [].concat(ListView || [])
 
         listArr.map((item) => {
           item.year = getYear(item.OnLicenseDate)
@@ -120,6 +127,10 @@ Page({
         wx.stopPullDownRefresh()
         vm.pageNo++
         app.wxApi.hideLoading()
+        vm.isSend = false
+      },
+      ccomplete() {
+        vm.isSend = false
       }
     })
   },
@@ -189,7 +200,7 @@ Page({
 
   jumpDetailInfo(e) {
     const { id } = e.currentTarget.dataset
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/carSquare/info/index?id=${id}`
     })
   }

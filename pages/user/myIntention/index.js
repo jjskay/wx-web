@@ -21,6 +21,7 @@ Page({
     app.wxApi.showLoading({})
     vm.pageNo = 1;
     vm.getList()
+    vm.isSend = true;
   },
 
   /**
@@ -34,7 +35,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onPullDownRefresh();
+    const vm = this
+    vm.setData({
+      loadAll: false,
+      isInitData: true
+    })
+    vm.pageNo = 1;
+    vm.getList()
   },
 
   /**
@@ -81,7 +88,7 @@ Page({
 
   getList() {
     const vm = this
-    app.ajax({
+    !vm.isSend && app.ajax({
       url: `${app.baseUrl}api/v1/user/intension/view`,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -92,7 +99,7 @@ Page({
       // },
       method: 'GET',
       success: function (res) {
-        const listArr = [].concat(res)
+        const listArr = [].concat(res || [])
         
         vm.setData({
           list: vm.pageNo == 1 ? [].concat(listArr) : vm.data.list.concat(listArr),
@@ -102,6 +109,10 @@ Page({
         wx.stopPullDownRefresh()
         vm.pageNo++
         app.wxApi.hideLoading()
+        vm.isSend = false
+      },
+      ccomplete() {
+        vm.isSend = false
       }
     })
   },

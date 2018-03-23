@@ -19,16 +19,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      
+    app.wxApi.showLoading({})
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     const vm = this
-    app.wxApi.showLoading({})
-    app.getAuthInfo((token) =>{
+    app.getAuthInfo((token) => {
       if (!token) {
         wx.showModal({
           title: '提示',
@@ -42,13 +48,6 @@ Page({
       vm.pageNo = 1;
       vm.getList()
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.onPullDownRefresh()
   },
 
   /**
@@ -89,7 +88,7 @@ Page({
    */
   onReachBottom: function () {
     const vm = this
-    !vm.data.loadAll && vm.getList()
+    !vm.data.loadAll && !vm.isSend && vm.getList()
   },
 
   /**
@@ -114,19 +113,20 @@ Page({
       method: 'GET',
       success: function (res) {
         const {ListView} = res
-        const listArr = [].concat(ListView)
+        const listArr = [].concat(ListView || [])
         listArr.map((item) =>{
           item.year = getYear(item.OnLicenseDate)
         })
 
         vm.setData({
           list: vm.pageNo == 1 ? [].concat(listArr) : vm.data.list.concat(listArr),
-          loadAll: ListView && ListView.length < 8,
+          loadAll: !ListView || ListView.length < 8,
           isInitData: false
         })
         wx.stopPullDownRefresh()
         vm.pageNo++
         app.wxApi.hideLoading()
+        vm.isSend = false
       },
 
       complete() {

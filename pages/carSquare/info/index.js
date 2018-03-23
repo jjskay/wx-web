@@ -15,9 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const {id} = options
-    const vm = this
-    if (!id){
+    if (!id) {
       wx.showModal({
         title: '提示',
         content: '参数有误~',
@@ -28,6 +26,31 @@ Page({
     }
 
     app.wxApi.showLoading({})
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    const { id } = this.options
+    const vm = this
+    if (!id) {
+      wx.showModal({
+        title: '提示',
+        content: '参数有误~',
+        cancel: false,
+        success: function (res) { }
+      })
+      return
+    }
+
     app.getAuthInfo(() => {
       const token = app.getToken()
       if (!token) {
@@ -42,20 +65,6 @@ Page({
       }
       vm.getDetailInfo()
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
   },
 
   /**
@@ -105,6 +114,7 @@ Page({
         const detailInfo = objectUtil.copy(res)
         detailInfo.OnLicenseDate = getYMD(detailInfo.OnLicenseDate)
         detailInfo.year = getYMD(detailInfo.OnLicenseDate)
+        detailInfo.checkDate = getYMD(detailInfo.InspectionDate)
         vm.setData({
           detail: detailInfo
         })
@@ -215,14 +225,29 @@ Page({
     wx.showModal({
       title: '删除',
       content: '你确定要删除此条信息吗？',
-      success() {
+      success(res) {
+        console.log(res)
+        if (!res.confirm){
+          return
+        }
         app.wxApi.showLoading()
         app.ajax({
-          url: `${app.baseUrl}api/v1/p/posts/delete/${id}`,
+          url: `${app.baseUrl}api/v1/p/post/update/${id}?action=delete`,
           method: 'POST',
           success: function (res) {
+            wx.showToast({
+              title: '删除成功~',
+              duration: 1000,
+              mask: true
+            })
+
+            setTimeout(() => {
+              wx.navigateBack();
+              // wx.redirectTo({
+              //   url: '../../user/myRelease/index?type=0'
+              // })
+            }, 200)
             app.wxApi.hideLoading()
-            console.log(res)
           }
         })
       }

@@ -80,7 +80,7 @@ App({
         wx.showModal({
           title: '提示',
           content: '微信授权失败，请重新授权~',
-          cancel: false,
+          showCancel: false,
           success: function (res) {
             vm.wechartLogin(cb)
           }
@@ -133,7 +133,7 @@ App({
                 success: function (res) {
                   if (res.confirm) {
                     wx.navigateTo({
-                      url: 'pages/applyEnter/first/index'
+                      url: '/pages/applyEnter/first/index'
                     })
                   } else if (res.cancel) {
                     wx.showToast({
@@ -238,7 +238,7 @@ App({
           wx.showModal({
             title: '提示',
             content: Error || err,
-            cancel: false
+            showCancel: false
           })
           return
         } 

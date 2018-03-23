@@ -40,7 +40,7 @@
                 <view class='item-label'>上牌日期</view>{{detail.detailInfo}}
             </view>
             <view class='info-text-item blank-bg'>
-                <view class='item-label'>年检保修到期</view>2016年5月5日
+                <view class='item-label'>年检保修到期</view>{{detail.checkDate}}
             </view>
             <view class='info-text-item'>
                 <view class='item-label'>填写里程数</view>{{detail.Mileage}}公里

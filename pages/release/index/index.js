@@ -347,7 +347,7 @@ Page({
     app.wxApi.showLoading()
     if (id){
       app.ajax({
-        url: `${app.baseUrl}api/v1/p/posts/edit/${id}`,
+        url: `${app.baseUrl}api/v1/p/post/edit/${id}`,
         method: 'POST',
         data,
         success: function (res) {
@@ -358,9 +358,10 @@ Page({
           })
 
           setTimeout(() => {
-            wx.redirectTo({
-              url: '../../user/myRelease/index?type=0'
-            })
+            wx.navigateBack();
+            // wx.redirectTo({
+            //   url: '../../user/myRelease/index?type=0'
+            // })
           }, 200)
           app.wxApi.hideLoading()
         }
