@@ -215,6 +215,9 @@ Page({
 
   editInfo() {
     const {id} = this.options
+    if (app.checkLoginState()) {
+      return
+    }
     wx.navigateTo({
       url: `/pages/release/index/index?id=${id}`
     })
@@ -222,6 +225,9 @@ Page({
 
   deleteInfo() {
     const { id } = this.options
+    if (app.checkLoginState()){
+      return
+    }
     wx.showModal({
       title: '删除',
       content: '你确定要删除此条信息吗？',

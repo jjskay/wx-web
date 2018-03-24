@@ -27,6 +27,7 @@ App({
     const { time, token } = tokenObj
     const oneWeekTime = 60 * 60 * 24 * 7 * 1000
     if (!time || new Date().getTime() - time > oneWeekTime) {
+      vm.clearToken()
       return false
     }
     return token
@@ -104,6 +105,11 @@ App({
           },
           success: function (res) {
             const {Error, UserPem, data} = res.data
+            const currentPage = getCurrentPages()[getCurrentPages().length - 1].route
+            wx.setStorage({
+              key: 'UserPem',
+              data: UserPem
+            })
 
             if (UserPem < 600) {
               wx.showModal({
@@ -126,7 +132,7 @@ App({
               typeof cb === 'function' && cb(data.Authorization)
             }
 
-            if (UserPem == 602) {
+            if (UserPem == 602 && currentPage.indexOf('applyEnter/first') < 0) {
               wx.showModal({
                 title: '提示',
                 content: '微信登录成功，入驻易卖车使用全部功能！',
@@ -320,7 +326,7 @@ App({
       url = '/pages/carSquare/index/index'
     }
 
-    wx.showModal({
+    url && wx.showModal({
       title: '提示',
       content: msg,
       showCancel: false,
@@ -330,7 +336,7 @@ App({
         })
       }
     })
-
+    return url
   },
 
   /*获取当前页url*/

@@ -1,4 +1,6 @@
 // login.js
+const app = getApp()
+
 Page({
 
   /**
@@ -16,7 +18,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const vm = this
+    app.wxApi.showLoading()
+    app.getAuthInfo((token) => {
+      token && app.wxApi.hideLoading()
+    })
   },
 
   /**
@@ -118,26 +124,15 @@ Page({
 
     if (!this.getCodeNumber) {
       var token = wx.getStorageSync('tokenObj')
-      wx.request({
+
+      app.ajax({
+        url: `${app.baseUrl}api/v1/user/getvalid`,
         method: 'POST',
-        url: 'https://win.grand56.com/api/v1/user/getvalid', //仅为示例，并非真实的接口地址
         data: {
           phonenumber: vm.data.phone,
           timestamp: parseInt(new Date().getTime() / 1000)
         },
-        header: {
-          'content-type': 'application/json',
-          'AUTHORIZATION': token.token
-        },
         success: function (res) {
-          if (res.data.status == -1) {
-            wx.showModal({
-              title: '提示',
-              content: res.data.data.message,
-              showCancel: false
-            })
-            return
-          }
           vm.getCodeNumber = 120
           vm.setData({
             loginCodeText: '120秒后获取'
@@ -203,7 +198,10 @@ Page({
       },
       success: function (res) {
         const { data, UserPem} = res.data
-
+        wx.setStorage({
+          key: 'UserPem',
+          data: UserPem
+        })
         // 审核已通过
         if (UserPem == 700){
           wx.showModal({

@@ -110,19 +110,24 @@ Page({
         ShopImage: shopImgs[0].uuid
       },
       success: function (res) {
-        const { message } = res
+        const { Error, UserPem } = res.data
+        wx.setStorage({
+          key: 'UserPem',
+          data: UserPem
+        })
         app.wxApi.hideLoading()
-        if (res){
+        if (Error){
           wx.showModal({
             title: '提示',
-            content: message || '提交成功~',
+            content: Error,
             showCancel: false
           })
-          
-          wx.navigateTo({
-            url: '../result/index'
-          })
+          return
         }
+
+        wx.navigateTo({
+          url: '../result/index'
+        })
       }
     })
   },
