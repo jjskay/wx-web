@@ -36,7 +36,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const UserPem = wx.getStorageSync('UserPem')
+    // 审核已通过
+    if (UserPem == 700) {
+      wx.showModal({
+        title: '提示',
+        content: '已成功入驻~',
+        showCancel: false,
+        complete() {
+          wx.navigateTo({
+            url: '/pages/carSquare/index/index'
+          })
+        }
+      })
+      return
+    }
   },
 
   /**

@@ -141,12 +141,12 @@ App({
                     wx.navigateTo({
                       url: '/pages/applyEnter/first/index'
                     })
-                  } else if (res.cancel) {
-                    wx.showToast({
-                      title: '入驻易卖车才能使用全部功能！',
-                      icon: 'loading',
-                      mask: true
-                    })
+                  // } else if (res.cancel) {
+                  //   wx.showToast({
+                  //     title: '入驻易卖车才能使用全部功能！',
+                  //     icon: 'loading',
+                  //     mask: true
+                  //   })
                   }
                 }
               })
@@ -207,12 +207,14 @@ App({
           wx.showModal({
             title: '提示',
             content: '未登录或者登陆失效，请重新登陆~',
-            showCancel: false,
-            success() {
-              vm.clearToken()
-              wx.navigateTo({
-                url: '/pages/carSquare/index/index'
-              })
+            showCancel: true,
+            success(res) {
+              if (res.confirm) {
+                vm.clearToken()
+                wx.navigateTo({
+                  url: '/pages/carSquare/index/index'
+                })
+              }
             }
           })
           return
@@ -224,7 +226,7 @@ App({
           currentUrl.indexOf('release/') > -1) {
             wx.showModal({
               title: '提示',
-              content: '此页面需要登录入驻申请后才能查看~',
+              content: '此页面需要登录入驻后才能查看~',
               showCancel: false,
               success() {
                 let url = '/pages/carSquare/index/index'
@@ -302,12 +304,12 @@ App({
     let msg = ''
     let url = ''
     if (code == 602) {
-      msg = '请绑定手机号~'
+      msg = '请进行申请入驻成功才能使用该功能~'
       url = '/pages/applyEnter/first/index'
     }
 
     if (code == 603) {
-      msg = '请进行申请入驻才能使用该功能~'
+      msg = '请进行申请入驻成功才能使用该功能~'
       url = '/pages/applyEnter/second/index'
     }
 
@@ -317,21 +319,20 @@ App({
     }
 
     if (code == 605) {
-      msg = '入驻申请审核中~'
+      msg = '入驻申请审核中,请稍等~'
       url = '/pages/applyEnter/result/index'
     }
 
     if (code == 606) {
       msg = '入驻申请已到期，请联系客服续费~'
-      url = '/pages/carSquare/index/index'
+      url = ''
     }
 
     url && wx.showModal({
       title: '提示',
       content: msg,
-      showCancel: false,
-      success() {
-        wx.navigateTo({
+      success(res) {
+        res.confirm && wx.navigateTo({
           url
         })
       }

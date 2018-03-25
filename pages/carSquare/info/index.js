@@ -232,7 +232,6 @@ Page({
       title: '删除',
       content: '你确定要删除此条信息吗？',
       success(res) {
-        console.log(res)
         if (!res.confirm){
           return
         }
