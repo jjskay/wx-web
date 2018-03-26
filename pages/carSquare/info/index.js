@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (!id) {
+    if (!options.id) {
       wx.showModal({
         title: '提示',
         content: '参数有误~',
@@ -139,11 +139,11 @@ Page({
     app.ajax({
       url: `${app.baseUrl}api/v1/user/fellow/add`,
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
       },
-      data: {
-        UserPhoneNum: PhoneNum
-      },
+      data: JSON.stringify({
+        post: vm.options.id
+      }),
       method: 'POST',
       success: function (res) {
         const { message } = res
@@ -183,11 +183,11 @@ Page({
         app.ajax({
           url: `${app.baseUrl}api/v1/fellow/cancel`,
           header: {
-            'content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/json'
           },
-          data: {
-            UserNum: PhoneNum
-          },
+          data: JSON.stringify({
+            UserId: vm.ExtInfo.UserId
+          }),
           method: 'POST',
           success: function (res) {
             const { message } = res

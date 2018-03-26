@@ -132,6 +132,21 @@ App({
               typeof cb === 'function' && cb(data.Authorization)
             }
 
+            if (UserPem == 700 && currentPage.indexOf('carSquare') < 0) {
+              wx.showModal({
+                title: '提示',
+                content: '您已完成入驻~！',
+                success: function () {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: '/pages/carSquare/index/index'
+                    })
+                  }
+                }
+              })
+              return
+            }
+
             if (UserPem == 602 && currentPage.indexOf('applyEnter/first') < 0) {
               wx.showModal({
                 title: '提示',
@@ -151,7 +166,37 @@ App({
                 }
               })
             } else {
+              let url = ''
+              let msg = ''
+              if (UserPem == 603) {
+                msg = '已绑定手机号~'
+                url = '/pages/applyEnter/second/index'
+              }
 
+              if (UserPem == 604) {
+                msg = '入驻申请未通过~'
+                url = '/pages/applyEnter/result/index'
+              }
+
+              if (UserPem == 605) {
+                msg = '入驻申请审核中,请稍等~'
+                url = '/pages/applyEnter/result/index'
+              }
+
+              if (UserPem == 606) {
+                msg = '入驻申请已到期，请联系客服续费~'
+                url = '/pages/applyEnter/result/index'
+              }
+
+              url && wx.showModal({
+                title: '提示',
+                content: msg,
+                success(res) {
+                  res.confirm && wx.redirectTo({
+                    url
+                  })
+                }
+              })
             }
           },
           fail: function () {
@@ -315,7 +360,7 @@ App({
 
     if (code == 604) {
       msg = '入驻申请未通过~'
-      url = '/pages/carSquare/index/index'
+      url = '/pages/applyEnter/result/index'
     }
 
     if (code == 605) {

@@ -89,7 +89,7 @@ Page({
   getList() {
     const vm = this
     !vm.isSend && app.ajax({
-      url: `${app.baseUrl}api/v1/p/posts/listview?index=50`,
+      url: `${app.baseUrl}api/v1/user/fellow/list`,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
