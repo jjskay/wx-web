@@ -146,11 +146,14 @@ Page({
       }),
       method: 'POST',
       success: function (res) {
-        const { message } = res
-        message && wx.showToast({
-          title: message || '服务器繁忙~请稍后再试！',
-          duration: 1000,
-          mask: true
+        let content = '服务器异常，请重试~'
+        if (res.message == 'ok'){
+          content = '关注成功~'
+        }
+        wx.showModal({
+          title: '提示',
+          content,
+          showCancel: false
         })
         app.wxApi.hideLoading()
         vm.onPullDownRefresh()
@@ -190,17 +193,19 @@ Page({
           }),
           method: 'POST',
           success: function (res) {
-            const { message } = res
-            wx.showToast({
-              title: message || '服务器繁忙~请稍后再试！',
-              duration: 1000,
-              mask: true
+            let content = '服务器异常，请重试~'
+            if (res.message == 'ok') {
+              content = '取消关注成功~'
+            }
+            wx.showModal({
+              title: '提示',
+              content,
+              showCancel: false
             })
             app.wxApi.hideLoading()
             this.onPullDownRefresh()
           }
         })
-
       }
     })
   },

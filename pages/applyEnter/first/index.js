@@ -245,6 +245,24 @@ Page({
           })
           return
         }
+
+        if (UserPem == 606){
+          wx.showModal({
+            title: '提示',
+            content: 'vip已过期，请联系客服~',
+            showCancel: false
+          })
+          return
+        }
+
+        if (data.message) {
+          wx.showModal({
+            title: '提示',
+            content: data.message,
+            showCancel: false
+          })
+          return
+        }
       }
     })
   }
