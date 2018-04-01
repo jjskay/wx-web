@@ -132,13 +132,17 @@ App({
               typeof cb === 'function' && cb(data.Authorization)
             }
 
-            if (UserPem == 700 && currentPage.indexOf('carSquare') < 0) {
+            if (currentPage.indexOf('carSquare') >= 0){
+              return
+            }
+
+            if (UserPem == 700) {
               wx.showModal({
                 title: '提示',
                 content: '您已完成入驻~！',
                 success: function () {
                   if (res.confirm) {
-                    wx.navigateTo({
+                    wx.redirectTo({
                       url: '/pages/carSquare/index/index'
                     })
                   }
@@ -184,15 +188,15 @@ App({
               }
 
               if (UserPem == 606) {
-                msg = '入驻申请已到期，请联系客服续费~'
-                url = '/pages/applyEnter/result/index'
+                msg = 'VIP已到期，请联系客服续费~'
+                url = ''
               }
 
-              url && wx.showModal({
+              wx.showModal({
                 title: '提示',
                 content: msg,
                 success(res) {
-                  res.confirm && wx.redirectTo({
+                  url && res.confirm && wx.redirectTo({
                     url
                   })
                 }
@@ -256,7 +260,7 @@ App({
             success(res) {
               if (res.confirm) {
                 vm.clearToken()
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/carSquare/index/index'
                 })
               }
@@ -265,24 +269,21 @@ App({
           return
         }
 
+        if (UserPem == 606) {
+          wx.showModal({
+            title: '提示',
+            content: 'VIP已到期，请联系客服续费~',
+            showCancel: true
+          })
+          return
+        }
+
         if (UserPem != 700) {
           const currentUrl = vm.getCurrentPageUrl()
+
           if (currentUrl.indexOf('user/') > -1 || 
           currentUrl.indexOf('release/') > -1) {
-            wx.showModal({
-              title: '提示',
-              content: '此页面需要登录入驻后才能查看~',
-              showCancel: false,
-              success() {
-                let url = '/pages/carSquare/index/index'
-                602 == UserPem && (url = '/pages/applyEnter/first/index');
-                603 == UserPem && (url = '/pages/applyEnter/second/index');
-                (604 == UserPem || 605 == UserPem) && (url = '/pages/applyEnter/result/index')
-                wx.redirectTo({
-                  url
-                })
-              }
-            })
+            vm.checkLoginState()
             return
           }
         }
@@ -369,15 +370,15 @@ App({
     }
 
     if (code == 606) {
-      msg = '入驻申请已到期，请联系客服续费~'
+      msg = 'VIP已到期，请联系客服续费~'
       url = ''
     }
 
-    url && wx.showModal({
+    wx.showModal({
       title: '提示',
       content: msg,
       success(res) {
-        res.confirm && wx.navigateTo({
+        url && res.confirm && wx.redirectTo({
           url
         })
       }

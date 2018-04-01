@@ -39,8 +39,8 @@ Page({
         title: '提示',
         content: '已成功入驻~',
         showCancel: false,
-        complete() {
-          wx.navigateTo({
+        success(res) {
+          res.confirm && wx.navigateTo({
             url: '/pages/carSquare/index/index'
           })
         }

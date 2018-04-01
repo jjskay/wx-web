@@ -21,7 +21,26 @@ Page({
     const vm = this
     app.wxApi.showLoading()
     app.getAuthInfo((token) => {
-      token && app.wxApi.hideLoading()
+      const UserPem = wx.getStorageSync('UserPem')
+      if (token){
+        app.wxApi.hideLoading()
+        // 审核已通过
+        if (UserPem == 700) {
+          wx.showModal({
+            title: '提示',
+            content: '已成功入驻~',
+            showCancel: false,
+            success(res) {
+              res.confirm && wx.redirectTo({
+                url: '/pages/carSquare/index/index'
+              })
+            }
+          })
+          return
+        } else {
+          UserPem != 602 && app.checkLoginState()
+        }
+      }
     })
   },
 
@@ -43,8 +62,8 @@ Page({
         title: '提示',
         content: '已成功入驻~',
         showCancel: false,
-        complete() {
-          wx.navigateTo({
+        success(res) {
+          res.confirm && wx.redirectTo({
             url: '/pages/carSquare/index/index'
           })
         }
@@ -222,8 +241,8 @@ Page({
             title: '提示',
             content: '已成功入驻~',
             showCancel: false,
-            complete() {
-              wx.navigateTo({
+            success(res) {
+              res.confirm && wx.redirectTo({
                 url: '/pages/carSquare/index/index'
               })
             }
@@ -232,7 +251,7 @@ Page({
         }
         // 未认证
         if (UserPem == 603) {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../second/index'
           })
           return
@@ -240,7 +259,7 @@ Page({
 
         // 认证未通过，审核中
         if (UserPem == 604 || UserPem == 605) {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../result/index'
           })
           return

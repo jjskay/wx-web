@@ -111,7 +111,7 @@ Page({
         app.wxApi.hideLoading()
         vm.isSend = false
       },
-      ccomplete() {
+      complete() {
         vm.isSend = false
       }
     })
