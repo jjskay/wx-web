@@ -248,6 +248,8 @@ App({
       success: function (res) {
         var err = ''
         const {data, status, Error, UserPem} = res.data
+        const currentUrl = vm.getCurrentPageUrl()
+
         wx.setStorage({
           key: 'UserPem',
           data: UserPem
@@ -269,17 +271,23 @@ App({
           return
         }
 
+        if (currentUrl.indexOf('carSquare') >= 0){
+          obj.success(data || true)
+          return;
+        }
+
         if (UserPem == 606) {
           wx.showModal({
             title: '提示',
             content: 'VIP已到期，请联系客服续费~',
             showCancel: true
           })
+          obj.success(data || true)
           return
         }
 
         if (UserPem != 700) {
-          const currentUrl = vm.getCurrentPageUrl()
+          
 
           if (currentUrl.indexOf('user/') > -1 || 
           currentUrl.indexOf('release/') > -1) {

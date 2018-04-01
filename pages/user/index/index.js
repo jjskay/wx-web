@@ -40,8 +40,9 @@ Page({
       url: `${app.baseUrl}api/v1/user/my`,
       method: 'GET',
       success: function (res) {
-        const obj = objectUtil.copy(res)
+        let obj = objectUtil.copy(res)
         obj.JoinTime = getYM(obj.JoinTime || 0)
+        !obj.Avatar && (obj.Avatar = app.globalData.userInfo.avatarUrl)
         vm.setData({
           info: obj
         })
@@ -144,6 +145,12 @@ Page({
       return
     }
 
+    if (1 == index || 3 == index){
+      wx.redirectTo({
+        url
+      })
+      return
+    }
     wx.navigateTo({
       url
     })

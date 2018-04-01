@@ -181,6 +181,13 @@ Page({
       return
     }
 
+    if (1 == index || 3 == index) {
+      wx.redirectTo({
+        url
+      })
+      return
+    }
+
     wx.navigateTo({
       url
     })
