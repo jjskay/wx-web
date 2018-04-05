@@ -17,7 +17,7 @@
     </view>
   </view>
 
-  <view class="logi-code-model">
+  <!-- <view class="logi-code-model">
     <view class='model-box border-none'>
       <text class="logi-model-label">上传身份证</text>
       <input bindinput="bindCodeInput" type="text" disabled='true' placeholder="正面、反面，保证清晰" placeholder-style="color: #999;" />
@@ -31,7 +31,7 @@
     <view class='add-btn' wx:if="{{certImgs.length < 2}}" bindtap="uploadImg" data-type="certImgs">
       <image src='../../../images/add_btn.png' mode="widthFix"></image>
     </view>
-  </view>
+  </view> -->
 
   <view class="logi-code-model">
     <view class='model-box'>

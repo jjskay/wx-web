@@ -14,11 +14,11 @@
       <text>身份证号</text>{{idCert}}
     </view>
 
-    <view class='pic-box'>
+    <!-- <view class='pic-box'>
       <view class='pic' wx:for="{{certImgs}}" wx:key="{{index}}">
         <image src='{{item}}' mode="widthFix"></image>
       </view>
-    </view>
+    </view> -->
   </view>
 
   <view class="enter-status">

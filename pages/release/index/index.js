@@ -18,7 +18,16 @@ Page({
       InspectionDate: '',
       Commission: '',
       carId: '',
-      tabIndex: 0
+      tabIndex: 0,
+
+      showTop: false,
+      showCenter: false,
+      showLast: false,
+      topItem: '',
+      centerItem: '',
+      lastItem: '',
+      selectTopItem: '',
+      selectCenterItem: '',
   },
 
   /**
@@ -123,6 +132,20 @@ Page({
   onShareAppMessage: function () {
   
   },
+  // 选择品牌
+  selectBrand() {
+    this.setData({
+      showTop: true
+    })
+  },
+
+  closeBrandModal() {
+    this.setData({
+      showTop: false,
+      showCenter: false,
+      showLast: false
+    })
+  },
   
   // 获取品牌列表
   getBrandList() {
@@ -132,6 +155,10 @@ Page({
       url: `${app.baseUrl}api/v1/p/car/brand`,
       method: 'GET',
       success: function (res) {
+        for(let i=0;i<res.length;i++){
+          !i && (res[i].top = true)
+          res[i - 1] && res[i].GroupName != res[i - 1].GroupName && (res[i].top = true)
+        }
         vm.data.region[0] = res
         vm.setData({
           region: vm.data.region
@@ -409,5 +436,9 @@ Page({
     wx.redirectTo({
       url
     })
+  },
+
+  stopMoveEvent() {
+    return
   }
 })

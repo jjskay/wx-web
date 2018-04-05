@@ -25,17 +25,17 @@
           </view>
         </view>
 
-        <view class='link-item'>
+        <view class='link-item' bindtap='selectBrand'>
             * 选择品牌
             <text>{{carVal}}</text>
-            <view class="section select-car">
+             <view class="section select-car">
               <view class="section__title">省市区选择器</view>
               <picker mode="multiSelector" range-key="Name" bindchange="bindMultiCarPickerChange" bindcolumnchange="bindMultiCarPickerColumnChange" value="{{regionIndex}}" range="{{region}}">
                 <view class="picker">
                   当前选择：{{region[0][regionIndex[0]].Name}}，{{region[1][regionIndex[1]].Name}}，{{region[2][regionIndex[2]].Name}}
                 </view>
               </picker>
-            </view>
+            </view> 
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
@@ -133,4 +133,26 @@
           <text>个人中心</text>  
       </view>
   </view> -->
+</view>
+
+<view class='brand-modal {{showTop ? "show" : ""}}'>
+  <view class='brand-box' catchtouchmove="stopMoveEvent" catchtap='stopMoveEvent'>
+    <scroll-view scroll-y 
+                 class='brand-top-list {{showTop ? "show" : ""}}'   catchtouchmove="stopMoveEvent">
+      <view wx:for="{{region[0]}}" wx:key='index'>
+        <text wx:if="{{item.top}}">{{item.GroupName}}</text>
+        {{item.Name}}
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y class='brand-center-list {{showCenter ? "show" : ""}}' catchtouchmove="stopMoveEvent">
+      <view wx:for="{{region[1]}}" wx:key='index'>{{item.Name}}</view>
+    </scroll-view>
+
+    <scroll-view scroll-y class='brand-last-list {{showLast ? "show" : ""}}' catchtouchmove="stopMoveEvent">
+      <view wx:for="{{region[2]}}" wx:key='index'>{{item.Name}}</view>
+    </scroll-view>
+
+    <button type='warn' size="mini" bindtap='closeBrandModal'>关闭</button>
+  </view>
 </view>

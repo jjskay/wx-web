@@ -35,6 +35,31 @@
     </view>
     <view class='margin-bg-dom'></view>
 
+    <view class='count-info' wx:if="{{detail.ExtInfo.Editble}}">
+      <view class='top-title'>浏览量</view>
+      <view class='count-item' wx:for="{{countInfo}}" wx:key='index'>
+        <view class='line'></view>
+        <view class='item-title'>{{index ? '昨天' : '今天'}}</view>
+        <view class='count-content'>
+          <view class='views-item'>
+            <label>曝光</label><text>{{item['曝光']}}</text>
+          </view>
+          <view class='views-item'>
+            <label class='views'>浏览</label><text>{{item['浏览']}}</text>
+          </view>
+
+          <view class='views-item on'>
+            <label class='weixin'>微信群推广</label><text>{{item['微信群']}}</text>
+          </view>
+          <view class='views-item on'>
+            <label class='pic'>图片推广</label><text>{{item['图片二维码']}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='margin-bg-dom'></view>
+
     <view class='page-info-content'>
         <view class='title-bg'>
             <image class='ic-close' src='../../../images/info-bg.png' mode="widthFix"></image>
@@ -59,7 +84,9 @@
         </view>
     </view>
 
-    <view class='car-business-info' wx:if="{{!detail.ExtInfo.Following && !detail.ExtInfo.Editble}}">
+    <view class='margin-bg-dom'></view>
+
+    <view class='car-business-info' wx:if="{{!detail.ExtInfo.Editble}}">
         <view class='title-bg'>
             <image class='ic-close' src='../../../images/more-goods.png' mode="widthFix"></image>
         </view>
@@ -90,19 +117,6 @@
               </view>
           </view>
         </view>
-    </view>
-
-    <view class='count-info' wx:if="{{detail.ExtInfo.Editble}}">
-      <view class='top-title'>浏览量</view>
-      <view class='count-item' wx:for="{{countInfo}}" wx:key='index'>
-        <view class='item-title'>{{index ? '昨天' : '今天'}}</view>
-        <view class='count-content'>
-          <view class='views-item'>
-            <label>曝光</label>
-            <text>{{}}</text>
-          </view>
-        </view>
-      </view>
     </view>
 
     <view class='fix-footer-btn' wx:if="{{!detail.ExtInfo.Editble}}">

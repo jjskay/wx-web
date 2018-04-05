@@ -11,7 +11,7 @@ Page({
     userName: '',
     phone: '',
     idCert: '',
-    certImgs: [],
+    // certImgs: [],
     isPass: false
   },
 
@@ -32,7 +32,7 @@ Page({
           userName: RealName,
           phone: PhoneNumber || 'XXX',
           idCert: IdNumber,
-          certImgs: [IdImageA, IdImageB],
+          // certImgs: [IdImageA, IdImageB],
           isPass: statusCode === 301,
           time: dataFormat(JoinTime)
         })

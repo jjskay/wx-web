@@ -90,7 +90,7 @@ Page({
       userCertNum,
       shopName,
       shopAddress,
-      certImgs,
+      // certImgs,
       shopImgs
     } = vm.data
     let error = ''
@@ -98,7 +98,7 @@ Page({
     !shopImgs.length && (error = '请上传店铺照片~')
     !shopAddress && (error = '请填写店铺地址~')
     !shopName && (error = '请填写店铺名称~')
-    certImgs.length < 2 && (error = '请上传身份证正反照片~')
+    // certImgs.length < 2 && (error = '请上传身份证正反照片~')
     !userCertNum && (error = '请填写身份证号码~')
     !userName && (error = '请填写真实姓名~')
 
@@ -119,8 +119,8 @@ Page({
         RealName: userName,
         IdNumber: userCertNum,
         Address: shopAddress,
-        IdImageA: certImgs[0].uuid,
-        IdImageB: certImgs[1].uuid,
+        // IdImageA: certImgs[0].uuid,
+        // IdImageB: certImgs[1].uuid,
         ShopImage: shopImgs[0].uuid
       },
       success: function (res) {

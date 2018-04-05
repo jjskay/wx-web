@@ -186,12 +186,36 @@ Page({
         } else{
           const tokenObj = wx.getStorageSync('tokenObj') || {}
           wx.downloadFile({
-            url: `${app.baseUrl}api/v1/p/poster//${vm.options.id}?series=0`,
+            url: `${app.baseUrl}api/v1/p/sharepic/${vm.options.id}?series=0`,
             header: {
               'AUTHORIZATION': tokenObj.token
             },
             success(res){
-              console.log(res)
+              if (res.statusCode === 200) {
+                wx.saveFile({
+                  tempFilePath: res.tempFilePath,
+                  success: function (rs) {
+                    const path = rs.savedFilePath
+                    wx.showModal({
+                      title: '提示',
+                      content: '图片下载完毕，长按分享吧~',
+                      showCancel: false,
+                      success() {
+                        wx.previewImage({
+                          current: '', // 当前显示图片的http链接
+                          urls: [path] // 需要预览的图片http链接列表
+                        })
+                      }
+                    })
+                  }
+                })
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: '分享图片下载失败~',
+                  showCancel: false
+                })
+              }
             },
 
             fail(res){
@@ -222,6 +246,9 @@ Page({
       app.checkLoginState()
       return
     }
+    app.wxApi.showLoading({
+      mask: true
+    })
     app.ajax({
       url: `${app.baseUrl}api/v1/user/fellow/add`,
       header: {

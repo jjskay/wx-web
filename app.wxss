@@ -305,3 +305,88 @@ image{
     top: -54rpx; 
 }
 
+.brand-modal{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 100%;
+  top: 0;
+  z-index: 19;
+  transition: all 0.3s ease;
+}
+.brand-modal.show{
+  left: 0;
+}
+
+.brand-box{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.brand-box > view,
+.brand-top-list,
+.brand-center-list,
+.brand-last-list{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  top: 0;
+  left: 100%;
+  transition: all 0.3s ease;
+  overflow: auto;
+  box-shadow: -2px 6px 16px #bbb;
+  border-top: 2rpx solid #999;
+}
+
+.brand-box view{
+  line-height: 80rpx;
+  padding: 0 20rpx;
+}
+
+.brand-box view text{
+  display: block;
+  background: #f1f1f1;
+  padding-left: 40rpx;
+  width: 150%;
+  position: relative;
+  left: -4%;
+}
+
+.brand-box .brand-mask{
+  background: rgba(0,0,0, 0.4);
+  left: 0;
+  overflow: hidden;
+}
+
+.brand-top-list{
+  z-index: 20;
+}
+.brand-top-list.show{
+  left: 0;
+}
+
+.brand-center-list{
+  z-index: 21;
+}
+.brand-center-list.show{
+  left: 20%;
+}
+
+.brand-last-list{
+  z-index: 22;
+}
+.brand-last-list.show{
+  left: 40%;
+}
+
+.brand-box button{
+  position: absolute;
+  right: 20rpx;
+  top: 10rpx;
+  z-index: 30;
+  padding: 0 20rpx;
+  opacity: 0.7;
+}
