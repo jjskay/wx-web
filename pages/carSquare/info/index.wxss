@@ -1,6 +1,6 @@
 /* pages/carSquare/info/index.wxss */
 .page-content{
-  padding-bottom: 100rpx;
+  padding-bottom: 120rpx;
 }
 .page-swiper{
   overflow: hidden;
@@ -15,10 +15,32 @@
 }
 
 .page-info-head{
-  padding:10rpx 20rpx;
+  padding:10rpx 100rpx 10rpx 20rpx;
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
+  position: relative;
+}
+.share-btn{
+  position: absolute;
+  right: 0rpx;
+  top: 10rpx;
+  padding: 10rpx 30rpx;
+  font-size: 24rpx;
+}
+.share-btn image{
+  display: block;
+  width: 32rpx;
+  margin: 0 auto 10rpx;
+}
+.share-btn::after{
+  content: ' ';
+  display: block;
+  position: absolute;
+  right: 100rpx;
+  height: 60rpx;
+  border-left: 2rpx solid #bbb;
+  top: 20rpx;
 }
 .margin-bg-dom{
   display: block;
@@ -116,7 +138,11 @@
   left: 0;
   width: 100%;
   z-index: 30;
+  height: 120rpx;
+  border-top: 1px solid #e2e2e2;
+  box-sizing: border-box;
 }
+
 .fix-footer-edit-btn{
   background: #e65961;
   color: #fff;
@@ -143,3 +169,77 @@
 .follow-item{
   border-bottom: 0;
 }
+
+.footer-box{
+  position: relative;
+  height: 120rpx;
+  overflow: hidden;
+  background: #fff;
+  padding-left: 150rpx;
+  padding-right: 200rpx;
+}
+.footer-box image{
+  display: block;
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+  left: 20rpx;
+  top: 20rpx;
+}
+
+.footer-text{
+  font-size: 38rpx;
+  line-height: 40rpx;
+  padding: 20rpx 0;
+}
+
+.footer-follow{
+  position: absolute;
+  height: 100%;
+  min-width: 200rpx;
+  right: 0;
+  top: 0;
+}
+
+.footer-follow > view{
+  height: 100%;
+}
+
+.footer-follow .call{
+  width: 100rpx;
+  text-align: center;
+  float: right;
+  margin-right: 20rpx;
+}
+
+.footer-follow .call image,
+.footer-follow .follow image{
+  width: 70rpx;
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 12rpx auto 0;
+}
+.footer-follow text{
+  display: block;
+  font-size: 26rpx;
+  color: #04b50c;
+}
+
+.footer-follow .follow image{
+  width: 54rpx;
+}
+.footer-follow .follow{
+  float: right;
+  text-align: center;
+  background: #fa5e69;
+  color:#fff;
+  padding: 0 20rpx;
+}
+
+.footer-follow .follow text{
+  color:#fff;
+}
+

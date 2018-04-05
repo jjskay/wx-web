@@ -16,7 +16,7 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载api/v1/user/fellow/cancelapi/v1/user/fellow/cancelapi/v1/user/fellow/canceluser/usuuuu
    */
   onLoad: function (options) {
     app.wxApi.showLoading({})

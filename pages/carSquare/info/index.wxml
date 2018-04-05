@@ -27,6 +27,11 @@
                 <text>佣金 ￥{{detail.Commission}}</text>
             </view>
         </view>
+
+        <view class='share-btn' bindtap='shareInfo'>
+            <image class='ic-close' src='../../../images/icon-share.png' mode="widthFix"></image>
+            <text>分享</text>
+        </view>
     </view>
     <view class='margin-bg-dom'></view>
 
@@ -54,37 +59,75 @@
         </view>
     </view>
 
-    <view class='car-business-info'>
+    <view class='car-business-info' wx:if="{{!detail.ExtInfo.Following && !detail.ExtInfo.Editble}}">
         <view class='title-bg'>
-            <image class='ic-close' src='../../../images/car-info-bg.png' mode="widthFix"></image>
+            <image class='ic-close' src='../../../images/more-goods.png' mode="widthFix"></image>
         </view>
         <view class='info-list'>
-          <view class='info-item follow-item'>
-              <text class='item-tag'>推荐</text>
+          <view class='info-item' wx:for="{{list}}" wx:key='index' bindtap="jumpDetailInfo" data-id="{{item.id}}">
               <view class='info-pic'>
-                  <image src='{{detail.ExtInfo.Avatar}}' mode="widthFix"></image>
+                  <text class='info-status-text' wx:if="{{item.SellStatus == 0}}">待销售</text>
+                  <text class='info-status-text' wx:if="{{item.SellStatus == 1}}">已售</text>
+                  <text class='info-status-text' wx:if="{{item.SellStatus == 2}}">预订</text>
+                  <image src='{{item.Imgs[0].url}}' mode="widthFix"></image>
               </view>
 
               <view class='info-content'>
-                  <view class='info-title'>{{detail.ExtInfo.UserName}}</view>
+                  <view class='info-title'>{{item.CarSeries.Name}}  {{item.CarModels.Name}}</view>
 
-                  <!-- <view class='info-price'>2017年入驻</view> -->
-              </view>
+                  <view class='info-datail'>
+                      {{item.year}}年 <text>/</text> {{item.Mileage}}万公里
+                      <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text>
+                  </view>
 
-              <view class='follow-btn' wx:if="{{!detail.ExtInfo.Following && !detail.ExtInfo.Editble}}" bindtap='followAction'>
-                  <image src='../../../images/ic-close.png' mode="widthFix"></image>
-                  关注
-              </view>
+                  <view class='info-price'>
+                      <view class='info-price-number'>
+                          <text>{{item.Price}}</text>万
+                      </view>
 
-              <view class='follow-active-btn' wx:if="{{detail.ExtInfo.Following && !detail.ExtInfo.Editble}}" bindtap='unFollowAction'>
-                  取消关注
+                      新车  {{item.RecommendPrice}}万
+                  </view>
               </view>
           </view>
         </view>
     </view>
 
-    <view class='fix-footer-btn' bindtap='callPhoneNumber' wx:if="{{!detail.ExtInfo.Editble}}">
-        <image class='ic-close' src='../../../images/look-car-bg.png' mode="widthFix"></image>
+    <view class='count-info' wx:if="{{detail.ExtInfo.Editble}}">
+      <view class='top-title'>浏览量</view>
+      <view class='count-item' wx:for="{{countInfo}}" wx:key='index'>
+        <view class='item-title'>{{index ? '昨天' : '今天'}}</view>
+        <view class='count-content'>
+          <view class='views-item'>
+            <label>曝光</label>
+            <text>{{}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='fix-footer-btn' wx:if="{{!detail.ExtInfo.Editble}}">
+        <view class='footer-box'>
+          <image class='ic-close' src='{{detail.ExtInfo.Avatar || "../../../images/headUrl.png"}}' mode="widthFix"></image>
+
+          <view class='footer-text'>
+            <text>{{detail.ExtInfo.UserName}}</text>
+          </view>
+
+          <view class='footer-follow'>
+            <view class='follow' bindtap='followAction'>
+                <image wx:if="{{!detail.ExtInfo.Following && !detail.ExtInfo.Editble}}" src='../../../images/add-follow.png' mode="widthFix"></image>
+                <image  wx:if="{{detail.ExtInfo.Following && !detail.ExtInfo.Editble}}"  src='../../../images/cancel-follow.png' mode="widthFix"></image>
+
+                <text wx:if="{{!detail.ExtInfo.Following && !detail.ExtInfo.Editble}}">关注</text>
+                <text wx:if="{{detail.ExtInfo.Following && !detail.ExtInfo.Editble}}">取消关注</text>
+            </view>
+            <view class='call' bindtap='callPhoneNumber'>
+
+              <image src='../../../images/call.png' mode="widthFix"></image>
+              <text>电话</text>
+            </view>
+          </view>
+        </view>
     </view>
 
     <view class='fix-footer-edit-btn' wx:if="{{detail.ExtInfo.Editble}}">

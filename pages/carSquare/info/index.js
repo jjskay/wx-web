@@ -1,6 +1,6 @@
 // pages/carSquare/info/index.js
 const app = getApp()
-import { objectUtil, getYMD } from '../../../utils/util.js'
+import { objectUtil, getYMD, getYear } from '../../../utils/util.js'
 
 Page({
 
@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    detail: {}
+    detail: {},
+    list: [],
+    countInfo: []
   },
 
   /**
@@ -100,7 +102,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: (this.data.detail.CarBrand.Name || '') + (this.data.detail.CarSeries.Name || '') + (this.data.detail.Title || '')
+    }
   },
 
   // 获取信息详情
@@ -120,6 +124,88 @@ Page({
         })
         wx.stopPullDownRefresh()
         app.wxApi.hideLoading()
+
+        if (res.ExtInfo.Editble){
+          vm.getCountInfo()
+        }
+      }
+    })
+
+    vm.getList()
+  },
+  // 获取统计信息
+  getCountInfo() {
+    const vm = this
+    const { id } = vm.options
+    app.ajax({
+      url: `${app.baseUrl}api/v1/s/statistics/${id}`,
+      method: 'GET',
+      success: function (res) {
+        vm.setData({
+          countInfo: res
+        })
+        wx.stopPullDownRefresh()
+        app.wxApi.hideLoading()
+      }
+    })
+  },
+  
+  // 获取推荐列表
+  getList() {
+    const vm = this
+    const { id } = vm.options
+    app.ajax({
+      url: `${app.baseUrl}api/v1/p/post/recommend/${id}`,
+      method: 'GET',
+      success: function (res) {
+        const listArr = [].concat(res.ListView || [])
+        listArr.map((item) => {
+          item.year = getYear(item.OnLicenseDate)
+        })
+        vm.setData({
+          list: listArr
+        })
+        wx.stopPullDownRefresh()
+        app.wxApi.hideLoading()
+      }
+    })
+  },
+
+  //显示分享面板
+  shareInfo() {
+    const vm = this
+    wx.showActionSheet({
+      itemList: ['转发', '生成图片分享'],
+      success: function (res) {
+        if (!res.tapIndex){
+          wx.showModal({
+            title: '提示',
+            content: '请点击页面右上角按钮转发~',
+            showCancel: false
+          })
+        } else{
+          const tokenObj = wx.getStorageSync('tokenObj') || {}
+          wx.downloadFile({
+            url: `${app.baseUrl}api/v1/p/poster//${vm.options.id}?series=0`,
+            header: {
+              'AUTHORIZATION': tokenObj.token
+            },
+            success(res){
+              console.log(res)
+            },
+
+            fail(res){
+              wx.showModal({
+                title: '提示',
+                content: '分享图片下载失败~',
+                showCancel: false
+              })
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
       }
     })
   },
@@ -128,7 +214,7 @@ Page({
   /**
    * 关注
    */
-  followAction() {
+  addFollow() {
     const vm = this
     const { PhoneNum } = vm.data.detail.ExtInfo || {}
     const userPromise = wx.getStorageSync('UserPem')
@@ -161,6 +247,15 @@ Page({
     })
   },
 
+  followAction() {
+    const vm = this
+    if (vm.data.detail.ExtInfo.Following && !vm.data.detail.ExtInfo.Editble){
+      vm.unFollowAction()
+    } else {
+      vm.addFollow()
+    }
+  },
+
   /**
    * 取消关注
    */
@@ -184,12 +279,12 @@ Page({
         app.wxApi.showLoading()
 
         app.ajax({
-          url: `${app.baseUrl}api/v1/fellow/cancel`,
+          url: `${app.baseUrl}api/v1/user/fellow/cancel`,
           header: {
             'content-type': 'application/json'
           },
           data: JSON.stringify({
-            UserId: vm.ExtInfo.UserId
+            UserId: vm.data.detail.ExtInfo.UserId
           }),
           method: 'POST',
           success: function (res) {
@@ -203,7 +298,7 @@ Page({
               showCancel: false
             })
             app.wxApi.hideLoading()
-            this.onPullDownRefresh()
+            vm.onPullDownRefresh()
           }
         })
       }
@@ -261,6 +356,12 @@ Page({
           }
         })
       }
+    })
+  },
+  jumpDetailInfo(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `../info/index?id=${id}`
     })
   }
 })
