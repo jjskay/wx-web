@@ -143,18 +143,24 @@
   box-sizing: border-box;
 }
 
+/* .fix-footer-edit-btn{
+  height: 100rpx;
+  line-height: 100rpx;
+} */
+
 .fix-footer-edit-btn{
   background: #e65961;
   color: #fff;
   text-align: center;
-  line-height: 100rpx;
+  line-height: 120rpx;
   font-size: 36rpx;
   overflow: hidden;
 }
 .fix-footer-edit-btn text{
   display: block;
   float: left;
-  width: 50%;
+  width: 25%;
+  height: 100%;
 }
 .fix-footer-edit-btn text.first{
   background: #6680e3;

@@ -382,7 +382,7 @@ App({
       url = ''
     }
 
-    wx.showModal({
+    msg && wx.showModal({
       title: '提示',
       content: msg,
       success(res) {

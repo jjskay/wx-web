@@ -9,7 +9,21 @@ Page({
   data: {
     region: [[{ Name: '请选择' }], [{ Name: '请选择' }]],
     regionIndex: [0, 0],
-    carId: ''
+    carId: '',
+    scrollTop: 0,
+
+    showTop: false,
+    showCenter: false,
+    showLast: false,
+    topItem: '',
+    centerItem: '',
+    lastItem: '',
+    selectTopItem: '',
+    selectCenterItem: '',
+    selectLastItem: '',
+    toView: 'A',
+
+    positionList: []
   },
 
   /**
@@ -132,6 +146,34 @@ Page({
       }
     })
   },
+
+  // 选择品牌
+  selectBrand() {
+    this.setData({
+      showTop: true
+    })
+  },
+
+  closeBrandModal() {
+    const obj = {}
+    if (this.data.showLast) {
+      obj.showLast = false
+      this.setData(obj)
+      return
+    }
+
+    if (this.data.showCenter) {
+      obj.showCenter = false
+      this.setData(obj)
+      return
+    }
+
+    if (this.data.showTop) {
+      obj.showTop = false
+      this.setData(obj)
+      return
+    }
+  },
   // 获取品牌列表
   getBrandList() {
     app.wxApi.showLoading()
@@ -140,11 +182,20 @@ Page({
       url: `${app.baseUrl}api/v1/p/car/brand`,
       method: 'GET',
       success: function (res) {
+        vm.data.positionList = ["A"]
+        for (let i = 0; i < res.length; i++) {
+          !i && (res[i].top = true)
+          if (res[i - 1] && res[i].GroupName != res[i - 1].GroupName){
+            vm.data.positionList.push(res[i].GroupName)
+            res[i].top = true
+          }
+        }
         vm.data.region[0] = res
         vm.setData({
-          region: vm.data.region
+          region: vm.data.region,
+          positionList: vm.data.positionList
         })
-        vm.getSeriesList(res[0].id)
+        // vm.getSeriesList(res[0].id)
         app.wxApi.hideLoading()
       }
     })
@@ -157,30 +208,35 @@ Page({
       url: `${app.baseUrl}api/v1/p/car/series/${brandid}`,
       method: 'GET',
       success: function (res) {
+        for (let i = 0; i < res.length; i++) {
+          !i && (res[i].top = true)
+          res[i - 1] && res[i].GroupName != res[i - 1].GroupName && (res[i].top = true)
+        }
         vm.data.region[1] = res
         vm.setData({
-          region: [].concat(vm.data.region)
+          region: [].concat(vm.data.region),
+          showCenter: true
         })
         // vm.getCarList(res[0].id)
         app.wxApi.hideLoading()
       }
     })
   },
-  bindMultiCarPickerChange: function (e) {
-    const vm = this
-    const { value } = e.detail
-    vm.setData({
-      carVal: `${vm.data.region[0][value[0]].Name} ${vm.data.region[1][value[1]].Name}`,
-      carId: vm.data.region[1][value[1]].id
-    })
-  },
+  // bindMultiCarPickerChange: function (e) {
+  //   const vm = this
+  //   const { value } = e.detail
+  //   vm.setData({
+  //     carVal: `${vm.data.region[0][value[0]].Name} ${vm.data.region[1][value[1]].Name}`,
+  //     carId: vm.data.region[1][value[1]].id
+  //   })
+  // },
 
-  bindMultiCarPickerColumnChange(e) {
-    const { column, value } = e.detail
-    const vm = this
+  // bindMultiCarPickerColumnChange(e) {
+  //   const { column, value } = e.detail
+  //   const vm = this
 
-    !column && vm.getSeriesList(vm.data.region[column][value].id)
-  },
+  //   !column && vm.getSeriesList(vm.data.region[column][value].id)
+  // },
 
   // 多个输入框填写的内容
   changeText(e) {
@@ -188,5 +244,36 @@ Page({
     const obj = {}
     obj[type] = e.detail.value
     this.setData(obj)
+  },
+
+  selectTopItemEvent(e) {
+    const { index } = e.currentTarget.dataset
+    this.setData({
+      selectTopItem: this.data.region[0][index],
+      showCenter: false,
+      showLast: false
+    })
+    this.getSeriesList(this.data.region[0][index].id)
+  },
+
+  selectCenterItemEvent(e) {
+    const { index } = e.currentTarget.dataset
+    const { selectTopItem, selectCenterItem, region } = this.data
+    this.setData({
+      topItem: selectTopItem,
+      centerItem: selectCenterItem,
+      selectCenterItem: this.data.region[1][index],
+      showTop: false,
+      showCenter: false,
+      carVal: `${selectTopItem.Name}${this.data.region[1][index].Name}`,
+      carId: region[1][index].id
+    })
+  },
+
+  scrollIntoView(e) {
+    const { val } = e.currentTarget.dataset
+    this.setData({
+      toView: val
+    })
   }
 })

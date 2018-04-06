@@ -10,7 +10,8 @@ Page({
   data: {
     detail: {},
     list: [],
-    countInfo: []
+    countInfo: [],
+    status:'-'
   },
 
   /**

@@ -7,17 +7,17 @@
       </view>
   </view>
 
-  <view class='link-item'>
+  <view class='link-item' bindtap='selectBrand'>
       * 品牌
       <text>{{carVal || '请选择'}}</text>
-      <view class="section select-car">
+      <!-- <view class="section select-car">
         <view class="section__title">省市区选择器</view>
         <picker mode="multiSelector" range-key="Name" bindchange="bindMultiCarPickerChange" bindcolumnchange="bindMultiCarPickerColumnChange" value="{{regionIndex}}" range="{{region}}">
           <view class="picker">
             当前选择：{{region[0][regionIndex[0]].Name}}，{{region[1][regionIndex[1]].Name}}
           </view>
         </picker>
-      </view>
+      </view> -->
       <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
   </view>
   <view class='link-item'>
@@ -38,5 +38,35 @@
 
   <view class='release-btn'>
       <image bindtap='releaseInfo' bindtap='addIntention' class='ic-close' src='../../../images/add-intention-btn.png' mode="widthFix"></image>
+  </view>
+</view>
+
+<view class='brand-modal {{showTop ? "show" : ""}}' catchtap='stopMoveEvent'>
+  <view class='position-list'>
+      <text wx:if="{{showTop}}" wx:for="{{positionList}}" catchtap='scrollIntoView' data-val="{{item}}" data-index="{{index}}" wx:key='index' style='height: {{100 / positionList.length}}%'>{{item}}</text>
+  </view>
+  <view class='brand-box' catchtouchmove="stopMoveEvent" catchtap='stopMoveEvent'>
+    <scroll-view scroll-y scroll-into-view="{{toView}}" scroll-with-animation="true" class='brand-top-list {{showTop ? "show" : ""}}' catchtouchmove="stopMoveEvent">
+      <view wx:for="{{region[0]}}" class="{{index % 2 == 0 ? 'on' : ''}} {{selectTopItem.id == item.id ? 'active' : ''}}" wx:key='index' catchtap='selectTopItemEvent' data-index="{{index}}">
+        <text wx:if="{{item.top}}" id="{{item.GroupName}}" catchtap='stopMoveEvent'>{{item.GroupName}}</text>
+        {{item.Name}}
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y class='brand-center-list {{showCenter ? "show" : ""}}' catchtouchmove="stopMoveEvent">
+      <view wx:for="{{region[1]}}" data-index="{{index}}" wx:key='index' catchtap='selectCenterItemEvent' class='{{index % 2 == 0 ? "on" : ""}} {{selectCenterItem.id == item.id ? "active" : ""}}'>
+        <text wx:if="{{item.top}}" catchtap='stopMoveEvent'>{{item.GroupName}}</text>
+        {{item.Name}}
+      </view>
+    </scroll-view>
+
+    <!-- <scroll-view scroll-y class='brand-last-list {{showLast ? "show" : ""}}' catchtouchmove="stopMoveEvent">
+      <view wx:for="{{region[2]}}" catchtap='selectLastItemEvent' data-index="{{index}}" class='{{index % 2 == 0 ? "on" : ""}} {{selectLastItem.id == item.id ? "active" : ""}}' wx:key='index'>
+        <text wx:if="{{item.top}}" catchtap='stopMoveEvent'>{{item.GroupName}}</text>
+        {{item.Name}}
+      </view>
+    </scroll-view> -->
+
+    <button type='warn' size="mini" catchtap='closeBrandModal'>关闭</button>
   </view>
 </view>

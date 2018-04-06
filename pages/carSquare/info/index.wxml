@@ -147,5 +147,7 @@
     <view class='fix-footer-edit-btn' wx:if="{{detail.ExtInfo.Editble}}">
         <text bindtap='editInfo' class='first'>编辑</text>
         <text bindtap='deleteInfo'>删除</text>
+        <text class='status'>{{status}}</text>
+        <text class='update-price'>修改价格</text>
     </view>
 </view>
