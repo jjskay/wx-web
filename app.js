@@ -271,6 +271,15 @@ App({
           return
         }
 
+        if (Error || err) {
+          wx.showModal({
+            title: '提示',
+            content: Error || err,
+            showCancel: false
+          })
+          return
+        }
+
         if (currentUrl.indexOf('carSquare') >= 0){
           obj.success(data || true)
           return;
@@ -287,23 +296,12 @@ App({
         }
 
         if (UserPem != 700) {
-          
-
           if (currentUrl.indexOf('user/') > -1 || 
           currentUrl.indexOf('release/') > -1) {
             vm.checkLoginState()
             return
           }
         }
-
-        if (Error || err){
-          wx.showModal({
-            title: '提示',
-            content: Error || err,
-            showCancel: false
-          })
-          return
-        } 
 
         if (data) {
           if (obj.exception) {

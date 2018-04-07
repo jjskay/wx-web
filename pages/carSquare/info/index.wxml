@@ -1,7 +1,7 @@
 <!--pages/carSquare/info/index.wxml-->
 <view class='page-content'>
     <view class='page-swiper'>
-      <swiper indicator-dots="true" autoplay="true" duration="1000" bindchange="listenSwiper" >
+      <swiper indicator-dots="true" autoplay="true" duration="1000">
           <!--swiper-item只能包含一个节点再多会自动删除-->
           <swiper-item wx:for="{{detail.Imgs}}" wx:key="{{new Date().getTime()}}">
               <view style="background: #666; height: 150px">
@@ -67,7 +67,7 @@
 
         <view class='info-text-content'>
             <view class='info-text-item'>
-                <view class='item-label'>上牌日期</view>{{detail.detailInfo}}
+                <view class='item-label'>上牌日期</view>{{detail.OnLicenseDate}}
             </view>
             <view class='info-text-item blank-bg'>
                 <view class='item-label'>年检保修到期</view>{{detail.checkDate}}
@@ -147,7 +147,18 @@
     <view class='fix-footer-edit-btn' wx:if="{{detail.ExtInfo.Editble}}">
         <text bindtap='editInfo' class='first'>编辑</text>
         <text bindtap='deleteInfo'>删除</text>
-        <text class='status'>{{status}}</text>
-        <text class='update-price'>修改价格</text>
+        <text class='status' bindtap='changeInfoStatus'>{{status}}</text>
+        <text class='update-price' bindtap='updatePrice'>修改价格</text>
     </view>
 </view>
+
+ <view class='modal-box' hidden="{{hiddenmodalput}}">  
+    <view class='modal-content'>
+        <view class='title'>请输入新的价格</view>
+        <input bindinput='priceChange' type='digit'placeholder="请输入价格（万元）" value='{{detail.Price}}'/>  
+        <view class='action-box'>
+          <text bindtap='hideModal'>取消</text>
+          <text bindtap='confirmUpdate' class='on'>确定</text>
+        </view>
+    </view>
+</view>   

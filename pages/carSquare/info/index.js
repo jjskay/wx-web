@@ -11,7 +11,70 @@ Page({
     detail: {},
     list: [],
     countInfo: [],
-    status:'-'
+    status:'-',
+    hiddenmodalput: true,
+    newPrice: ''
+  },
+
+  hideModal() {
+    this.setData({
+      hiddenmodalput: true
+    })
+  },
+
+  updatePrice() {
+    this.setData({
+      hiddenmodalput: false
+    })
+  },
+
+  priceChange(e) {
+    this.setData({
+      newPrice: e.detail.value
+    })
+  },
+
+  confirmUpdate(e) {
+    const vm = this
+    if (!(this.data.newPrice > 0) || this.data.newPrice == this.data.detail.Price){
+      wx.showToast({
+        title: '请输入新价格~',
+        icon: 'none'
+      })
+      return
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确定修改价格吗？',
+      success(res) {
+        if (!res.confirm){
+          return;
+        }
+        vm.updateApi('price', { price: vm.data.newPrice })
+      }
+    })
+  },
+
+  updateApi(t, data) {
+    app.wxApi.showLoading()
+    const vm = this
+    app.ajax({
+      url: `${app.baseUrl}api/v1/p/post/update/${vm.options.id}?action=${t}`,
+      method: 'POST',
+      data,
+      success: function (res) {
+        vm.hideModal();
+        wx.showModal({
+          title: '提示',
+          content: '修改成功~',
+          showCancel: false,
+          success() {
+            vm.getDetailInfo()
+          }
+        })
+        app.wxApi.hideLoading()
+      }
+    })
   },
 
   /**
@@ -116,12 +179,15 @@ Page({
       url: `${app.baseUrl}api/v1/p/view/posts/${id}`,
       method: 'GET',
       success: function (res) {
+        vm.detailInfo = res;
         const detailInfo = objectUtil.copy(res)
         detailInfo.OnLicenseDate = getYMD(detailInfo.OnLicenseDate)
         detailInfo.year = getYMD(detailInfo.OnLicenseDate)
         detailInfo.checkDate = getYMD(detailInfo.InspectionDate)
         vm.setData({
-          detail: detailInfo
+          detail: detailInfo,
+          newPrice: res.Price,
+          status: res.SaleStatus == 1 ? '在售' : '已售'
         })
         wx.stopPullDownRefresh()
         app.wxApi.hideLoading()
@@ -172,12 +238,47 @@ Page({
     })
   },
 
+  changeInfoStatus() {
+    const vm = this
+    wx.showActionSheet({
+      itemList: ['在售', '已售'],
+      success: function (res) {
+        if (!(res.tapIndex >= 0) || (res.tapIndex + 1) == vm.detailInfo.SaleStatus) {
+          return
+        }
+        wx.showModal({
+          title: '提示',
+          content: '确认修改吗？',
+          success(rs) {
+            if (!rs.confirm){
+              return
+            }
+
+            if (res.tapIndex){
+              vm.updateApi('sold', {})
+            } else {
+              vm.updateApi('onsale', {})
+            }
+
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+
   //显示分享面板
   shareInfo() {
     const vm = this
     wx.showActionSheet({
       itemList: ['转发', '生成图片分享'],
       success: function (res) {
+        if (!(res.tapIndex >= 0)) {
+          return
+        }
+
         if (!res.tapIndex){
           wx.showModal({
             title: '提示',

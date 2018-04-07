@@ -337,5 +337,12 @@
   top: -5rpx;
 }
 
-
+input{
+  padding: 20rpx;
+  background: #eee;
+  color:#333;
+}
+.modal-box{
+  padding-bottom: 100rpx;
+}
 
