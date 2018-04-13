@@ -96,7 +96,8 @@ Page({
       regionIndex,
       Age,
       Mileage,
-      Price
+      Price,
+      carId
     } = vm.data
     let error = ''
     if (!Price){
@@ -128,10 +129,11 @@ Page({
       url: `${app.baseUrl}api/v1/user/intension/add`,
       method: 'POST',
       data: {
-        KeyWords: region[1][regionIndex[1]].Name,
+        KeyWords: vm.data.selectCenterItem.Name,
         Age,
         Mileage,
-        Price
+        Price,
+        CarModel: carId
       },
       success: function (res) {
         wx.showToast({
