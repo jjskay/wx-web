@@ -10,12 +10,12 @@
     </view>
   </view>
 
-  <view class="logi-code-model">
+  <!-- <view class="logi-code-model">
     <view class='model-box'>
       <text class="logi-model-label">身份证号</text>
       <input bindinput="bindCodeInput" type="text" bindinput='changeInputVal' data-type="userCertNum" placeholder="请输入身份证" placeholder-style="color: #999;" />
     </view>
-  </view>
+  </view> -->
 
   <!-- <view class="logi-code-model">
     <view class='model-box border-none'>

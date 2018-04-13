@@ -87,7 +87,7 @@ Page({
     const vm = this
     const {
       userName,
-      userCertNum,
+      // userCertNum,
       shopName,
       shopAddress,
       // certImgs,
@@ -99,7 +99,7 @@ Page({
     !shopAddress && (error = '请填写店铺地址~')
     !shopName && (error = '请填写店铺名称~')
     // certImgs.length < 2 && (error = '请上传身份证正反照片~')
-    !userCertNum && (error = '请填写身份证号码~')
+    // !userCertNum && (error = '请填写身份证号码~')
     !userName && (error = '请填写真实姓名~')
 
     if (error){
@@ -117,7 +117,7 @@ Page({
       data: {
         ShopName: shopName,
         RealName: userName,
-        IdNumber: userCertNum,
+        // IdNumber: userCertNum,
         Address: shopAddress,
         // IdImageA: certImgs[0].uuid,
         // IdImageB: certImgs[1].uuid,

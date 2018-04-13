@@ -523,5 +523,18 @@ Page({
     this.setData({
       toView: val
     })
+  },
+
+  touchMoveIndex(e) {
+    const len = this.data.positionList.length || 1
+    const { pageY } = e.touches[0]
+    const { windowHeight } = wx.getSystemInfoSync()
+    const scrollHeight = windowHeight * 0.8
+
+    const mean = parseInt((scrollHeight / len) * 100) * 0.01
+    const index = parseInt((pageY - windowHeight * 0.1) / mean)
+    this.data.positionList[index] != this.data.toView && this.setData({
+      toView: this.data.positionList[index]
+    })
   }
 })

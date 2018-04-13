@@ -10,9 +10,9 @@
     <view class='user-phone'>
       <text>手机号码</text>{{phone}}
     </view>
-    <view class='user-cert'>
+    <!-- <view class='user-cert'>
       <text>身份证号</text>{{idCert}}
-    </view>
+    </view> -->
 
     <!-- <view class='pic-box'>
       <view class='pic' wx:for="{{certImgs}}" wx:key="{{index}}">

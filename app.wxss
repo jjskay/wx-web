@@ -165,7 +165,7 @@ image{
 .info-content .info-datail{
   font-size: 24rpx;
   color: #999;
-  padding: 10rpx 0;
+  padding: 4rpx 0;
 }
 .info-content .info-datail .info-commission-price{
   float: right;

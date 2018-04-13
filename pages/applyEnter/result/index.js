@@ -10,7 +10,7 @@ Page({
   data: {
     userName: '',
     phone: '',
-    idCert: '',
+    // idCert: '',
     // certImgs: [],
     isPass: false
   },
@@ -31,7 +31,7 @@ Page({
         vm.setData({
           userName: RealName,
           phone: PhoneNumber || 'XXX',
-          idCert: IdNumber,
+          // idCert: IdNumber,
           // certImgs: [IdImageA, IdImageB],
           isPass: statusCode === 301,
           time: dataFormat(JoinTime)

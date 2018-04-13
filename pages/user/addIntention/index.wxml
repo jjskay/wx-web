@@ -42,7 +42,7 @@
 </view>
 
 <view class='brand-modal {{showTop ? "show" : ""}}' catchtap='stopMoveEvent'>
-  <view class='position-list'>
+  <view class='position-list' hidden='{{!showTop}}' bindtouchmove='touchMoveIndex'>
       <text wx:if="{{showTop}}" wx:for="{{positionList}}" catchtap='scrollIntoView' data-val="{{item}}" data-index="{{index}}" wx:key='index' style='height: {{100 / positionList.length}}%'>{{item}}</text>
   </view>
   <view class='brand-box' catchtouchmove="stopMoveEvent" catchtap='stopMoveEvent'>
