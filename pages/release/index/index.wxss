@@ -1,8 +1,8 @@
 /* pages/releasse/index.wxss */
 .page-content{
-  padding: 70rpx 0 30rpx;
+  padding: 20rpx 0 30rpx;
 }
-.page-header{
+/* .page-header{
   position: fixed;
   left: 0;
   top: 0;
@@ -11,7 +11,7 @@
   height: 50rpx;
   overflow: hidden;
   z-index: 15;
-}
+} */
 .page-header image,
 .header-text{
   position: absolute;
@@ -51,7 +51,7 @@
 }
 
 .pic-box > view{
-  min-height: 250rpx;
+  height: 250rpx;
   width: 30%;
   margin-right: 2%;
   border: 1px solid #999;

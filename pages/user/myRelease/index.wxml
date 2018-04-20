@@ -17,11 +17,11 @@
             </view>
 
             <view class='info-content'>
-                <view class='info-title'>{{item.CarSeries.Name}}  {{item.CarModels.Name}}</view>
+                <view class='info-title'>{{item.CarSeries.Name}}  {{item.CarModels.Name}} {{item.CarModels.Name}}</view>
 
                 <view class='info-datail'>
                     {{item.year}}年 <text>/</text> {{item.Mileage}}万公里
-                    <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text>
+                    <!-- <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text> -->
                 </view>
 
                 <view class='info-price'>

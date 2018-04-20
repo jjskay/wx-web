@@ -124,7 +124,7 @@ Page({
    */
   cancelFollow(e) {
     const vm = this
-    const { phone } = e.currentTarget.dataset
+    const { uid } = e.currentTarget.dataset
     wx.showModal({
       title: '提示',
       content: '确定取消关注此信息吗？',
@@ -137,26 +137,28 @@ Page({
         app.wxApi.showLoading()
 
         app.ajax({
-          url: `${app.baseUrl}api/v1/fellow/cancel`,
+          url: `${app.baseUrl}api/v1/user/fellow/cancel`,
           header: {
-            'content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/json'
           },
-          data: {
-            UserNum: phone
-          },
+          data: JSON.stringify({
+            UserId: uid
+          }),
           method: 'POST',
           success: function (res) {
-            const { message } = res
-            wx.showToast({
-              title: message || '服务器繁忙~请稍后再试！',
-              duration: 1000,
-              mask: true
+            let content = '服务器异常，请重试~'
+            if (res.message == 'ok') {
+              content = '取消关注成功~'
+            }
+            wx.showModal({
+              title: '提示',
+              content,
+              showCancel: false
             })
             app.wxApi.hideLoading()
-            this.onPullDownRefresh()
+            vm.onPullDownRefresh()
           }
         })
-
       }
     })
   }

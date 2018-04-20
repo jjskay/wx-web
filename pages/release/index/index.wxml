@@ -1,12 +1,12 @@
 <!--pages/releasse/index.wxml-->
 <view class='page-content {{showTop ? "hide" : ""}}'>
-    <view class='page-header'>
+    <!-- <view class='page-header'>
       <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
       <image class='ic-info' src='../../../images/ic-info.png' mode="widthFix"></image>
       <view class='header-text'>
         佣金默认为面议，佣金最大值不超过车价的2%
       </view>
-    </view>
+    </view> -->
 
     <view class='page-info-content'>
         <view class="logi-code-model">
@@ -93,11 +93,11 @@
             <image class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
         </view>
 
-        <view class='link-item'>
+        <!-- <view class='link-item'>
             佣金金额
             <input placeholder='不填默认面议' type='digit' bindinput='changeText' data-type="Commission" value='{{Commission}}' placeholder-style='color: #e65961'></input>
             <image style='opacity: 0' class='ic-bg' src='../../../images/ic-right.png' mode="widthFix"></image>
-        </view>
+        </view> -->
 
         <view class='other-info-box'>
             <view class='head'>

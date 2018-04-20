@@ -399,5 +399,4 @@ App({
     var url = currentPage.route    //当前页面url
     return url
   }
-
 })

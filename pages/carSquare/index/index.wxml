@@ -29,18 +29,18 @@
   <view class='info-list'>
     <view class='info-item' wx:for="{{list}}" wx:key='index' bindtap="jumpDetailInfo" data-id="{{item.id}}">
         <view class='info-pic'>
-            <text class='info-status-text' wx:if="{{item.SellStatus == 0}}">待销售</text>
+            <!-- <text class='info-status-text' wx:if="{{item.SellStatus == 0}}">待销售</text>
             <text class='info-status-text' wx:if="{{item.SellStatus == 1}}">已售</text>
-            <text class='info-status-text' wx:if="{{item.SellStatus == 2}}">预订</text>
+            <text class='info-status-text' wx:if="{{item.SellStatus == 2}}">预订</text> -->
             <image src='{{item.Imgs[0].url}}' mode="widthFix"></image>
         </view>
 
         <view class='info-content'>
-            <view class='info-title'>{{item.CarSeries.Name}}  {{item.CarModels.Name}}</view>
+            <view class='info-title'>{{item.CarSeries.Name}}  {{item.CarModels.Name}} {{item.CarModels.Name}}</view>
 
             <view class='info-datail'>
                 {{item.year}}年 <text>/</text> {{item.Mileage}}万公里
-                <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text>
+                <!-- <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text> -->
             </view>
 
             <view class='info-price'>

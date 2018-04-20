@@ -8,7 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    detail: {},
+    detail: {
+      CarBrand: {},
+      CarSeries: {}
+    },
     list: [],
     countInfo: [],
     status:'-',
@@ -43,16 +46,17 @@ Page({
       })
       return
     }
-    wx.showModal({
-      title: '提示',
-      content: '确定修改价格吗？',
-      success(res) {
-        if (!res.confirm){
-          return;
-        }
-        vm.updateApi('price', { price: vm.data.newPrice })
-      }
-    })
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '确定修改价格吗？',
+    //   success(res) {
+    //     if (!res.confirm){
+    //       return;
+    //     }
+    //     vm.updateApi('price', { price: vm.data.newPrice })
+    //   }
+    // })
+    vm.updateApi('price', { price: vm.data.newPrice })
   },
 
   updateApi(t, data) {
@@ -287,12 +291,14 @@ Page({
           })
         } else{
           const tokenObj = wx.getStorageSync('tokenObj') || {}
+          app.wxApi.showLoading()
           wx.downloadFile({
             url: `${app.baseUrl}api/v1/p/sharepic/${vm.options.id}?series=0`,
             header: {
               'AUTHORIZATION': tokenObj.token
             },
             success(res){
+              app.wxApi.hideLoading()
               if (res.statusCode === 200) {
                 wx.saveFile({
                   tempFilePath: res.tempFilePath,
@@ -321,6 +327,7 @@ Page({
             },
 
             fail(res){
+              app.wxApi.hideLoading()
               wx.showModal({
                 title: '提示',
                 content: '分享图片下载失败~',
@@ -331,6 +338,7 @@ Page({
         }
       },
       fail: function (res) {
+        app.wxApi.hideLoading()
         console.log(res.errMsg)
       }
     })
@@ -491,6 +499,14 @@ Page({
     const { id } = e.currentTarget.dataset
     wx.navigateTo({
       url: `../info/index?id=${id}`
+    })
+  },
+
+  viewPic(e) {
+    const { url } = e.currentTarget.dataset
+    wx.previewImage({
+      current: '', // 当前显示图片的http链接
+      urls: [url] // 需要预览的图片http链接列表
     })
   }
 })

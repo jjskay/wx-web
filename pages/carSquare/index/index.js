@@ -76,8 +76,7 @@ Page({
     const vm = this
     vm.setData({
       loadAll: false,
-      isInitData: true,
-      list: []
+      isInitData: true
     })
     vm.pageNo = 1;
     vm.getList()

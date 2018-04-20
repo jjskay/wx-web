@@ -10,15 +10,15 @@
     <view class='info-list'>
       <view class='info-item follow-item' wx:for="{{list}}" wx:key="{{new Date().getTime()}}">
           <view class='info-pic'>
-              <image src='{{item.ExtInfo.Avatar}}' mode="widthFix"></image>
+              <image src='{{item.Avatar}}' mode="widthFix"></image>
           </view>
 
           <view class='info-content'>
-              <view class='info-title'>{{item.ExtInfo.UserName}}</view>
+              <view class='info-title'>{{item.Name}}</view>
 
               <view class='info-price'>{{item.year || 'XXXX'}}年入驻</view>
 
-              <view class='cancel-follow-btn' bindtap='cancelFollow' data-phone="{{item.ExtInfo.PhoneNum}}">取消关注</view>
+              <view class='cancel-follow-btn' bindtap='cancelFollow' data-uid="{{item.UserId}}">取消关注</view>
           </view>
       </view>
     </view>

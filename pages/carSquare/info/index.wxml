@@ -4,7 +4,7 @@
       <swiper indicator-dots="true" autoplay="true" duration="1000">
           <!--swiper-item只能包含一个节点再多会自动删除-->
           <swiper-item wx:for="{{detail.Imgs}}" wx:key="{{new Date().getTime()}}">
-              <view style="background: #666; height: 150px">
+              <view style="background: #666; height: 150px" data-url="{{item.url}}" catchtap='viewPic'>
                 <image class='ic-close' src='{{item.url}}' mode="widthFix"></image>
               </view>
           </swiper-item>
@@ -16,16 +16,12 @@
             <text class='info-status-text' wx:if="{{detail.SellStatus == 0}}">待销售</text>
             <text class='info-status-text' wx:if="{{detail.SellStatus == 1}}">已售</text>
             <text class='info-status-text' wx:if="{{detail.SellStatus == 2}}">预订</text>
-            {{(detail.CarBrand.Name || '') + (detail.CarSeries.Name || '') + (detail.Title || '')}}
+            {{detail.CarBrand.Name + detail.CarSeries.Name + detail.CarModels.GroupName + '款' + detail.CarModels.Name}}
         </view>
 
         <view class='head-price'>
             <text class='color'>￥ <text class='max'>{{detail.Price}}</text>万</text>
             新车价 {{detail.RecommendPrice}}万
-
-            <view class='btn'>
-                <text>佣金 ￥{{detail.Commission}}</text>
-            </view>
         </view>
 
         <view class='share-btn' bindtap='shareInfo'>
@@ -75,10 +71,10 @@
             <view class='info-text-item'>
                 <view class='item-label'>填写里程数</view>{{detail.Mileage}}公里
             </view>
-            <view class='info-text-item blank-bg'>
+            <!-- <view class='info-text-item blank-bg'>
                 <view class='item-label'>本车佣金</view>￥{{detail.Commission}}   以线下协商为准
-            </view>
-            <view class='info-text-item'>
+            </view> -->
+            <view class='info-text-item blank-bg'>
                 <view class='item-label'>其他信息</view>{{detail.Title}}
             </view>
         </view>
@@ -104,7 +100,7 @@
 
                   <view class='info-datail'>
                       {{item.year}}年 <text>/</text> {{item.Mileage}}万公里
-                      <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text>
+                      <!-- <text class='info-commission-price'>佣金  ￥{{item.Commission}}</text> -->
                   </view>
 
                   <view class='info-price'>

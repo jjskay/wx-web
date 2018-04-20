@@ -4,14 +4,17 @@
 }
 .page-swiper{
   overflow: hidden;
-  max-height: 400rpx;
-  min-height: 300rpx;
+  height: 400rpx;
   width: 100%;
   background: #eee;
 }
 .page-swiper image{
   display: block;
   width: 100%;
+}
+
+swiper {
+  height: 400rpx;
 }
 
 .page-info-head{

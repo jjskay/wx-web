@@ -160,6 +160,12 @@ image{
 .info-content .info-title{
   font-size: 30rpx;
   font-weight: bold;
+  width: 100%;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .info-content .info-datail{

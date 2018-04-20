@@ -16,7 +16,7 @@ Page({
       Mileage: '',
       Price: '',
       InspectionDate: '',
-      Commission: '',
+      // Commission: '',
       carId: '',
       tabIndex: 0,
       scrollTop: 0,
@@ -68,7 +68,7 @@ Page({
           Mileage,
           Title,
           Price,
-          Commission,
+          // Commission,
           InspectionDate,
           AuditDate
         } = detailInfo
@@ -80,7 +80,7 @@ Page({
           Mileage,
           Price,
           InspectionDate: getDateYMD(InspectionDate),
-          Commission,
+          // Commission,
           carId: CarModels.id,
           Title,
 
@@ -360,7 +360,7 @@ Page({
       endData,
       startData,
       carId,
-      Commission,
+      // Commission,
       Title,
       certImgs,
       InspectionDate
@@ -381,11 +381,9 @@ Page({
       InspectionDate: parseInt(new Date(InspectionDate) / 1000),
       AuditDate: parseInt(new Date(endData) / 1000),
       CarModel: carId,
-      Imgs: []
+      Imgs: [],
+      Title
     }
-
-    Commission && (data.Commission = Commission)
-    Title && (data.Title = Title)
 
     certImgs.map(item => {
       data.Imgs.push(item.uuid || item.id)
