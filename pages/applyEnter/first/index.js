@@ -206,7 +206,7 @@ Page({
     var token = wx.getStorageSync('tokenObj')
     wx.request({
       method: 'POST',
-      url: 'https://win.grand56.com/api/v1/user/validcode', //仅为示例，并非真实的接口地址
+      url: `${app.baseUrl}api/v1/user/validcode`, //仅为示例，并非真实的接口地址
       data: {
         code: vm.data.code,
         timestamp: parseInt(new Date().getTime() / 1000)

@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.5.3",
-	"appid": "wxa2bca95a38de513b",
-	"projectname": "wx",
+	"appid": "wx84a648115d4f6baa",
+	"projectname": "wx-release",
 	"condition": {
 		"search": {
 			"current": -1,

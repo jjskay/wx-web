@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" style='display:none'>
     <view class="search-input">
         <icon type="search" size="15"/>
         <input placeholder="搜索" placeholder-style="color:#e2e2e2" confirm-type="search" type="text" />

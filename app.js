@@ -1,6 +1,6 @@
 //app.js
 App({
-  baseUrl: 'https://win.grand56.com/',
+  baseUrl: 'https://api.zzzche.com/',
   pageSize: 30,
   onLaunch: function() {
     //调用API从本地缓存中获取数据

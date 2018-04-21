@@ -94,8 +94,10 @@ Page({
     }
   },
   onLoad: function () {
-    var that = this;
-    
+    wx.showLoading()
+    wx.redirectTo({
+      url: '/pages/carSquare/index/index',
+    })
   },
   footerTap: app.footerTap,
   moveEvent: function(){

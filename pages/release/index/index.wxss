@@ -1,6 +1,7 @@
 /* pages/releasse/index.wxss */
 .page-content{
   padding: 20rpx 0 30rpx;
+  padding-bottom: 400rpx;
 }
 /* .page-header{
   position: fixed;
@@ -119,7 +120,13 @@
   box-sizing: border-box;
   border-radius: 8rpx;
   padding: 20rpx;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
 }
+/* .other-info-text.focus{
+  padding-bottom: 400rpx;
+} */
 .release-btn{
   padding: 30rpx 20rpx 0 0;
 }
