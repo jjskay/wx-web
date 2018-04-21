@@ -133,7 +133,7 @@ Page({
         app.wxApi.hideLoading()
         return
       }
-      vm.getDetailInfo()
+      setTimeout(vm.getDetailInfo, 200)
     })
   },
 

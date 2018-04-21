@@ -110,7 +110,6 @@ App({
               key: 'UserPem',
               data: UserPem
             })
-
             if (UserPem < 600) {
               wx.showModal({
                 title: '提示',

@@ -103,7 +103,7 @@ Page({
         const listArr = [].concat(ListView || [])
 
         listArr.map((item) => {
-          item.year = getYear(item.OnLicenseDate)
+          item.year = getYear(item.JoinTime)
         })
 
         vm.setData({

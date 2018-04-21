@@ -46,7 +46,7 @@ Page({
         return
       }
       vm.pageNo = 1;
-      vm.getList()
+      setTimeout(vm.getList, 200)
     })
   },
 
