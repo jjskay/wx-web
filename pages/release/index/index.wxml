@@ -1,5 +1,5 @@
 <!--pages/releasse/index.wxml-->
-<view class='page-content {{showTop ? "hide" : ""}}'>
+<scroll-view class='page-content {{showTop ? "hide" : ""}} scroll-into-view="{{inToView}}"  {{isFocus ? "focus" : ""}}'>
     <!-- <view class='page-header'>
       <image class='ic-bg' src='../../../images/user-title.png' mode="widthFix"></image>
       <image class='ic-info' src='../../../images/ic-info.png' mode="widthFix"></image>
@@ -103,7 +103,7 @@
             <view class='head'>
                 <image class='ic-close' src='../../../images/other-info.png' mode="widthFix"></image>颜色、排量、车主要求等 
             </view>
-            <textarea value='{{Title}}' bindinput='changeText' data-type="Title" class='other-info-text'></textarea>
+            <textarea value='{{Title}}' bindfocus='changeFocus'  bindblur='changeBlur' data-type="Title" class='other-info-text {{isFocus ? "focus" : ""}}'></textarea>
         </view>
         <view class='release-btn'>
             <image bindtap='releaseInfo' class='ic-close' src='../../../images/release-btn.png' mode="widthFix"></image>
@@ -133,7 +133,8 @@
           <text>个人中心</text>  
       </view>
   </view> -->
-</view>
+  <view id="{{inToView}}"></view>
+</scroll-view>
 
 <view class='brand-modal {{showTop ? "show" : ""}}' catchtap='stopMoveEvent'>
   <view class='position-list'  hidden='{{!showTop}}' bindtouchmove='touchMoveIndex'>

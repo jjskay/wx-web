@@ -2,6 +2,9 @@
 .page-content{
   padding: 20rpx 0 30rpx;
 }
+.page-content.focus{
+  padding-bottom: 100rpx;
+}
 /* .page-header{
   position: fixed;
   left: 0;
@@ -119,6 +122,9 @@
   box-sizing: border-box;
   border-radius: 8rpx;
   padding: 20rpx;
+}
+.other-info-text.focus{
+  padding-bottom: 300rpx;
 }
 .release-btn{
   padding: 30rpx 20rpx 0 0;

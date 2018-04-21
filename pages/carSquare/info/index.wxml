@@ -80,7 +80,7 @@
         </view>
     </view>
 
-    <view style='padding:0 20rpx 30rpx;' wx:if="{{detail.Title}}">其他信息： {{detail.Title}}</view>
+    <view style='padding:0 20rpx 30rpx;' wx:if="{{detail.Title}}"> {{detail.Title}}</view>
 
     <view class='margin-bg-dom'></view>
 

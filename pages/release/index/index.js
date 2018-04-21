@@ -534,5 +534,23 @@ Page({
     this.data.positionList[index] != this.data.toView && this.setData({
       toView: this.data.positionList[index]
     })
-  }
+  },
+
+  changeFocus() {
+    const vm = this
+    this.setData({
+      isFocus: true
+    })
+
+    setTimeout(() => {
+      wx.pageScrollTo({
+        scrollTop: 10000
+      })
+    }, 800)
+  },
+  changeBlur() {
+    this.setData({
+      isFocus: false
+    })
+  },
 })
