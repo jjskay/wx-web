@@ -66,19 +66,21 @@
                 <view class='item-label'>上牌日期</view>{{detail.OnLicenseDate}}
             </view>
             <view class='info-text-item blank-bg'>
-                <view class='item-label'>年检保修到期</view>{{detail.checkDate}}
+                <view class='item-label'>年检到期时间</view>{{detail.checkDate}}
             </view>
             <view class='info-text-item'>
-                <view class='item-label'>填写里程数</view>{{detail.Mileage}}公里
+                <view class='item-label'>保险到期时间</view>{{detail.endTime}}
+            </view>
+            <view class='info-text-item blank-bg'>
+                <view class='item-label'>里程数</view>{{detail.Mileage}}公里
             </view>
             <!-- <view class='info-text-item blank-bg'>
                 <view class='item-label'>本车佣金</view>￥{{detail.Commission}}   以线下协商为准
             </view> -->
-            <view class='info-text-item blank-bg'>
-                <view class='item-label'>其他信息</view>{{detail.Title}}
-            </view>
         </view>
     </view>
+
+    <view style='padding:0 20rpx 30rpx;' wx:if="{{detail.Title}}">其他信息： {{detail.Title}}</view>
 
     <view class='margin-bg-dom'></view>
 

@@ -18,11 +18,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     const vm = this
     app.wxApi.showLoading()
     app.getAuthInfo((token) => {
       const UserPem = wx.getStorageSync('UserPem')
-      if (token){
+      if (token) {
         app.wxApi.hideLoading()
         // 审核已通过
         if (UserPem == 700) {
@@ -42,34 +56,6 @@ Page({
         }
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    const UserPem = wx.getStorageSync('UserPem')
-    // 审核已通过
-    if (UserPem == 700) {
-      wx.showModal({
-        title: '提示',
-        content: '已成功入驻~',
-        showCancel: false,
-        success(res) {
-          res.confirm && wx.redirectTo({
-            url: '/pages/carSquare/index/index'
-          })
-        }
-      })
-      return
-    }
   },
 
   /**

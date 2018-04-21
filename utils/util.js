@@ -23,7 +23,7 @@ function getYMD(data) {
   const time = new Date((data + '').length == 13 ? data : Number(data) * 1000)
   const year = time.getFullYear()
   const month = time.getMonth() + 1
-  const day = time.getDay()
+  const day = time.getDate()
   return `${year}年${month}月${day}日`
 }
 
@@ -37,7 +37,7 @@ function dataFormat(data) {
   const time = new Date((data + '').length == 13 ? data : Number(data) * 1000)
   const year = time.getFullYear()
   const month = time.getMonth() + 1
-  const day = time.getDay()
+  const day = time.getDate()
   const hours = time.getHours()
   const min = time.getMinutes()
 
@@ -48,7 +48,7 @@ function getDateYMD(data) {
   const time = new Date((data + '').length == 13 ? data : Number(data) * 1000)
   const year = time.getFullYear()
   const month = time.getMonth() + 1
-  const day = time.getDay()
+  const day = time.getDate()
   const hours = time.getHours()
   const min = time.getMinutes()
 

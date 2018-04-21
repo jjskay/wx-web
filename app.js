@@ -139,12 +139,11 @@ App({
               wx.showModal({
                 title: '提示',
                 content: '您已完成入驻~！',
+                showCancel: false,
                 success: function () {
-                  if (res.confirm) {
-                    wx.redirectTo({
-                      url: '/pages/carSquare/index/index'
-                    })
-                  }
+                  wx.redirectTo({
+                    url: '/pages/carSquare/index/index'
+                  })
                 }
               })
               return

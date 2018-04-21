@@ -188,6 +188,7 @@ Page({
         detailInfo.OnLicenseDate = getYMD(detailInfo.OnLicenseDate)
         detailInfo.year = getYMD(detailInfo.OnLicenseDate)
         detailInfo.checkDate = getYMD(detailInfo.InspectionDate)
+        detailInfo.endTime = getYMD(detailInfo.AuditDate)
         vm.setData({
           detail: detailInfo,
           newPrice: res.Price,
