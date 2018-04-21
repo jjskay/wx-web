@@ -1,6 +1,6 @@
 /* pages/carSquare/info/index.wxss */
 .page-content{
-  padding-bottom: 120rpx;
+  padding-bottom: 180rpx;
 }
 .page-swiper{
   overflow: hidden;
@@ -153,11 +153,15 @@ swiper {
 
 .fix-footer-edit-btn{
   background: #e65961;
-  color: #fff;
+  color: #101010;
   text-align: center;
-  line-height: 120rpx;
+  line-height: 60rpx;
   font-size: 36rpx;
   overflow: hidden;
+  height: 180rpx;
+  padding: 40rpx 0 0;
+  background: #fff;
+  box-shadow: 5px -4px 50px #e2e2e2;
 }
 .fix-footer-edit-btn text{
   display: block;
@@ -165,8 +169,16 @@ swiper {
   width: 25%;
   height: 100%;
 }
-.fix-footer-edit-btn text.first{
-  background: #6680e3;
+.fix-footer-edit-btn text.selled{
+  width: 50%;
+}
+.fix-footer-edit-btn text.selled.icon-selled{
+  color: #bbb;
+}
+.fix-footer-edit-btn text:before{
+  display: block;
+  font-size: 84rpx;
+  padding-bottom: 10rpx;
 }
 .fix-footer-btn image{
   width: 100%;

@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 629585 */
+  src: url('//at.alicdn.com/t/font_629585_q64mq7zinh1if6r.eot');
+  src: url('//at.alicdn.com/t/font_629585_q64mq7zinh1if6r.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_629585_q64mq7zinh1if6r.woff') format('woff'),
+  url('//at.alicdn.com/t/font_629585_q64mq7zinh1if6r.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_629585_q64mq7zinh1if6r.svg#font_family') format('svg');
+}
+
 /**app.wxss**/
 page{
   height:100%;
@@ -483,3 +492,30 @@ image{
 .modal-content .action-box text.on{
   color: #326510;
 }
+
+/* tababr icon */
+.icon-del:before{
+  content: '\e677';
+  font-family: "iconfont" !important;
+}
+
+.icon-sell:before{
+  content: '\e676';
+  font-family: "iconfont" !important;
+}
+
+.icon-selled:before{
+  content: '\e675';
+  font-family: "iconfont" !important;
+}
+
+.icon-edit:before{
+  content: '\e674';
+  font-family: "iconfont" !important;
+}
+
+.icon-edit-price:before{
+  content: '\e673';
+  font-family: "iconfont" !important;
+}
+

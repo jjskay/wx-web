@@ -4,7 +4,7 @@
       <swiper indicator-dots="true" autoplay="true" duration="1000">
           <!--swiper-item只能包含一个节点再多会自动删除-->
           <swiper-item wx:for="{{detail.Imgs}}" wx:key="{{new Date().getTime()}}">
-              <view style="background: #666; height: 150px" data-url="{{item.url}}" catchtap='viewPic'>
+              <view style="background: #666;" data-url="{{item.url}}" catchtap='viewPic'>
                 <image class='ic-close' src='{{item.url}}' mode="widthFix"></image>
               </view>
           </swiper-item>
@@ -141,10 +141,10 @@
     </view>
 
     <view class='fix-footer-edit-btn' wx:if="{{detail.ExtInfo.Editble}}">
-        <text bindtap='editInfo' class='first'>编辑</text>
-        <text bindtap='deleteInfo'>删除</text>
-        <text class='status' bindtap='changeInfoStatus'>{{status}}</text>
-        <text class='update-price' bindtap='updatePrice'>修改价格</text>
+        <text wx:if='{{detail.SaleStatus == 1}}' bindtap='editInfo' class='first icon-edit'>编辑</text>
+        <text bindtap='deleteInfo' class='icon-del {{detail.SaleStatus == 2 ? "selled" : ""}}'>删除</text>
+        <text class='status {{detail.SaleStatus == 2 ? "icon-selled selled" : "icon-sell"}}' bindtap='changeInfoStatus'>{{status}}</text>
+        <text wx:if='{{detail.SaleStatus == 1}}' class='update-price icon-edit-price' bindtap='updatePrice'>修改价格</text>
     </view>
 </view>
 

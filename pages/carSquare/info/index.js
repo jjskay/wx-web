@@ -244,12 +244,12 @@ Page({
 
   changeInfoStatus() {
     const vm = this
+    if (vm.data.detail.SaleStatus == 2){
+      return;
+    }
     wx.showActionSheet({
-      itemList: ['在售', '已售'],
+      itemList: ['已售'],
       success: function (res) {
-        if (!(res.tapIndex >= 0) || (res.tapIndex + 1) == vm.detailInfo.SaleStatus) {
-          return
-        }
         wx.showModal({
           title: '提示',
           content: '确认修改吗？',
@@ -257,13 +257,7 @@ Page({
             if (!rs.confirm){
               return
             }
-
-            if (res.tapIndex){
-              vm.updateApi('sold', {})
-            } else {
-              vm.updateApi('onsale', {})
-            }
-
+            vm.updateApi('sold', {})
           }
         })
       },
