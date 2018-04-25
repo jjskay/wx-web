@@ -3,6 +3,9 @@
   padding: 20rpx 0 30rpx;
   padding-bottom: 400rpx;
 }
+.page-content.focus{
+  padding-bottom: 100rpx;
+}
 /* .page-header{
   position: fixed;
   left: 0;
@@ -124,9 +127,6 @@
   overflow: hidden;
   transform: translateZ(0);
 }
-/* .other-info-text.focus{
-  padding-bottom: 400rpx;
-} */
 .release-btn{
   padding: 30rpx 20rpx 0 0;
 }
