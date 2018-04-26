@@ -72,7 +72,7 @@
                 <view class='item-label'>保险到期时间</view>{{detail.endTime}}
             </view>
             <view class='info-text-item blank-bg'>
-                <view class='item-label'>里程数</view>{{detail.Mileage}}公里
+                <view class='item-label'>里程数</view>{{detail.Mileage}}万公里
             </view>
             <!-- <view class='info-text-item blank-bg'>
                 <view class='item-label'>本车佣金</view>￥{{detail.Commission}}   以线下协商为准
